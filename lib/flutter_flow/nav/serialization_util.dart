@@ -80,12 +80,12 @@ String? serializeParam(
       case ParamType.SupabaseRow:
         return json.encode((param as SupabaseDataRow).data);
 
-      default:
-        data = null;
+      // default:
+      //   data = null;
     }
     return data;
   } catch (e) {
-    print('Error serializing parameter: $e');
+    // print('Error serializing parameter: $e');
     return null;
   }
 }
@@ -232,11 +232,11 @@ dynamic deserializeParam<T>(
         final data = json.decode(param) as Map<String, dynamic>? ?? {};
         return structBuilder != null ? structBuilder(data) : null;
 
-      default:
-        return null;
+      // default:
+      //   return null;
     }
   } catch (e) {
-    print('Error deserializing parameter: $e');
+    // print('Error deserializing parameter: $e');
     return null;
   }
 }
