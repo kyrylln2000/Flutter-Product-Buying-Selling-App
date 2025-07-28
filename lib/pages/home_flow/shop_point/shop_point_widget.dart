@@ -1,11 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/main_appbar/main_appbar_widget.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'shop_point_model.dart';
 export 'shop_point_model.dart';
 
@@ -63,7 +60,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                 model: _model.mainAppbarModel,
                 updateCallback: () => safeSetState(() {}),
                 child: MainAppbarWidget(
-                  title: widget!.name!,
+                  title: widget.name!,
                   isBack: false,
                   isEdit: false,
                   backAction: () async {},
@@ -273,7 +270,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(0.0),
                                     child: Image.network(
-                                      widget!.img!,
+                                      widget.img!,
                                       width: 70.0,
                                       height: 70.0,
                                       fit: BoxFit.cover,
@@ -287,7 +284,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                       children: [
                                         Text(
                                           valueOrDefault<String>(
-                                            widget!.name,
+                                            widget.name,
                                             'Shop Point',
                                           ),
                                           style: FlutterFlowTheme.of(context)

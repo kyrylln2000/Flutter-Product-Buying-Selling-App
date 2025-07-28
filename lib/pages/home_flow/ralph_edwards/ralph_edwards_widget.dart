@@ -8,7 +8,6 @@ import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'ralph_edwards_model.dart';
 export 'ralph_edwards_model.dart';
@@ -69,7 +68,7 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                 model: _model.mainAppbarModel,
                 updateCallback: () => safeSetState(() {}),
                 child: MainAppbarWidget(
-                  title: widget!.name!,
+                  title: widget.name!,
                   isBack: false,
                   isEdit: false,
                   backAction: () async {},
@@ -89,7 +88,7 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(0.0),
                       child: Image.network(
-                        widget!.img!,
+                        widget.img!,
                         width: 97.0,
                         height: 97.0,
                         fit: BoxFit.contain,
@@ -100,7 +99,7 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget!.name,
+                          widget.name,
                           'Ralph edwards',
                         ),
                         textAlign: TextAlign.center,
