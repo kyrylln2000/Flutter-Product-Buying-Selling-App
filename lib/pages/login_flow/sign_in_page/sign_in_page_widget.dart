@@ -388,7 +388,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                             }
 
                             context.goNamedAuth(
-                                ReviewPageWidget.routeName, context.mounted);
+                                NavbarWidget.routeName, context.mounted);
                           },
                           text: 'Log in',
                           options: FFButtonOptions(
