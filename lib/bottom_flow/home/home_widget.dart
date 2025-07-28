@@ -2,12 +2,10 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/categorioes_home/categorioes_home_widget.dart';
 import '/pages/components/items_component/items_component_widget.dart';
 import '/pages/components/topratedseller_com/topratedseller_com_widget.dart';
 import '/pages/components/vendor_component/vendor_component_widget.dart';
-import 'dart:math';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
@@ -16,7 +14,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_model.dart';
 export 'home_model.dart';
@@ -665,7 +662,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: List.generate(dotsList.length,
                                     (dotsListIndex) {
-                                  final dotsListItem = dotsList[dotsListIndex];
+                                  // final dotsListItem = dotsList[dotsListIndex];
                                   return Container(
                                     width: dotsListIndex ==
                                             _model.carouselCurrentIndex
