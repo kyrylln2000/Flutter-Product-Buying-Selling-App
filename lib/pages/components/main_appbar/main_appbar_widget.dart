@@ -1,11 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'main_appbar_model.dart';
 export 'main_appbar_model.dart';
 
@@ -67,7 +64,7 @@ class _MainAppbarWidgetState extends State<MainAppbarWidget> {
           children: [
             Builder(
               builder: (context) {
-                if (widget!.isBack == false) {
+                if (widget.isBack == false) {
                   return InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -128,7 +125,7 @@ class _MainAppbarWidgetState extends State<MainAppbarWidget> {
             ),
             Text(
               valueOrDefault<String>(
-                widget!.title,
+                widget.title,
                 'Title',
               ),
               textAlign: TextAlign.center,

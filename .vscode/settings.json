@@ -8,5 +8,7 @@
     "pubspec.yaml": true,
     "lib/flutter_flow/function_changes.json": true,
     ".vscode/settings.json": true
-  }
+  },
+  "files.readonlyFromPermissions": false,
+  "debug.closeReadonlyTabsOnEnd": false
 }

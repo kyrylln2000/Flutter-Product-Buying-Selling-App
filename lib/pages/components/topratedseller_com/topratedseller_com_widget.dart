@@ -5,8 +5,6 @@ import 'dart:ui';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'topratedseller_com_model.dart';
 export 'topratedseller_com_model.dart';
 
@@ -79,7 +77,7 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.network(
-              widget!.img!,
+              widget.img!,
               width: 40.0,
               height: 40.0,
               fit: BoxFit.contain,
@@ -88,7 +86,7 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
               child: Text(
                 valueOrDefault<String>(
-                  widget!.name,
+                  widget.name,
                   'Shop point',
                 ),
                 textAlign: TextAlign.center,
@@ -130,7 +128,7 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
                                 2.0, 0.0, 0.0, 0.0),
                             child: AutoSizeText(
                               valueOrDefault<String>(
-                                widget!.items,
+                                widget.items,
                                 '11 items',
                               ).maybeHandleOverflow(
                                 maxChars: 12,
@@ -172,7 +170,7 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
                                 2.0, 0.0, 0.0, 0.0),
                             child: AutoSizeText(
                               valueOrDefault<String>(
-                                widget!.followers,
+                                widget.followers,
                                 '20 followers',
                               ).maybeHandleOverflow(
                                 maxChars: 12,
@@ -206,11 +204,11 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
                     RalphEdwardsWidget.routeName,
                     queryParameters: {
                       'name': serializeParam(
-                        widget!.name,
+                        widget.name,
                         ParamType.String,
                       ),
                       'img': serializeParam(
-                        widget!.img,
+                        widget.img,
                         ParamType.String,
                       ),
                     }.withoutNulls,

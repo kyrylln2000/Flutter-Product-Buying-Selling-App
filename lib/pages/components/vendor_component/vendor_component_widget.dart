@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'vendor_component_model.dart';
 export 'vendor_component_model.dart';
 
@@ -76,7 +74,7 @@ class _VendorComponentWidgetState extends State<VendorComponentWidget> {
               alignment: AlignmentDirectional(1.0, -1.0),
               children: [
                 Image.network(
-                  widget!.img!,
+                  widget.img!,
                   width: 64.0,
                   height: 64.0,
                   fit: BoxFit.contain,
@@ -87,7 +85,7 @@ class _VendorComponentWidgetState extends State<VendorComponentWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
               child: Text(
                 valueOrDefault<String>(
-                  widget!.name,
+                  widget.name,
                   'Shop point',
                 ),
                 textAlign: TextAlign.start,
@@ -109,11 +107,11 @@ class _VendorComponentWidgetState extends State<VendorComponentWidget> {
                     ShopPointWidget.routeName,
                     queryParameters: {
                       'name': serializeParam(
-                        widget!.name,
+                        widget.name,
                         ParamType.String,
                       ),
                       'img': serializeParam(
-                        widget!.img,
+                        widget.img,
                         ParamType.String,
                       ),
                     }.withoutNulls,
