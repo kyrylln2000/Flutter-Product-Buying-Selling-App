@@ -72,7 +72,7 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
                     final reviewList = FFAppState().reviewList.toList();
 
                     return ListView.separated(
-                      padding: EdgeInsets.fromLTRB(
+                      padding: const EdgeInsets.fromLTRB(
                         0,
                         16.0,
                         0,
@@ -80,11 +80,11 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
                       ),
                       scrollDirection: Axis.vertical,
                       itemCount: reviewList.length,
-                      separatorBuilder: (_, __) => SizedBox(height: 16.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 16.0),
                       itemBuilder: (context, reviewListIndex) {
                         final reviewListItem = reviewList[reviewListIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Container(
                             width: 366.0,
@@ -96,7 +96,7 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
                                   blurRadius: 16.0,
                                   color:
                                       FlutterFlowTheme.of(context).shadowColor,
-                                  offset: Offset(
+                                  offset: const Offset(
                                     0.0,
                                     4.0,
                                   ),
@@ -105,7 +105,7 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
                               borderRadius: BorderRadius.circular(16.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.all(16.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,14 +117,14 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
                                         width: 48.0,
                                         height: 48.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: CachedNetworkImage(
                                           fadeInDuration:
-                                              Duration(milliseconds: 200),
+                                              const Duration(milliseconds: 200),
                                           fadeOutDuration:
-                                              Duration(milliseconds: 200),
+                                              const Duration(milliseconds: 200),
                                           imageUrl: reviewListItem.image,
                                           fit: BoxFit.cover,
                                           errorWidget:
@@ -137,9 +137,8 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
                                       ),
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 8.0, 0.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(16.0, 0.0, 8.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -180,7 +179,8 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
                                                           lineHeight: 1.5,
                                                         ),
                                               ),
-                                            ].divide(SizedBox(height: 4.0)),
+                                            ].divide(
+                                                const SizedBox(height: 4.0)),
                                           ),
                                         ),
                                       ),
@@ -214,7 +214,7 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
                                                   lineHeight: 1.5,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(width: 4.0)),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
                                     ],
                                   ),
@@ -229,7 +229,7 @@ class _ReviewPageWidgetState extends State<ReviewPageWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                ].divide(SizedBox(height: 13.0)),
+                                ].divide(const SizedBox(height: 13.0)),
                               ),
                             ),
                           ),

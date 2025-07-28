@@ -27,7 +27,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
     }
   }
@@ -46,7 +46,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
       return;
     }
