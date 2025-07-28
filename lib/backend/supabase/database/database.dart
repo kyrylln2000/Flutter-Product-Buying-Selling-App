@@ -1,5 +1,5 @@
 export '../../../flutter_flow/lat_lng.dart';
-export 'package:supabase_flutter/supabase_flutter.dart' hide Provider;
+export 'package:supabase_flutter/supabase_flutter.dart';
 
 export '../supabase.dart';
 export 'row.dart';
