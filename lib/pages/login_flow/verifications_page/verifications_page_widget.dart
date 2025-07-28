@@ -5,10 +5,7 @@ import '/pages/components/main_appbar/main_appbar_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'verifications_page_model.dart';
 export 'verifications_page_model.dart';
 
@@ -107,7 +104,7 @@ class _VerificationsPageWidgetState extends State<VerificationsPageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 16.0),
                           child: Text(
-                            'Code sent to ${widget!.email}',
+                            'Code sent to ${widget.email}',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium

@@ -5,10 +5,7 @@ import '/pages/components/main_appbar/main_appbar_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'forgot_verifications_page_model.dart';
 export 'forgot_verifications_page_model.dart';
 
@@ -124,7 +121,7 @@ class _ForgotVerificationsPageWidgetState
                                       ),
                                 ),
                                 TextSpan(
-                                  text: widget!.email!,
+                                  text: widget.email!,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
