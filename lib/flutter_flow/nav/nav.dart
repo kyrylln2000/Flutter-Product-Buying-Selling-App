@@ -7,8 +7,14 @@ import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
+import '/backend/supabase/supabase.dart';
+
 import '/auth/base_auth_user_provider.dart';
 
+import '/main.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'serialization_util.dart';
 
@@ -79,15 +85,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? ReviewPageWidget()
-          : OnboardingPageWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? NavbarWidget() : OnboardingPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? ReviewPageWidget()
+              ? NavbarWidget()
               : OnboardingPageWidget(),
         ),
         FFRoute(

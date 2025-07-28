@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
+import '/backend/api_requests/api_manager.dart';
+import 'backend/supabase/supabase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -102,7 +104,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   LoginModelStruct _userDetail = LoginModelStruct.fromSerializableMap(jsonDecode(
-      '{\"userName\":\"Dev cooper\",\"firstName\":\"Dev\",\"lastName\":\"Cooper\",\"email\":\"hypercodex1004@gmail.com\",\"countryCode\":\"+91\",\"phoneNumber\":\"9909999099\",\"password\":\"123456\"}'));
+      '{\"userName\":\"Dev cooper\",\"firstName\":\"Dev\",\"lastName\":\"Cooper\",\"email\":\"devcooper@gmail.com\",\"countryCode\":\"+91\",\"phoneNumber\":\"9909999099\",\"password\":\"123456\"}'));
   LoginModelStruct get userDetail => _userDetail;
   set userDetail(LoginModelStruct value) {
     _userDetail = value;
@@ -1023,8 +1025,8 @@ void _safeInit(Function() initializeField) {
   } catch (_) {}
 }
 
-// Future _safeInitAsync(Function() initializeField) async {
-//   try {
-//     await initializeField();
-//   } catch (_) {}
-// }
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
+}

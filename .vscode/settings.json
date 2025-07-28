@@ -1,6 +1,6 @@
 {
   "files.readonlyInclude": {
-    "**": true
+    "**": false
   },
   "files.readonlyExclude": {
     "lib/custom_code/**": true,

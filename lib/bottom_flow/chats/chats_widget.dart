@@ -1,9 +1,12 @@
+import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
+import '/bottom_flow/pages/components/chat_list/chat_list_widget.dart';
+import '/bottom_flow/pages/empty_components/no_chat_component/no_chat_component_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/components/center_appbar/center_appbar_widget.dart';
-import '/pages/components/chat_list/chat_list_widget.dart';
-import '/pages/empty_components/no_chat_component/no_chat_component_widget.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
@@ -28,6 +31,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChatsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

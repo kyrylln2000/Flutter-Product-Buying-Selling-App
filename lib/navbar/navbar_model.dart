@@ -3,9 +3,14 @@ import '/bottom_flow/chats/chats_widget.dart';
 import '/bottom_flow/favriout/favriout_widget.dart';
 import '/bottom_flow/home/home_widget.dart';
 import '/bottom_flow/profile/profile_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'navbar_widget.dart' show NavbarWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class NavbarModel extends FlutterFlowModel<NavbarWidget> {
   ///  State fields for stateful widgets in this page.
