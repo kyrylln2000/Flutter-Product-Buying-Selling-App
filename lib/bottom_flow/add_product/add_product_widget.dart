@@ -149,258 +149,179 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        // Image Upload 1
-                        Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 0.0, 16.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                final selectedMedia =
-                                    await selectMediaWithSourceBottomSheet(
-                                  context: context,
-                                  maxWidth: 500.00,
-                                  maxHeight: 500.00,
-                                  allowPhoto: true,
-                                );
-                                if (selectedMedia != null &&
-                                    selectedMedia.every((m) =>
-                                        validateFileFormat(
-                                            m.storagePath, context))) {
-                                  safeSetState(() => _model
-                                      .isDataUploading_uploadData11 = true);
-                                  var selectedUploadedFiles =
-                                      <FFUploadedFile>[];
-                                  try {
-                                    selectedUploadedFiles = selectedMedia
-                                        .map((m) => FFUploadedFile(
-                                              name:
-                                                  m.storagePath.split('/').last,
-                                              bytes: m.bytes,
-                                              height: m.dimensions?.height,
-                                              width: m.dimensions?.width,
-                                              blurHash: m.blurHash,
-                                            ))
-                                        .toList();
-                                  } finally {
-                                    _model.isDataUploading_uploadData11 = false;
-                                  }
-                                  if (selectedUploadedFiles.length ==
-                                      selectedMedia.length) {
-                                    safeSetState(() {
-                                      _model.uploadedLocalFile_uploadData11 =
-                                          selectedUploadedFiles.first;
-                                    });
-                                  } else {
-                                    safeSetState(() {});
-                                    return;
-                                  }
-                                }
-                              },
-                              child: Container(
-                                width: 88.0,
-                                height: 88.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).lightGray,
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.memory(
-                                    _model.uploadedLocalFile_uploadData11
-                                            .bytes ??
-                                        Uint8List.fromList([]),
-                                    width: 88.0,
-                                    height: 88.0,
-                                    fit: BoxFit.cover,
-                                    errorBuilder:
-                                        (context, error, stackTrace) =>
-                                            Image.asset(
-                                      'assets/images/error_image.png',
+                        // Display uploaded images
+                        ..._model.uploadedImages.asMap().entries.map((entry) {
+                          int index = entry.key;
+                          FFUploadedFile image = entry.value;
+
+                          return Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 16.0, 0.0, 16.0),
+                              child: Stack(
+                                children: [
+                                  // Image container
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () {
+                                      // Remove image when clicked
+                                      safeSetState(() {
+                                        _model.removeImage(index);
+                                      });
+                                    },
+                                    child: Container(
                                       width: 88.0,
                                       height: 88.0,
-                                      fit: BoxFit.cover,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .lightGray,
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                        child: Image.memory(
+                                          image.bytes ?? Uint8List.fromList([]),
+                                          width: 88.0,
+                                          height: 88.0,
+                                          fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Icon(
+                                            Icons.error,
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            size: 40.0,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
+                                  // Remove button overlay
+                                  // Positioned(
+                                  //   top: 4.0,
+                                  //   right: 4.0,
+                                  //   child: Container(
+                                  //     width: 24.0,
+                                  //     height: 24.0,
+                                  //     decoration: BoxDecoration(
+                                  //       color: Colors.red,
+                                  //       borderRadius:
+                                  //           BorderRadius.circular(12.0),
+                                  //     ),
+                                  //     child: const Icon(
+                                  //       Icons.close,
+                                  //       color: Colors.white,
+                                  //       size: 16.0,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }).toList(),
+
+                        // Add new image button (only show if less than 10 images)
+                        if (_model.uploadedImages.length < 10)
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 16.0, 0.0, 16.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  final selectedMedia =
+                                      await selectMediaWithSourceBottomSheet(
+                                    context: context,
+                                    maxWidth: 500.00,
+                                    maxHeight: 500.00,
+                                    allowPhoto: true,
+                                  );
+
+                                  if (selectedMedia != null &&
+                                      selectedMedia.every((m) =>
+                                          validateFileFormat(
+                                              m.storagePath, context))) {
+                                    safeSetState(
+                                        () => _model.isImageUploading = true);
+
+                                    var selectedUploadedFiles =
+                                        <FFUploadedFile>[];
+                                    try {
+                                      selectedUploadedFiles = selectedMedia
+                                          .map((m) => FFUploadedFile(
+                                                name: m.storagePath
+                                                    .split('/')
+                                                    .last,
+                                                bytes: m.bytes,
+                                                height: m.dimensions?.height,
+                                                width: m.dimensions?.width,
+                                                blurHash: m.blurHash,
+                                              ))
+                                          .toList();
+                                    } finally {
+                                      _model.isImageUploading = false;
+                                    }
+
+                                    if (selectedUploadedFiles.length ==
+                                        selectedMedia.length) {
+                                      safeSetState(() {
+                                        // Add new image to the list
+                                        _model.addImage(
+                                            selectedUploadedFiles.first);
+                                      });
+                                    }
+                                  }
+                                },
+                                child: Container(
+                                  width: 88.0,
+                                  height: 88.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).lightGray,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText
+                                          .withValues(),
+                                      width: 2.0,
+                                      style: BorderStyle.solid,
+                                    ),
+                                  ),
+                                  child: _model.isImageUploading
+                                      ? Center(
+                                          child: SizedBox(
+                                            width: 24.0,
+                                            height: 24.0,
+                                            child: CircularProgressIndicator(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              strokeWidth: 2.0,
+                                            ),
+                                          ),
+                                        )
+                                      : Icon(
+                                          Icons.add_a_photo,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText
+                                              .withOpacity(0.6),
+                                          size: 32.0,
+                                        ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        // Image Upload 2
-                        Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 0.0, 16.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                final selectedMedia =
-                                    await selectMediaWithSourceBottomSheet(
-                                  context: context,
-                                  maxWidth: 500.00,
-                                  maxHeight: 500.00,
-                                  allowPhoto: true,
-                                );
-                                if (selectedMedia != null &&
-                                    selectedMedia.every((m) =>
-                                        validateFileFormat(
-                                            m.storagePath, context))) {
-                                  safeSetState(() => _model
-                                      .isDataUploading_uploadData22 = true);
-                                  var selectedUploadedFiles =
-                                      <FFUploadedFile>[];
-                                  try {
-                                    selectedUploadedFiles = selectedMedia
-                                        .map((m) => FFUploadedFile(
-                                              name:
-                                                  m.storagePath.split('/').last,
-                                              bytes: m.bytes,
-                                              height: m.dimensions?.height,
-                                              width: m.dimensions?.width,
-                                              blurHash: m.blurHash,
-                                            ))
-                                        .toList();
-                                  } finally {
-                                    _model.isDataUploading_uploadData22 = false;
-                                  }
-                                  if (selectedUploadedFiles.length ==
-                                      selectedMedia.length) {
-                                    safeSetState(() {
-                                      _model.uploadedLocalFile_uploadData22 =
-                                          selectedUploadedFiles.first;
-                                    });
-                                  } else {
-                                    safeSetState(() {});
-                                    return;
-                                  }
-                                }
-                              },
-                              child: Container(
-                                width: 88.0,
-                                height: 88.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).lightGray,
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.memory(
-                                    _model.uploadedLocalFile_uploadData22
-                                            .bytes ??
-                                        Uint8List.fromList([]),
-                                    width: 88.0,
-                                    height: 88.0,
-                                    fit: BoxFit.cover,
-                                    errorBuilder:
-                                        (context, error, stackTrace) =>
-                                            Image.asset(
-                                      'assets/images/error_image.png',
-                                      width: 88.0,
-                                      height: 88.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        // Continue with remaining 8 image upload containers...
-                        // (I'll include just one more for brevity, but you should include all 10)
-                        Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 0.0, 16.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                final selectedMedia =
-                                    await selectMediaWithSourceBottomSheet(
-                                  context: context,
-                                  maxWidth: 500.00,
-                                  maxHeight: 500.00,
-                                  allowPhoto: true,
-                                );
-                                if (selectedMedia != null &&
-                                    selectedMedia.every((m) =>
-                                        validateFileFormat(
-                                            m.storagePath, context))) {
-                                  safeSetState(() => _model
-                                      .isDataUploading_uploadData33 = true);
-                                  var selectedUploadedFiles =
-                                      <FFUploadedFile>[];
-                                  try {
-                                    selectedUploadedFiles = selectedMedia
-                                        .map((m) => FFUploadedFile(
-                                              name:
-                                                  m.storagePath.split('/').last,
-                                              bytes: m.bytes,
-                                              height: m.dimensions?.height,
-                                              width: m.dimensions?.width,
-                                              blurHash: m.blurHash,
-                                            ))
-                                        .toList();
-                                  } finally {
-                                    _model.isDataUploading_uploadData33 = false;
-                                  }
-                                  if (selectedUploadedFiles.length ==
-                                      selectedMedia.length) {
-                                    safeSetState(() {
-                                      _model.uploadedLocalFile_uploadData33 =
-                                          selectedUploadedFiles.first;
-                                    });
-                                  } else {
-                                    safeSetState(() {});
-                                    return;
-                                  }
-                                }
-                              },
-                              child: Container(
-                                width: 88.0,
-                                height: 88.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).lightGray,
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.memory(
-                                    _model.uploadedLocalFile_uploadData33
-                                            .bytes ??
-                                        Uint8List.fromList([]),
-                                    width: 88.0,
-                                    height: 88.0,
-                                    fit: BoxFit.cover,
-                                    errorBuilder:
-                                        (context, error, stackTrace) =>
-                                            Image.asset(
-                                      'assets/images/error_image.png',
-                                      width: 88.0,
-                                      height: 88.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        // ADD THE REMAINING 7 IMAGE UPLOAD CONTAINERS HERE (uploadData44 through uploadData10)
-                        // Copy them exactly from your original code
                       ]
                           .divide(const SizedBox(width: 16.0))
                           .addToStart(const SizedBox(width: 16.0))

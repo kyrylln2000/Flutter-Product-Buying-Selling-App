@@ -1,69 +1,103 @@
-import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
-import '/backend/api_requests/api_calls.dart';
 // import '/backend/schema/structs/index.dart';
 // import '/flutter_flow/flutter_flow_drop_down.dart';
 // import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
 // import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 // import '/flutter_flow/upload_data.dart';
 // import 'dart:ui';
 // import '/custom_code/widgets/index.dart' as custom_widgets;
 // import '/index.dart';
-import 'add_product_widget.dart' show AddProductWidget;
 // import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:provider/provider.dart';
+import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
+import 'add_product_widget.dart' show AddProductWidget;
+import 'package:flutter/material.dart';
 
 class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   ///  State fields for stateful widgets in this component.
+
+  List<FFUploadedFile> uploadedImages = [];
+  bool isImageUploading = false;
+
+  // Method to add a new image
+  void addImage(FFUploadedFile image) {
+    if (uploadedImages.length < 10) {
+      uploadedImages.add(image);
+      notifyListeners();
+    }
+  }
+
+  // Method to clear all images
+  void clearAllImages() {
+    uploadedImages.clear();
+    notifyListeners();
+  }
+
+  // Get the number of uploaded images
+  int get imageCount => uploadedImages.length;
+
+  // Check if can add more images
+  bool get canAddMoreImages => uploadedImages.length < 10;
+
+  // Check if has any images
+  bool get hasImages => uploadedImages.isNotEmpty;
+
+  // Method to remove an image at specific index
+  void removeImage(int index) {
+    if (index >= 0 && index < uploadedImages.length) {
+      uploadedImages.removeAt(index);
+      notifyListeners();
+    }
+  }
 
   final formKey = GlobalKey<FormState>();
 
   // Model for CenterAppbar component.
   late CenterAppbarModel centerAppbarModel;
 
-  // Image upload fields (keeping all existing ones)
-  bool isDataUploading_uploadData11 = false;
-  FFUploadedFile uploadedLocalFile_uploadData11 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // // Image upload fields (keeping all existing ones)
+  // bool isDataUploading_uploadData11 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData11 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadData22 = false;
-  FFUploadedFile uploadedLocalFile_uploadData22 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // bool isDataUploading_uploadData22 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData22 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadData33 = false;
-  FFUploadedFile uploadedLocalFile_uploadData33 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // bool isDataUploading_uploadData33 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData33 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadData44 = false;
-  FFUploadedFile uploadedLocalFile_uploadData44 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // bool isDataUploading_uploadData44 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData44 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadData55 = false;
-  FFUploadedFile uploadedLocalFile_uploadData55 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // bool isDataUploading_uploadData55 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData55 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadData66 = false;
-  FFUploadedFile uploadedLocalFile_uploadData66 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // bool isDataUploading_uploadData66 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData66 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadData77 = false;
-  FFUploadedFile uploadedLocalFile_uploadData77 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // bool isDataUploading_uploadData77 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData77 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadData88 = false;
-  FFUploadedFile uploadedLocalFile_uploadData88 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // bool isDataUploading_uploadData88 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData88 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadData99 = false;
-  FFUploadedFile uploadedLocalFile_uploadData99 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // bool isDataUploading_uploadData99 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData99 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadData10 = false;
-  FFUploadedFile uploadedLocalFile_uploadData10 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+  // bool isDataUploading_uploadData10 = false;
+  // FFUploadedFile uploadedLocalFile_uploadData10 =
+  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // DYNAMIC DROPDOWN DATA
   List<dynamic> categories = [];
@@ -219,6 +253,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   @override
   void dispose() {
+    // Clear images when disposing
+    uploadedImages.clear();
     centerAppbarModel.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
