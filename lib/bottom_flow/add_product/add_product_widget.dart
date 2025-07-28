@@ -8,9 +8,9 @@ import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
-import 'package:flutter/gestures.dart';
+// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'add_product_model.dart';
 export 'add_product_model.dart';
@@ -774,7 +774,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
                     child: Text(
-                      'Choose category',
+                      'Product Type',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Satoshi',
                             fontSize: 17.0,
@@ -789,9 +789,21 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController2 ??=
                           FormFieldController<String>(null),
-                      options: ['Sell', 'sell2'],
-                      onChanged: (val) =>
-                          safeSetState(() => _model.dropDownValue2 = val),
+                      options: _model.isProductTypesLoading
+                          ? ['loading']
+                          : _model.productTypes
+                              .map<String>(
+                                  (type) => type['id']?.toString() ?? '')
+                              .toList(),
+                      optionLabels: _model.isProductTypesLoading
+                          ? ['Loading product types...']
+                          : _model.productTypes
+                              .map<String>(
+                                  (type) => type['name']?.toString() ?? '')
+                              .toList(),
+                      onChanged: (val) => safeSetState(() {
+                        _model.onProductTypeChanged(val);
+                      }),
                       width: double.infinity,
                       height: 54.0,
                       textStyle:
@@ -802,7 +814,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w500,
                               ),
-                      hintText: 'Sell',
+                      hintText: _model.isProductTypesLoading
+                          ? 'Loading...'
+                          : 'Select product type',
                       icon: Icon(
                         Icons.keyboard_arrow_down_rounded,
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -820,6 +834,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       isOverButton: false,
                       isSearchable: false,
                       isMultiSelect: false,
+                      disabled: _model.isProductTypesLoading,
                     ),
                   ),
 
@@ -843,9 +858,21 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController3 ??=
                           FormFieldController<String>(null),
-                      options: ['New', 'Old'],
-                      onChanged: (val) =>
-                          safeSetState(() => _model.dropDownValue3 = val),
+                      options: _model.isConditionsLoading
+                          ? ['loading']
+                          : _model.conditions
+                              .map<String>((condition) =>
+                                  condition['id']?.toString() ?? '')
+                              .toList(),
+                      optionLabels: _model.isConditionsLoading
+                          ? ['Loading conditions...']
+                          : _model.conditions
+                              .map<String>((condition) =>
+                                  condition['name']?.toString() ?? '')
+                              .toList(),
+                      onChanged: (val) => safeSetState(() {
+                        _model.onConditionChanged(val);
+                      }),
                       width: double.infinity,
                       height: 54.0,
                       textStyle:
@@ -856,7 +883,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w500,
                               ),
-                      hintText: 'New',
+                      hintText: _model.isConditionsLoading
+                          ? 'Loading...'
+                          : 'Select condition',
                       icon: Icon(
                         Icons.keyboard_arrow_down_rounded,
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -874,6 +903,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       isOverButton: false,
                       isSearchable: false,
                       isMultiSelect: false,
+                      disabled: _model.isConditionsLoading,
                     ),
                   ),
 
@@ -1219,7 +1249,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
                     child: Text(
-                      'Location',
+                      'Country',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Satoshi',
                             fontSize: 17.0,
@@ -1234,9 +1264,21 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController5 ??=
                           FormFieldController<String>(null),
-                      options: ['USA', 'UK', 'new zealand'],
-                      onChanged: (val) =>
-                          safeSetState(() => _model.dropDownValue5 = val),
+                      options: _model.isCountriesLoading
+                          ? ['loading']
+                          : _model.countries
+                              .map<String>(
+                                  (country) => country['id']?.toString() ?? '')
+                              .toList(),
+                      optionLabels: _model.isCountriesLoading
+                          ? ['Loading countries...']
+                          : _model.countries
+                              .map<String>((country) =>
+                                  country['name']?.toString() ?? '')
+                              .toList(),
+                      onChanged: (val) => safeSetState(() {
+                        _model.onCountryChanged(val);
+                      }),
                       width: double.infinity,
                       height: 54.0,
                       textStyle:
@@ -1247,7 +1289,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w500,
                               ),
-                      hintText: 'USA',
+                      hintText: _model.isCountriesLoading
+                          ? 'Loading...'
+                          : 'Select country',
                       icon: Icon(
                         Icons.keyboard_arrow_down_rounded,
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -1265,6 +1309,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       isOverButton: false,
                       isSearchable: false,
                       isMultiSelect: false,
+                      disabled: _model.isCountriesLoading,
                     ),
                   ),
 
@@ -1288,9 +1333,27 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController6 ??=
                           FormFieldController<String>(null),
-                      options: ['All', 'Option 2'],
-                      onChanged: (val) =>
-                          safeSetState(() => _model.dropDownValue6 = val),
+                      options: _model.isTownshipsLoading
+                          ? ['loading']
+                          : _model.selectedCountryId == null
+                              ? ['select_country_first']
+                              : _model.townships
+                                  .map<String>((township) =>
+                                      township['id']?.toString() ?? '')
+                                  .toList(),
+                      optionLabels: _model.isTownshipsLoading
+                          ? ['Loading townships...']
+                          : _model.selectedCountryId == null
+                              ? ['Please select a country first']
+                              : _model.townships
+                                  .map<String>((township) =>
+                                      township['name']?.toString() ?? '')
+                                  .toList(),
+                      onChanged: (val) => safeSetState(() {
+                        if (val != 'select_country_first' && val != 'loading') {
+                          _model.onTownshipChanged(val);
+                        }
+                      }),
                       width: double.infinity,
                       height: 54.0,
                       textStyle:
@@ -1301,7 +1364,11 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w500,
                               ),
-                      hintText: 'All',
+                      hintText: _model.isTownshipsLoading
+                          ? 'Loading...'
+                          : _model.selectedCountryId == null
+                              ? 'Select country first'
+                              : 'Select township',
                       icon: Icon(
                         Icons.keyboard_arrow_down_rounded,
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -1319,6 +1386,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       isOverButton: false,
                       isSearchable: false,
                       isMultiSelect: false,
+                      disabled: _model.isTownshipsLoading ||
+                          _model.selectedCountryId == null,
                     ),
                   ),
 
@@ -1421,14 +1490,20 @@ class _AddProductWidgetState extends State<AddProductWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 24.0),
           child: FFButtonWidget(
             onPressed: () async {
-              // Debug: Print selected data
+              // Debug: Print all selected data
               print('=== FORM SUBMISSION DEBUG ===');
               print(
-                  'Selected Category: ${_model.getCategoryNameById(_model.selectedCategoryId)}');
-              print('Category ID: ${_model.selectedCategoryId}');
+                  'Selected Category: ${_model.getCategoryNameById(_model.selectedCategoryId)} (ID: ${_model.selectedCategoryId})');
               print(
-                  'Selected Deal Option: ${_model.getDealOptionNameById(_model.selectedDealOptionId)}');
-              print('Deal Option ID: ${_model.selectedDealOptionId}');
+                  'Selected Product Type: ${_model.getProductTypeNameById(_model.selectedProductTypeId)} (ID: ${_model.selectedProductTypeId})');
+              print(
+                  'Selected Condition: ${_model.getConditionNameById(_model.selectedConditionId)} (ID: ${_model.selectedConditionId})');
+              print(
+                  'Selected Deal Option: ${_model.getDealOptionNameById(_model.selectedDealOptionId)} (ID: ${_model.selectedDealOptionId})');
+              print(
+                  'Selected Country: ${_model.getCountryNameById(_model.selectedCountryId)} (ID: ${_model.selectedCountryId})');
+              print(
+                  'Selected Township: ${_model.getTownshipNameById(_model.selectedTownshipId)} (ID: ${_model.selectedTownshipId})');
               print('=============================');
 
               FFAppState().homePageIndex = 0;
@@ -1436,12 +1511,12 @@ class _AddProductWidgetState extends State<AddProductWidget> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    'Product Added Successfully! Category: ${_model.getCategoryNameById(_model.selectedCategoryId)}',
+                    'Product Added Successfully!\nCategory: ${_model.getCategoryNameById(_model.selectedCategoryId)}\nLocation: ${_model.getCountryNameById(_model.selectedCountryId)} - ${_model.getTownshipNameById(_model.selectedTownshipId)}',
                     style: TextStyle(
                       color: FlutterFlowTheme.of(context).primaryText,
                     ),
                   ),
-                  duration: Duration(milliseconds: 2000),
+                  duration: Duration(milliseconds: 3000),
                   backgroundColor: FlutterFlowTheme.of(context).secondary,
                 ),
               );

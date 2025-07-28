@@ -1,20 +1,20 @@
 import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+// import '/backend/schema/structs/index.dart';
+// import '/flutter_flow/flutter_flow_drop_down.dart';
+// import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+// import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
-import 'dart:ui';
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/index.dart';
+// import '/flutter_flow/upload_data.dart';
+// import 'dart:ui';
+// import '/custom_code/widgets/index.dart' as custom_widgets;
+// import '/index.dart';
 import 'add_product_widget.dart' show AddProductWidget;
-import 'package:flutter/gestures.dart';
+// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import 'package:provider/provider.dart';
 
 class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   ///  State fields for stateful widgets in this component.
@@ -68,18 +68,34 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   // DYNAMIC DROPDOWN DATA
   List<dynamic> categories = [];
   List<dynamic> dealOptions = [];
+  List<dynamic> conditions = [];
+  List<dynamic> countries = [];
+  List<dynamic> townships = [];
+  List<dynamic> productTypes = [];
 
   // Loading states
   bool isCategoriesLoading = false;
   bool isDealOptionsLoading = false;
+  bool isConditionsLoading = false;
+  bool isCountriesLoading = false;
+  bool isTownshipsLoading = false;
+  bool isProductTypesLoading = false;
 
   // Selected values (store IDs)
   String? selectedCategoryId;
   String? selectedDealOptionId;
+  String? selectedConditionId;
+  String? selectedCountryId;
+  String? selectedTownshipId;
+  String? selectedProductTypeId;
 
   // API responses
   ApiCallResponse? getCategoriesResponse;
   ApiCallResponse? getDealOptionsResponse;
+  ApiCallResponse? getConditionsResponse;
+  ApiCallResponse? getCountriesResponse;
+  ApiCallResponse? getTownshipsResponse;
+  ApiCallResponse? getProductTypesResponse;
 
   // Existing dropdown states
   String? dropDownValue1;
@@ -118,11 +134,11 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     return null;
   }
 
-  // State field(s) for DropDown widget - Product Type
+  // State field(s) for DropDown widget - Product Type (Dynamic)
   String? dropDownValue2;
   FormFieldController<String>? dropDownValueController2;
 
-  // State field(s) for DropDown widget - Condition
+  // State field(s) for DropDown widget - Condition (Dynamic)
   String? dropDownValue3;
   FormFieldController<String>? dropDownValueController3;
 
@@ -163,11 +179,11 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     return null;
   }
 
-  // State field(s) for DropDown widget
+  // State field(s) for DropDown widget - Countries (Dynamic)
   String? dropDownValue5;
   FormFieldController<String>? dropDownValueController5;
 
-  // State field(s) for DropDown widget
+  // State field(s) for DropDown widget - Townships (Dynamic)
   String? dropDownValue6;
   FormFieldController<String>? dropDownValueController6;
 
@@ -193,9 +209,12 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     textController6Validator = _textController6Validator;
     textController7Validator = _textController7Validator;
 
-    // Load dynamic data
+    // Load all dynamic data
     loadCategories();
     loadDealOptions();
+    loadConditions();
+    loadCountries();
+    loadProductTypes();
   }
 
   @override
@@ -224,7 +243,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     notifyListeners();
 
     try {
-      // Using your existing API call
       getCategoriesResponse = await PqzoepcjuqyvtosffqafCall.call();
 
       print('📡 Categories API Response: ${getCategoriesResponse?.succeeded}');
@@ -234,7 +252,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
         categories = getCategoriesResponse?.jsonBody ?? [];
         print('✅ Successfully loaded ${categories.length} categories');
 
-        // Debug: Print each category
         for (var category in categories) {
           print('📂 Category: ${category['name']} (ID: ${category['id']})');
         }
@@ -259,7 +276,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     notifyListeners();
 
     try {
-      // Using your existing API call
       getDealOptionsResponse = await GetDealOptionsCall.call();
 
       print(
@@ -270,7 +286,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
         dealOptions = getDealOptionsResponse?.jsonBody ?? [];
         print('✅ Successfully loaded ${dealOptions.length} deal options');
 
-        // Debug: Print each deal option
         for (var option in dealOptions) {
           print('🤝 Deal Option: ${option['name']} (ID: ${option['id']})');
         }
@@ -284,6 +299,139 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       print('Stack trace: $stackTrace');
     } finally {
       isDealOptionsLoading = false;
+      notifyListeners();
+    }
+  }
+
+  // Load Conditions from Supabase
+  Future<void> loadConditions() async {
+    print('🔄 Loading conditions...');
+    isConditionsLoading = true;
+    notifyListeners();
+
+    try {
+      getConditionsResponse = await GetConditionsCall.call();
+
+      print('📡 Conditions API Response: ${getConditionsResponse?.succeeded}');
+      print('📄 Response body: ${getConditionsResponse?.jsonBody}');
+
+      if (getConditionsResponse?.succeeded ?? false) {
+        conditions = getConditionsResponse?.jsonBody ?? [];
+        print('✅ Successfully loaded ${conditions.length} conditions');
+
+        for (var condition in conditions) {
+          print('🔧 Condition: ${condition['name']} (ID: ${condition['id']})');
+        }
+      } else {
+        print('❌ Failed to load conditions');
+        print('Status: ${getConditionsResponse?.statusCode}');
+        print('Error: ${getConditionsResponse?.bodyText}');
+      }
+    } catch (e, stackTrace) {
+      print('🚨 Exception loading conditions: $e');
+      print('Stack trace: $stackTrace');
+    } finally {
+      isConditionsLoading = false;
+      notifyListeners();
+    }
+  }
+
+  // Load Countries from Supabase
+  Future<void> loadCountries() async {
+    print('🔄 Loading countries...');
+    isCountriesLoading = true;
+    notifyListeners();
+
+    try {
+      getCountriesResponse = await GetCountriesCall.call();
+
+      print('📡 Countries API Response: ${getCountriesResponse?.succeeded}');
+      print('📄 Response body: ${getCountriesResponse?.jsonBody}');
+
+      if (getCountriesResponse?.succeeded ?? false) {
+        countries = getCountriesResponse?.jsonBody ?? [];
+        print('✅ Successfully loaded ${countries.length} countries');
+
+        for (var country in countries) {
+          print('🌍 Country: ${country['name']} (ID: ${country['id']})');
+        }
+      } else {
+        print('❌ Failed to load countries');
+        print('Status: ${getCountriesResponse?.statusCode}');
+        print('Error: ${getCountriesResponse?.bodyText}');
+      }
+    } catch (e, stackTrace) {
+      print('🚨 Exception loading countries: $e');
+      print('Stack trace: $stackTrace');
+    } finally {
+      isCountriesLoading = false;
+      notifyListeners();
+    }
+  }
+
+  // Load Townships from Supabase (filtered by country if selected)
+  Future<void> loadTownships({String? countryId}) async {
+    print('🔄 Loading townships for country: $countryId');
+    isTownshipsLoading = true;
+    notifyListeners();
+
+    try {
+      getTownshipsResponse = await GetTownshipsCall.call(countryId: countryId);
+
+      print('📡 Townships API Response: ${getTownshipsResponse?.succeeded}');
+      print('📄 Response body: ${getTownshipsResponse?.jsonBody}');
+
+      if (getTownshipsResponse?.succeeded ?? false) {
+        townships = getTownshipsResponse?.jsonBody ?? [];
+        print('✅ Successfully loaded ${townships.length} townships');
+
+        for (var township in townships) {
+          print('🏘️ Township: ${township['name']} (ID: ${township['id']})');
+        }
+      } else {
+        print('❌ Failed to load townships');
+        print('Status: ${getTownshipsResponse?.statusCode}');
+        print('Error: ${getTownshipsResponse?.bodyText}');
+      }
+    } catch (e, stackTrace) {
+      print('🚨 Exception loading townships: $e');
+      print('Stack trace: $stackTrace');
+    } finally {
+      isTownshipsLoading = false;
+      notifyListeners();
+    }
+  }
+
+  // Load Product Types from Supabase
+  Future<void> loadProductTypes() async {
+    print('🔄 Loading product types...');
+    isProductTypesLoading = true;
+    notifyListeners();
+
+    try {
+      getProductTypesResponse = await GetProductTypesCall.call();
+
+      print(
+          '📡 Product Types API Response: ${getProductTypesResponse?.succeeded}');
+      print('📄 Response body: ${getProductTypesResponse?.jsonBody}');
+
+      if (getProductTypesResponse?.succeeded ?? false) {
+        productTypes = getProductTypesResponse?.jsonBody ?? [];
+        print('✅ Successfully loaded ${productTypes.length} product types');
+
+        for (var type in productTypes) {
+          print('📦 Product Type: ${type['name']} (ID: ${type['id']})');
+        }
+      } else {
+        print('❌ Failed to load product types');
+        print('Status: ${getProductTypesResponse?.statusCode}');
+        print('Error: ${getProductTypesResponse?.bodyText}');
+      }
+    } catch (e, stackTrace) {
+      print('🚨 Exception loading product types: $e');
+      print('Stack trace: $stackTrace');
+    } finally {
+      isProductTypesLoading = false;
       notifyListeners();
     }
   }
@@ -317,12 +465,86 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     }
   }
 
+  String getConditionNameById(String? id) {
+    if (id == null || conditions.isEmpty) return '';
+    try {
+      final condition = conditions.firstWhere(
+        (cond) => cond['id']?.toString() == id,
+        orElse: () => null,
+      );
+      return condition?['name']?.toString() ?? '';
+    } catch (e) {
+      print('Error getting condition name for ID $id: $e');
+      return '';
+    }
+  }
+
+  String getCountryNameById(String? id) {
+    if (id == null || countries.isEmpty) return '';
+    try {
+      final country = countries.firstWhere(
+        (country) => country['id']?.toString() == id,
+        orElse: () => null,
+      );
+      return country?['name']?.toString() ?? '';
+    } catch (e) {
+      print('Error getting country name for ID $id: $e');
+      return '';
+    }
+  }
+
+  String getTownshipNameById(String? id) {
+    if (id == null || townships.isEmpty) return '';
+    try {
+      final township = townships.firstWhere(
+        (township) => township['id']?.toString() == id,
+        orElse: () => null,
+      );
+      return township?['name']?.toString() ?? '';
+    } catch (e) {
+      print('Error getting township name for ID $id: $e');
+      return '';
+    }
+  }
+
+  String getProductTypeNameById(String? id) {
+    if (id == null || productTypes.isEmpty) return '';
+    try {
+      final type = productTypes.firstWhere(
+        (type) => type['id']?.toString() == id,
+        orElse: () => null,
+      );
+      return type?['name']?.toString() ?? '';
+    } catch (e) {
+      print('Error getting product type name for ID $id: $e');
+      return '';
+    }
+  }
+
   // Handle category selection
   void onCategoryChanged(String? categoryId) {
     selectedCategoryId = categoryId;
     dropDownValue1 = categoryId;
     print(
         '🎯 Selected category: ${getCategoryNameById(categoryId)} (ID: $categoryId)');
+    notifyListeners();
+  }
+
+  // Handle product type selection
+  void onProductTypeChanged(String? productTypeId) {
+    selectedProductTypeId = productTypeId;
+    dropDownValue2 = productTypeId;
+    print(
+        '🎯 Selected product type: ${getProductTypeNameById(productTypeId)} (ID: $productTypeId)');
+    notifyListeners();
+  }
+
+  // Handle condition selection
+  void onConditionChanged(String? conditionId) {
+    selectedConditionId = conditionId;
+    dropDownValue3 = conditionId;
+    print(
+        '🎯 Selected condition: ${getConditionNameById(conditionId)} (ID: $conditionId)');
     notifyListeners();
   }
 
@@ -335,11 +557,50 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     notifyListeners();
   }
 
+  // Handle country selection
+  void onCountryChanged(String? countryId) {
+    selectedCountryId = countryId;
+    dropDownValue5 = countryId;
+    print(
+        '🎯 Selected country: ${getCountryNameById(countryId)} (ID: $countryId)');
+
+    // Reset township selection when country changes
+    selectedTownshipId = null;
+    dropDownValue6 = null;
+    dropDownValueController6?.reset();
+
+    // Load townships for the selected country
+    loadTownships(countryId: countryId);
+    notifyListeners();
+  }
+
+  // Handle township selection
+  void onTownshipChanged(String? townshipId) {
+    selectedTownshipId = townshipId;
+    dropDownValue6 = townshipId;
+    print(
+        '🎯 Selected township: ${getTownshipNameById(townshipId)} (ID: $townshipId)');
+    notifyListeners();
+  }
+
   // Check if we have loaded data
-  bool get hasLoadedData => categories.isNotEmpty && dealOptions.isNotEmpty;
+  bool get hasLoadedData =>
+      categories.isNotEmpty &&
+      dealOptions.isNotEmpty &&
+      conditions.isNotEmpty &&
+      countries.isNotEmpty &&
+      productTypes.isNotEmpty;
 
   // Get loading status
-  bool get isLoadingAnyData => isCategoriesLoading || isDealOptionsLoading;
+  bool get isLoadingAnyData =>
+      isCategoriesLoading ||
+      isDealOptionsLoading ||
+      isConditionsLoading ||
+      isCountriesLoading ||
+      isTownshipsLoading ||
+      isProductTypesLoading;
 
-  void notifyListeners() {}
+  void notifyListeners() {
+    // This would typically call setState in the actual FlutterFlow implementation
+  }
 }
