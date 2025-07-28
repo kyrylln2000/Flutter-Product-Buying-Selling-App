@@ -5,7 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:ui';
+// import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
 // import 'package:flutter/gestures.dart';
@@ -87,7 +87,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
         wrapWithModel(
           model: _model.centerAppbarModel,
           updateCallback: () => safeSetState(() {}),
-          child: CenterAppbarWidget(
+          child: const CenterAppbarWidget(
             title: 'Add Product',
           ),
         ),
@@ -100,13 +100,13 @@ class _AddProductWidgetState extends State<AddProductWidget> {
               key: _model.formKey,
               autovalidateMode: AutovalidateMode.disabled,
               child: ListView(
-                padding: EdgeInsets.fromLTRB(0, 16.0, 0, 16.0),
+                padding: const EdgeInsets.fromLTRB(0, 16.0, 0, 16.0),
                 scrollDirection: Axis.vertical,
                 children: [
                   // Image Upload Section - KEEPING ALL YOUR EXISTING CODE
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 0.0, 0.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
@@ -123,7 +123,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                   lineHeight: 1.5,
                                 ),
                           ),
-                          TextSpan(
+                          const TextSpan(
                             text: '(max 10 photos)',
                             style: TextStyle(
                               color: Color(0xFFFF5943),
@@ -151,9 +151,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       children: [
                         // Image Upload 1
                         Align(
-                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 16.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -234,9 +234,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                         ),
                         // Image Upload 2
                         Align(
-                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 16.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -318,9 +318,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                         // Continue with remaining 8 image upload containers...
                         // (I'll include just one more for brevity, but you should include all 10)
                         Align(
-                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 16.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -402,16 +402,16 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                         // ADD THE REMAINING 7 IMAGE UPLOAD CONTAINERS HERE (uploadData44 through uploadData10)
                         // Copy them exactly from your original code
                       ]
-                          .divide(SizedBox(width: 16.0))
-                          .addToStart(SizedBox(width: 16.0))
-                          .addToEnd(SizedBox(width: 16.0)),
+                          .divide(const SizedBox(width: 16.0))
+                          .addToStart(const SizedBox(width: 16.0))
+                          .addToEnd(const SizedBox(width: 16.0)),
                     ),
                   ),
 
                   // DYNAMIC CATEGORIES DROPDOWN - REPLACING YOUR FIRST STATIC ONE
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 0.0, 4.0),
                     child: Text(
                       'Choose category',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -423,8 +423,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController1 ??=
                           FormFieldController<String>(null),
@@ -467,7 +467,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       borderColor: FlutterFlowTheme.of(context).black20,
                       borderWidth: 1.0,
                       borderRadius: 12.0,
-                      margin: EdgeInsetsDirectional.fromSTEB(
+                      margin: const EdgeInsetsDirectional.fromSTEB(
                           12.0, 15.0, 12.0, 15.0),
                       hidesUnderline: true,
                       isOverButton: false,
@@ -479,8 +479,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // KEEPING ALL YOUR EXISTING FORM FIELDS
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Choose category',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -492,9 +492,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.textController1,
@@ -549,7 +549,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.5, 16.0, 16.5),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -567,8 +567,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // PHONE NUMBER FIELD - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Phone number',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -580,8 +580,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
                     child: custom_widgets.CustomLabelCountryCodeWidget(
                       width: double.infinity,
                       height: 54.0,
@@ -592,8 +592,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // PRICE FIELD - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Price',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -605,9 +605,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.textController2,
@@ -662,7 +662,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.5, 16.0, 16.5),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -680,8 +680,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // DESCRIPTION FIELD - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Description',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -693,9 +693,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.textController3,
@@ -750,7 +750,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.5, 16.0, 16.5),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -771,8 +771,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // STATIC DROPDOWNS - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Product Type',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -784,8 +784,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController2 ??=
                           FormFieldController<String>(null),
@@ -828,7 +828,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       borderColor: FlutterFlowTheme.of(context).black20,
                       borderWidth: 1.0,
                       borderRadius: 12.0,
-                      margin: EdgeInsetsDirectional.fromSTEB(
+                      margin: const EdgeInsetsDirectional.fromSTEB(
                           12.0, 15.0, 12.0, 15.0),
                       hidesUnderline: true,
                       isOverButton: false,
@@ -840,8 +840,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // CONDITION DROPDOWN - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Condition',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -853,8 +853,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController3 ??=
                           FormFieldController<String>(null),
@@ -897,7 +897,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       borderColor: FlutterFlowTheme.of(context).black20,
                       borderWidth: 1.0,
                       borderRadius: 12.0,
-                      margin: EdgeInsetsDirectional.fromSTEB(
+                      margin: const EdgeInsetsDirectional.fromSTEB(
                           12.0, 15.0, 12.0, 15.0),
                       hidesUnderline: true,
                       isOverButton: false,
@@ -909,8 +909,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // DEAL OPTION REMARK FIELD - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Deal option remark',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -922,9 +922,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.textController4,
@@ -979,7 +979,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.5, 16.0, 16.5),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1000,8 +1000,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // DYNAMIC DEAL OPTIONS DROPDOWN - REPLACING YOUR STATIC ONE
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Deal option',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1013,8 +1013,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController4 ??=
                           FormFieldController<String>(null),
@@ -1057,7 +1057,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       borderColor: FlutterFlowTheme.of(context).black20,
                       borderWidth: 1.0,
                       borderRadius: 12.0,
-                      margin: EdgeInsetsDirectional.fromSTEB(
+                      margin: const EdgeInsetsDirectional.fromSTEB(
                           12.0, 15.0, 12.0, 15.0),
                       hidesUnderline: true,
                       isOverButton: false,
@@ -1070,8 +1070,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                   // CONTINUE WITH ALL YOUR REMAINING FIELDS...
                   // MODEL NO FIELD - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Model no',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1083,9 +1083,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.textController5,
@@ -1140,7 +1140,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.5, 16.0, 16.5),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1158,8 +1158,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // RAM FIELD - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Enter ram',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1171,9 +1171,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.textController6,
@@ -1228,7 +1228,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.5, 16.0, 16.5),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1246,8 +1246,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // LOCATION DROPDOWN - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Country',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1259,8 +1259,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController5 ??=
                           FormFieldController<String>(null),
@@ -1303,7 +1303,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       borderColor: FlutterFlowTheme.of(context).black20,
                       borderWidth: 1.0,
                       borderRadius: 12.0,
-                      margin: EdgeInsetsDirectional.fromSTEB(
+                      margin: const EdgeInsetsDirectional.fromSTEB(
                           12.0, 15.0, 12.0, 15.0),
                       hidesUnderline: true,
                       isOverButton: false,
@@ -1315,8 +1315,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // TOWNSHIP DROPDOWN - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Township',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1328,8 +1328,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController6 ??=
                           FormFieldController<String>(null),
@@ -1380,7 +1380,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       borderColor: FlutterFlowTheme.of(context).black20,
                       borderWidth: 1.0,
                       borderRadius: 12.0,
-                      margin: EdgeInsetsDirectional.fromSTEB(
+                      margin: const EdgeInsetsDirectional.fromSTEB(
                           12.0, 15.0, 12.0, 15.0),
                       hidesUnderline: true,
                       isOverButton: false,
@@ -1393,8 +1393,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                   // ADDRESS FIELD - KEEPING YOUR EXISTING
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
                     child: Text(
                       'Township',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1406,9 +1406,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
+                    child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.textController7,
@@ -1463,7 +1463,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             ),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.5, 16.0, 16.5),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1487,7 +1487,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
         // SUBMIT BUTTON - KEEPING YOUR EXISTING BUT ADDING DEBUG INFO
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 24.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 24.0),
           child: FFButtonWidget(
             onPressed: () async {
               // Debug: Print all selected data
@@ -1516,7 +1516,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       color: FlutterFlowTheme.of(context).primaryText,
                     ),
                   ),
-                  duration: Duration(milliseconds: 3000),
+                  duration: const Duration(milliseconds: 3000),
                   backgroundColor: FlutterFlowTheme.of(context).secondary,
                 ),
               );
@@ -1527,8 +1527,10 @@ class _AddProductWidgetState extends State<AddProductWidget> {
             options: FFButtonOptions(
               width: double.infinity,
               height: 54.0,
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              iconPadding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Satoshi',
