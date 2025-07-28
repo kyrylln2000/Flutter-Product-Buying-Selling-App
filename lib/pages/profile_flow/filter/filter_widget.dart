@@ -6,8 +6,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/pages/components/main_appbar/main_appbar_widget.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'filter_model.dart';
 export 'filter_model.dart';
 
