@@ -1,0 +1,33 @@
+// .vscode/launch.json
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "Flutter Web Debug",
+          "type": "dart",
+          "request": "launch",
+          "program": "lib/main.dart",
+          "deviceId": "chrome",
+          "args": [
+              "--web-renderer",
+              "html"
+          ]
+      },
+      {
+          "name": "Flutter Web Profile",
+          "type": "dart",
+          "request": "launch",
+          "program": "lib/main.dart",
+          "deviceId": "chrome",
+          "flutterMode": "profile"
+      },
+      {
+          "name": "Flutter Web Release",
+          "type": "dart",
+          "request": "launch",
+          "program": "lib/main.dart",
+          "deviceId": "chrome",
+          "flutterMode": "release"
+      }
+  ]
+}
