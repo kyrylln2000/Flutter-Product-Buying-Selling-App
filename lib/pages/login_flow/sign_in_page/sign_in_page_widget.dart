@@ -1,16 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'sign_in_page_model.dart';
 export 'sign_in_page_model.dart';
@@ -59,8 +58,8 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
             curve: Curves.easeInOut,
             delay: 50.0.ms,
             duration: 400.0.ms,
-            begin: Offset(0.0, -50.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -50.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -89,7 +88,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +106,8 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                       ),
                 ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                   child: Text(
                     'Welcome back, please log in continue journey',
                     textAlign: TextAlign.start,
@@ -125,7 +125,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                     key: _model.formKey,
                     autovalidateMode: AutovalidateMode.disabled,
                     child: ListView(
-                      padding: EdgeInsets.fromLTRB(
+                      padding: const EdgeInsets.fromLTRB(
                         0,
                         16.0,
                         0,
@@ -134,7 +134,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                       scrollDirection: Axis.vertical,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 4.0),
                           child: Text(
                             'Username/email',
@@ -148,7 +148,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                 ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           child: TextFormField(
                             controller: _model.emailTextController,
@@ -214,8 +214,9 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 16.5, 16.0, 16.5),
+                              contentPadding:
+                                  const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.5, 16.0, 16.5),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -233,7 +234,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 4.0),
                           child: Text(
                             'Password',
@@ -248,9 +249,9 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
-                          child: Container(
+                          child: SizedBox(
                             width: double.infinity,
                             child: TextFormField(
                               controller: _model.passwordTextController,
@@ -308,8 +309,9 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.5, 16.0, 16.5),
+                                contentPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.5, 16.0, 16.5),
                                 suffixIcon: InkWell(
                                   onTap: () => safeSetState(
                                     () => _model.passwordVisibility =
@@ -343,9 +345,9 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(1.0, 0.0),
+                          alignment: const AlignmentDirectional(1.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 30.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -392,9 +394,9 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 54.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -416,10 +418,10 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 24.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 8.0, 0.0, 24.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -430,7 +432,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                           SignUpPageWidget.routeName,
                           queryParameters: {
                             'isInner': serializeParam(
-                              widget!.isInner,
+                              widget.isInner,
                               ParamType.bool,
                             ),
                           }.withoutNulls,
@@ -478,7 +480,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                     ),
                   ),
                 ),
-              ].addToStart(SizedBox(height: 24.0)),
+              ].addToStart(const SizedBox(height: 24.0)),
             ),
           ),
         ),
