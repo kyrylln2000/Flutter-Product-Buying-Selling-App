@@ -1,13 +1,13 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:from_css_color/from_css_color.dart';
 
 import '/backend/schema/structs/index.dart';
 
 import '/backend/supabase/supabase.dart';
 
-import '../../flutter_flow/lat_lng.dart';
 import '../../flutter_flow/place.dart';
 import '../../flutter_flow/uploaded_file.dart';
 
@@ -80,8 +80,8 @@ String? serializeParam(
       case ParamType.SupabaseRow:
         return json.encode((param as SupabaseDataRow).data);
 
-      default:
-        data = null;
+      // default:
+      //   data = null;
     }
     return data;
   } catch (e) {
@@ -176,8 +176,8 @@ dynamic deserializeParam<T>(
         return null;
       }
       return paramValues
-          .where((p) => p is String)
-          .map((p) => p as String)
+          .whereType<String>()
+          .map((p) => p)
           .map((p) => deserializeParam<T>(
                 p,
                 paramType,
@@ -218,11 +218,11 @@ dynamic deserializeParam<T>(
       case ParamType.SupabaseRow:
         final data = json.decode(param) as Map<String, dynamic>;
         switch (T) {
-          case UsersRow:
+          case const (UsersRow):
             return UsersRow(data);
-          case ProductsRow:
+          case const (ProductsRow):
             return ProductsRow(data);
-          case MessagesRow:
+          case const (MessagesRow):
             return MessagesRow(data);
           default:
             return null;
@@ -232,8 +232,8 @@ dynamic deserializeParam<T>(
         final data = json.decode(param) as Map<String, dynamic>? ?? {};
         return structBuilder != null ? structBuilder(data) : null;
 
-      default:
-        return null;
+      // default:
+      //   return null;
     }
   } catch (e) {
     print('Error deserializing parameter: $e');

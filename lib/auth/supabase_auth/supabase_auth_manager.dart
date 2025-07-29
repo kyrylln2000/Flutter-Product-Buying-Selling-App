@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,11 +7,13 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'email_auth.dart';
 
+import 'apple_auth.dart';
 import 'supabase_user_provider.dart';
 
 export '/auth/base_auth_user_provider.dart';
 
-class SupabaseAuthManager extends AuthManager with EmailSignInManager {
+class SupabaseAuthManager extends AuthManager
+    with EmailSignInManager, AppleSignInManager {
   @override
   Future signOut() {
     return SupaFlow.client.auth.signOut();
@@ -27,7 +30,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
     }
   }
@@ -46,16 +49,16 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
       return;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Email change confirmation email sent')),
+      const SnackBar(content: Text('Email change confirmation email sent')),
     );
   }
 
-  @override
+  // @override
   Future updatePassword({
     required String newPassword,
     required BuildContext context,
@@ -69,12 +72,12 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
       return;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Password updated successfully')),
+      const SnackBar(content: Text('Password updated successfully')),
     );
   }
 
@@ -90,12 +93,12 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
       return null;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Password reset email sent')),
+      const SnackBar(content: Text('Password reset email sent')),
     );
   }
 
@@ -121,6 +124,10 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
         () => emailCreateAccountFunc(email, password),
       );
 
+  @override
+  Future<BaseAuthUser?> signInWithApple(BuildContext context) =>
+      _signInOrCreateAccount(context, appleSignInFunc);
+
   /// Tries to sign in or create an account using Supabase Auth.
   /// Returns the User object if sign in was successful.
   Future<BaseAuthUser?> _signInOrCreateAccount(
@@ -143,7 +150,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
     } on AuthException catch (e) {
       final errorMsg = e.message.contains('User already registered')
           ? 'Error: The email is already in use by a different account'
-          : 'Error: ${e.message!}';
+          : 'Error: ${e.message}';
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMsg)),

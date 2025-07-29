@@ -22,7 +22,7 @@ Future<String> uploadSupabaseStorageFile({
   await storageBucket.uploadBinary(
     selectedFile.storagePath,
     selectedFile.bytes,
-    fileOptions: FileOptions(contentType: null),
+    fileOptions: const FileOptions(contentType: null),
   );
   return storageBucket.getPublicUrl(selectedFile.storagePath);
 }

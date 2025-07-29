@@ -1,12 +1,8 @@
-import '/flutter_flow/flutter_flow_theme.dart';
+import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
+import '/bottom_flow/pages/components/chat_list/chat_list_widget.dart';
+import '/bottom_flow/pages/empty_components/no_chat_component/no_chat_component_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/components/center_appbar/center_appbar_widget.dart';
-import '/pages/components/chat_list/chat_list_widget.dart';
-import '/pages/empty_components/no_chat_component/no_chat_component_widget.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
@@ -31,6 +27,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChatsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -51,7 +49,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         wrapWithModel(
           model: _model.centerAppbarModel,
           updateCallback: () => safeSetState(() {}),
-          child: CenterAppbarWidget(
+          child: const CenterAppbarWidget(
             title: 'Chats',
           ),
         ),
@@ -62,13 +60,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                 return wrapWithModel(
                   model: _model.chatListModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: ChatListWidget(),
+                  child: const ChatListWidget(),
                 );
               } else {
                 return wrapWithModel(
                   model: _model.noChatComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: NoChatComponentWidget(),
+                  child: const NoChatComponentWidget(),
                 );
               }
             },

@@ -1,14 +1,9 @@
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
+import '/bottom_flow/pages/components/items_component/items_component_widget.dart';
+import '/bottom_flow/pages/empty_components/empty_fav/empty_fav_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/components/center_appbar/center_appbar_widget.dart';
-import '/pages/components/items_component/items_component_widget.dart';
-import '/pages/empty_components/empty_fav/empty_fav_widget.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'favriout_model.dart';
 export 'favriout_model.dart';
@@ -33,6 +28,8 @@ class _FavrioutWidgetState extends State<FavrioutWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => FavrioutModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -53,7 +50,7 @@ class _FavrioutWidgetState extends State<FavrioutWidget> {
         wrapWithModel(
           model: _model.centerAppbarModel,
           updateCallback: () => safeSetState(() {}),
-          child: CenterAppbarWidget(
+          child: const CenterAppbarWidget(
             title: 'Favorite',
           ),
         ),
@@ -70,8 +67,8 @@ class _FavrioutWidgetState extends State<FavrioutWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 16.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 8.0, 16.0, 16.0),
                       child: Builder(
                         builder: (context) {
                           final favlist = FFAppState()
@@ -115,7 +112,7 @@ class _FavrioutWidgetState extends State<FavrioutWidget> {
                                         6);
                                   }
                                 }(),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -189,7 +186,7 @@ class _FavrioutWidgetState extends State<FavrioutWidget> {
                 return wrapWithModel(
                   model: _model.emptyFavModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: EmptyFavWidget(),
+                  child: const EmptyFavWidget(),
                 );
               }
             },

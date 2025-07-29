@@ -1,0 +1,66 @@
+{
+  "get_country_code_local.dart": {
+    "old_identifier_name": "getCountryCodeLocal",
+    "new_identifier_name": "getCountryCodeLocal",
+    "type": "A",
+    "is_deleted": false,
+    "current_checksum": "82dd9d90467130c499a88df1bc3fe5615f810c33d054a7fe2cc87d680916e716",
+    "original_checksum": "82dd9d90467130c499a88df1bc3fe5615f810c33d054a7fe2cc87d680916e716"
+  },
+  "show_custom_toast_bottom.dart": {
+    "old_identifier_name": "showCustomToastBottom",
+    "new_identifier_name": "showCustomToastBottom",
+    "type": "A",
+    "is_deleted": false,
+    "current_checksum": "705d116bb5f2a34b3e7f01d649a35d5b7a9826ee43a1e7f9ed8b4d34af4d12f1",
+    "original_checksum": "705d116bb5f2a34b3e7f01d649a35d5b7a9826ee43a1e7f9ed8b4d34af4d12f1"
+  },
+  "get_currency_symbol.dart": {
+    "old_identifier_name": "getCurrencySymbol",
+    "new_identifier_name": "getCurrencySymbol",
+    "type": "A",
+    "is_deleted": false,
+    "current_checksum": "b880b5e4a31a29888c2f1e932b150078233cf428938856d60798214a5471c9e4",
+    "original_checksum": "b880b5e4a31a29888c2f1e932b150078233cf428938856d60798214a5471c9e4"
+  },
+  "custom_label_country_code_edit_widget.dart": {
+    "old_identifier_name": "CustomLabelCountryCodeEditWidget",
+    "new_identifier_name": "CustomLabelCountryCodeEditWidget",
+    "type": "W",
+    "is_deleted": false,
+    "current_checksum": "0afe8e86342a87643990cb2fc17e56d8dd55dce9bdbddda72cec4163d4816257",
+    "original_checksum": "0afe8e86342a87643990cb2fc17e56d8dd55dce9bdbddda72cec4163d4816257"
+  },
+  "custom_label_country_code_widget.dart": {
+    "old_identifier_name": "CustomLabelCountryCodeWidget",
+    "new_identifier_name": "CustomLabelCountryCodeWidget",
+    "type": "W",
+    "is_deleted": false,
+    "current_checksum": "08c5d11f5aae462b7f12927736b9985ecc5cf786842df5be95672d24bc8fc55e",
+    "original_checksum": "08c5d11f5aae462b7f12927736b9985ecc5cf786842df5be95672d24bc8fc55e"
+  },
+  "readmore.dart": {
+    "old_identifier_name": "Readmore",
+    "new_identifier_name": "Readmore",
+    "type": "W",
+    "is_deleted": false,
+    "current_checksum": "d99c4f2b6f42d038bdde85af3766380e6f2c5ef92d442b40034c510cfdc13e83",
+    "original_checksum": "d99c4f2b6f42d038bdde85af3766380e6f2c5ef92d442b40034c510cfdc13e83"
+  },
+  "custom_functions.dart": {
+    "old_identifier_name": "CustomFunctions",
+    "new_identifier_name": "CustomFunctions",
+    "type": "F",
+    "is_deleted": false,
+    "current_checksum": "a207a7ea5246354b19e02ebab27cf0f316fb5ba8ee23a3558dd925a22d5fa489",
+    "original_checksum": "a207a7ea5246354b19e02ebab27cf0f316fb5ba8ee23a3558dd925a22d5fa489"
+  },
+  "pubspec.yaml": {
+    "old_identifier_name": "pubspec.yaml",
+    "new_identifier_name": "pubspec.yaml",
+    "type": "D",
+    "is_deleted": false,
+    "current_checksum": "90c77bda28b39f83340775ee51a4941edf7380d8d304817725d1eb737079c8c9",
+    "original_checksum": "90c77bda28b39f83340775ee51a4941edf7380d8d304817725d1eb737079c8c9"
+  }
+}

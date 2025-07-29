@@ -1,8 +1,9 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'flutter_flow_util.dart';
 
 Widget wrapWithModel<T extends FlutterFlowModel>({
   required T model,
@@ -51,8 +52,9 @@ abstract class FlutterFlowModel<W extends Widget> {
   // The widget associated with this model. This is useful for accessing the
   // parameters of the widget, for example.
   W? _widget;
+  // ignore: unnecessary_getters_setters
   W? get widget => _widget;
-  void set widget(W? newWidget) {
+  set widget(W? newWidget) {
     _widget = newWidget;
   }
 
@@ -157,13 +159,13 @@ class FlutterFlowDynamicModels<T extends FlutterFlowModel> {
 
 T? _getDefaultValue<T>() {
   switch (T) {
-    case int:
+    case const (int):
       return 0 as T;
-    case double:
+    case const (double):
       return 0.0 as T;
-    case String:
+    case const (String):
       return '' as T;
-    case bool:
+    case const (bool):
       return false as T;
     default:
       return null as T;

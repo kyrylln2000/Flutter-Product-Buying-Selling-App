@@ -39,6 +39,7 @@ dependencies:
   devicelocale:
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
+  equatable: 2.0.7
   expandable: 5.0.1
   file_picker: 10.1.9
   flutter_animate: 4.5.0
@@ -54,6 +55,7 @@ dependencies:
   gotrue: 2.12.0
   hive: 2.2.3
   html: 0.15.6
+  http: 1.4.0
   image_picker: 1.1.2
   image_picker_android: 0.8.12+23
   image_picker_for_web: 3.0.6
@@ -115,6 +117,8 @@ dependencies:
   webview_flutter_android: 4.7.0
   webview_flutter_platform_interface: 2.13.1
   webview_flutter_wkwebview: 3.22.0
+  crypto: ^3.0.3
+  convert: ^3.1.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -165,6 +169,7 @@ flutter:
     - assets/pdfs/
     - assets/jsons/
 
+    - assets/environment_values/
   fonts:
     - family: 'SF Pro Display'
       fonts:
