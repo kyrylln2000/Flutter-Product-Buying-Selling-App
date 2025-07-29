@@ -1,11 +1,7 @@
 import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'shop_point_model.dart';
 export 'shop_point_model.dart';
 
@@ -65,7 +61,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                 model: _model.mainAppbarModel,
                 updateCallback: () => safeSetState(() {}),
                 child: MainAppbarWidget(
-                  title: widget!.name!,
+                  title: widget.name!,
                   isBack: false,
                   isEdit: false,
                   backAction: () async {},
@@ -74,7 +70,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     16.0,
                     0,
@@ -83,8 +79,8 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Vendor details',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -96,13 +92,13 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 15.0,
                               color: Color(0x19000000),
@@ -116,7 +112,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -146,7 +142,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
-                                  ].divide(SizedBox(height: 8.0)),
+                                  ].divide(const SizedBox(height: 8.0)),
                                 ),
                               ),
                               SizedBox(
@@ -183,7 +179,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
-                                  ].divide(SizedBox(height: 8.0)),
+                                  ].divide(const SizedBox(height: 8.0)),
                                 ),
                               ),
                               SizedBox(
@@ -220,7 +216,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
-                                  ].divide(SizedBox(height: 8.0)),
+                                  ].divide(const SizedBox(height: 8.0)),
                                 ),
                               ),
                             ],
@@ -229,8 +225,8 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Vendor info',
                         textAlign: TextAlign.start,
@@ -244,13 +240,13 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 15.0,
                               color: Color(0x19000000),
@@ -264,7 +260,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -275,7 +271,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(0.0),
                                     child: Image.network(
-                                      widget!.img!,
+                                      widget.img!,
                                       width: 70.0,
                                       height: 70.0,
                                       fit: BoxFit.cover,
@@ -289,7 +285,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                       children: [
                                         Text(
                                           valueOrDefault<String>(
-                                            widget!.name,
+                                            widget.name,
                                             'Shop Point',
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -315,10 +311,10 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
-                                      ].divide(SizedBox(height: 8.0)),
+                                      ].divide(const SizedBox(height: 8.0)),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 12.0)),
+                                ].divide(const SizedBox(width: 12.0)),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -343,7 +339,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 12.0)),
+                                ].divide(const SizedBox(width: 12.0)),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -369,7 +365,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 12.0)),
+                                ].divide(const SizedBox(width: 12.0)),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -394,7 +390,7 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 12.0)),
+                                ].divide(const SizedBox(width: 12.0)),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -419,9 +415,9 @@ class _ShopPointWidgetState extends State<ShopPointWidget> {
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
-                                ].divide(SizedBox(width: 12.0)),
+                                ].divide(const SizedBox(width: 12.0)),
                               ),
-                            ].divide(SizedBox(height: 16.0)),
+                            ].divide(const SizedBox(height: 16.0)),
                           ),
                         ),
                       ),

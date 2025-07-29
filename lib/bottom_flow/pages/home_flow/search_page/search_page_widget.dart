@@ -1,13 +1,10 @@
 import '/bottom_flow/pages/empty_components/no_search_component/no_search_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'search_page_model.dart';
 export 'search_page_model.dart';
@@ -76,7 +73,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             26.0, 31.0, 0.0, 14.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -98,7 +95,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 16.0),
                         child: Container(
                           width: double.infinity,
@@ -108,7 +105,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                             borderRadius: BorderRadius.circular(16.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -123,14 +120,14 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                   ),
                                 ),
                                 Expanded(
-                                  child: Container(
+                                  child: SizedBox(
                                     width: double.infinity,
                                     child: TextFormField(
                                       controller: _model.textController,
                                       focusNode: _model.textFieldFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.textController',
-                                        Duration(milliseconds: 100),
+                                        const Duration(milliseconds: 100),
                                         () => safeSetState(() {}),
                                       ),
                                       onFieldSubmitted: (_) async {
@@ -161,7 +158,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                         errorBorder: InputBorder.none,
                                         focusedErrorBorder: InputBorder.none,
                                         contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional
+                                                .fromSTEB(
                                                 12.0, 16.5, 20.0, 16.5),
                                         suffixIcon: _model
                                                 .textController!.text.isNotEmpty
@@ -220,7 +218,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                   .primaryBackground,
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -229,8 +227,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                   if (FFAppState().isLogin &&
                                       (FFAppState().searchList.isNotEmpty))
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 20.0, 0.0, 20.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 20.0, 0.0, 20.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -274,7 +273,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                       ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                        ].divide(const SizedBox(width: 8.0)),
                                       ),
                                     ),
                                   if (FFAppState().isLogin &&
@@ -291,13 +290,13 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                         final searchList =
                                             FFAppState().searchList.toList();
                                         if (searchList.isEmpty) {
-                                          return Center(
+                                          return const Center(
                                             child: NoSearchComponentWidget(),
                                           );
                                         }
 
                                         return ListView.separated(
-                                          padding: EdgeInsets.fromLTRB(
+                                          padding: const EdgeInsets.fromLTRB(
                                             0,
                                             20.0,
                                             0,
@@ -306,7 +305,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                           scrollDirection: Axis.vertical,
                                           itemCount: searchList.length,
                                           separatorBuilder: (_, __) =>
-                                              SizedBox(height: 20.0),
+                                              const SizedBox(height: 20.0),
                                           itemBuilder:
                                               (context, searchListIndex) {
                                             final searchListItem =
@@ -407,7 +406,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                           return wrapWithModel(
                             model: _model.noSearchComponentModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: NoSearchComponentWidget(),
+                            child: const NoSearchComponentWidget(),
                           );
                         }
                       },

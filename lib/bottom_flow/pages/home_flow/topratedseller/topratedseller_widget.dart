@@ -1,13 +1,9 @@
-import '/backend/schema/structs/index.dart';
 import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/bottom_flow/pages/components/topratedseller_com/topratedseller_com_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'topratedseller_model.dart';
 export 'topratedseller_model.dart';
@@ -60,9 +56,10 @@ class _TopratedsellerWidgetState extends State<TopratedsellerWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                 child: Stack(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   children: [
                     wrapWithModel(
                       model: _model.mainAppbarModel,
@@ -90,7 +87,7 @@ class _TopratedsellerWidgetState extends State<TopratedsellerWidget> {
                           color: FlutterFlowTheme.of(context).lightGray,
                           shape: BoxShape.circle,
                         ),
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
                           child: Image.asset(
@@ -107,7 +104,7 @@ class _TopratedsellerWidgetState extends State<TopratedsellerWidget> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     0,
                     0,
@@ -116,7 +113,7 @@ class _TopratedsellerWidgetState extends State<TopratedsellerWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           16.0, 16.0, 16.0, 16.0),
                       child: Builder(
                         builder: (context) {
@@ -160,7 +157,7 @@ class _TopratedsellerWidgetState extends State<TopratedsellerWidget> {
                                         6);
                                   }
                                 }(),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: wrapWithModel(
                                   model:
                                       _model.topratedsellerComModels.getModel(

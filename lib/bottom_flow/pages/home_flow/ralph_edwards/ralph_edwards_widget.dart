@@ -1,14 +1,11 @@
-import '/backend/schema/structs/index.dart';
 import '/bottom_flow/pages/components/items_component/items_component_widget.dart';
 import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'ralph_edwards_model.dart';
 export 'ralph_edwards_model.dart';
@@ -71,7 +68,7 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                 model: _model.mainAppbarModel,
                 updateCallback: () => safeSetState(() {}),
                 child: MainAppbarWidget(
-                  title: widget!.name!,
+                  title: widget.name!,
                   isBack: false,
                   isEdit: false,
                   backAction: () async {},
@@ -80,7 +77,7 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     24.0,
                     0,
@@ -91,18 +88,18 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(0.0),
                       child: Image.network(
-                        widget!.img!,
+                        widget.img!,
                         width: 97.0,
                         height: 97.0,
                         fit: BoxFit.contain,
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 16.0, 0.0, 12.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget!.name,
+                          widget.name,
                           'Ralph edwards',
                         ),
                         textAlign: TextAlign.center,
@@ -126,8 +123,8 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                           ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 24.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -157,7 +154,7 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                              ].divide(SizedBox(height: 8.0)),
+                              ].divide(const SizedBox(height: 8.0)),
                             ),
                           ),
                           Expanded(
@@ -186,7 +183,7 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                              ].divide(SizedBox(height: 8.0)),
+                              ].divide(const SizedBox(height: 8.0)),
                             ),
                           ),
                           Expanded(
@@ -215,14 +212,14 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                              ].divide(SizedBox(height: 8.0)),
+                              ].divide(const SizedBox(height: 8.0)),
                             ),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: FFButtonWidget(
                         onPressed: () {
                           print('Button pressed ...');
@@ -231,9 +228,9 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 54.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -251,8 +248,8 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: 1.0,
@@ -262,8 +259,8 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 0.0),
                       child: Text(
                         'Listing',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -275,7 +272,7 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           16.0, 16.0, 16.0, 16.0),
                       child: Builder(
                         builder: (context) {
@@ -322,7 +319,7 @@ class _RalphEdwardsWidgetState extends State<RalphEdwardsWidget> {
                                         6);
                                   }
                                 }(),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,

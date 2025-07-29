@@ -1,12 +1,8 @@
-import '/backend/schema/structs/index.dart';
 import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'notification_page_model.dart';
 export 'notification_page_model.dart';
@@ -77,7 +73,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                         FFAppState().notificationsList.toList();
 
                     return ListView.separated(
-                      padding: EdgeInsets.fromLTRB(
+                      padding: const EdgeInsets.fromLTRB(
                         0,
                         16.0,
                         0,
@@ -85,12 +81,12 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                       ),
                       scrollDirection: Axis.vertical,
                       itemCount: notificationList.length,
-                      separatorBuilder: (_, __) => SizedBox(height: 16.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 16.0),
                       itemBuilder: (context, notificationListIndex) {
                         final notificationListItem =
                             notificationList[notificationListIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -102,7 +98,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                   blurRadius: 16.0,
                                   color:
                                       FlutterFlowTheme.of(context).shadowColor,
-                                  offset: Offset(
+                                  offset: const Offset(
                                     0.0,
                                     4.0,
                                   ),
@@ -111,7 +107,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.all(16.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +123,7 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                           blurRadius: 16.0,
                                           color: FlutterFlowTheme.of(context)
                                               .shadowColor,
-                                          offset: Offset(
+                                          offset: const Offset(
                                             0.0,
                                             4.0,
                                           ),
@@ -135,7 +131,8 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                       ],
                                       shape: BoxShape.circle,
                                     ),
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment:
+                                        const AlignmentDirectional(0.0, 0.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(0.0),
                                       child: SvgPicture.asset(
@@ -148,8 +145,9 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 0.0, 0.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              12.0, 0.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -170,9 +168,8 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                                 ),
                                           ),
                                           Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 9.0, 0.0, 10.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(0.0, 9.0, 0.0, 10.0),
                                             child: Text(
                                               notificationListItem.subTitle,
                                               textAlign: TextAlign.start,
