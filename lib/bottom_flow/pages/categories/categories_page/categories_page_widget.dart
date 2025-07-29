@@ -2,12 +2,8 @@ import '/bottom_flow/pages/components/categorioes_component/categorioes_componen
 import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'categories_page_model.dart';
 export 'categories_page_model.dart';
 
@@ -70,8 +66,8 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Wrap(
                     spacing: 16.0,
                     runSpacing: 16.0,
@@ -93,7 +89,7 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
                         child: wrapWithModel(
                           model: _model.categorioesComponentModel1,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesComponentWidget(
+                          child: const CategorioesComponentWidget(
                             name: 'Laptop',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/6efy3tjw6o9p/cat1.png',
@@ -111,7 +107,7 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
                         child: wrapWithModel(
                           model: _model.categorioesComponentModel2,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesComponentWidget(
+                          child: const CategorioesComponentWidget(
                             name: 'Phone ',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/tevih0x2tbs2/cat2.png',
@@ -129,7 +125,7 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
                         child: wrapWithModel(
                           model: _model.categorioesComponentModel3,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesComponentWidget(
+                          child: const CategorioesComponentWidget(
                             name: 'Clothes',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/2zxiey7jve4s/cat3.png',
@@ -147,7 +143,7 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
                         child: wrapWithModel(
                           model: _model.categorioesComponentModel4,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesComponentWidget(
+                          child: const CategorioesComponentWidget(
                             name: 'Shoes',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/fsovaulpyqdl/cat4.png',
@@ -165,7 +161,7 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
                         child: wrapWithModel(
                           model: _model.categorioesComponentModel5,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesComponentWidget(
+                          child: const CategorioesComponentWidget(
                             name: 'Pets',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/1e6p2jeoo3yu/cat5.png',
@@ -183,7 +179,7 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
                         child: wrapWithModel(
                           model: _model.categorioesComponentModel6,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesComponentWidget(
+                          child: const CategorioesComponentWidget(
                             name: 'Toys',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/94gmgqvq7a8z/cat6.png',
@@ -201,7 +197,7 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
                         child: wrapWithModel(
                           model: _model.categorioesComponentModel7,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesComponentWidget(
+                          child: const CategorioesComponentWidget(
                             name: 'Cars',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/fw3zwi8vlnfe/cat7.png',
@@ -219,7 +215,7 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
                         child: wrapWithModel(
                           model: _model.categorioesComponentModel8,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesComponentWidget(
+                          child: const CategorioesComponentWidget(
                             name: 'Real estate',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/4t76meftluvf/cat8.png',
@@ -237,7 +233,7 @@ class _CategoriesPageWidgetState extends State<CategoriesPageWidget> {
                         child: wrapWithModel(
                           model: _model.categorioesComponentModel9,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesComponentWidget(
+                          child: const CategorioesComponentWidget(
                             name: 'Bikes',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/tui831jgsznv/cat9.png',
