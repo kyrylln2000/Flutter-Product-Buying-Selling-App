@@ -2,12 +2,9 @@ import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
 import '/bottom_flow/pages/dialog_components/log_out_component/log_out_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
@@ -54,13 +51,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         wrapWithModel(
           model: _model.centerAppbarModel,
           updateCallback: () => safeSetState(() {}),
-          child: CenterAppbarWidget(
+          child: const CenterAppbarWidget(
             title: 'Profile',
           ),
         ),
         Expanded(
           child: ListView(
-            padding: EdgeInsets.fromLTRB(
+            padding: const EdgeInsets.fromLTRB(
               0,
               16.0,
               0,
@@ -69,7 +66,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             scrollDirection: Axis.vertical,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +76,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       width: 100.0,
                       height: 100.0,
                       clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                       child: Image.asset(
@@ -86,7 +84,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                  ].divide(SizedBox(width: 12.0)),
+                  ].divide(const SizedBox(width: 12.0)),
                 ),
               ),
               Column(
@@ -107,8 +105,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 0.0, 24.0),
                     child: Text(
                       FFAppState().userDetail.email,
                       textAlign: TextAlign.start,
@@ -123,10 +121,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                     ),
                   ),
-                ].divide(SizedBox(height: 8.0)),
+                ].divide(const SizedBox(height: 8.0)),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -139,7 +138,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           blurRadius: 15.0,
                           color: Color(0x19000000),
@@ -152,8 +151,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 16.0, 8.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 8.0, 16.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -164,7 +163,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               color: FlutterFlowTheme.of(context).lightGray,
                               shape: BoxShape.circle,
                             ),
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(0.0),
                               child: Image.asset(
@@ -200,14 +199,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -220,7 +220,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           blurRadius: 15.0,
                           color: Color(0x19000000),
@@ -233,8 +233,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 16.0, 8.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 8.0, 16.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -245,7 +245,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               color: FlutterFlowTheme.of(context).lightGray,
                               shape: BoxShape.circle,
                             ),
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(0.0),
                               child: Image.asset(
@@ -281,14 +281,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -301,7 +302,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           blurRadius: 15.0,
                           color: Color(0x19000000),
@@ -314,8 +315,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 16.0, 8.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 8.0, 16.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -326,7 +327,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               color: FlutterFlowTheme.of(context).lightGray,
                               shape: BoxShape.circle,
                             ),
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(0.0),
                               child: Image.asset(
@@ -362,14 +363,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -382,7 +384,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           blurRadius: 15.0,
                           color: Color(0x19000000),
@@ -395,8 +397,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 16.0, 8.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 8.0, 16.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -407,7 +409,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               color: FlutterFlowTheme.of(context).lightGray,
                               shape: BoxShape.circle,
                             ),
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(0.0),
                               child: Image.asset(
@@ -443,14 +445,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -495,7 +498,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           blurRadius: 15.0,
                           color: Color(0x19000000),
@@ -508,8 +511,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 16.0, 8.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 8.0, 16.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -520,7 +523,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               color: FlutterFlowTheme.of(context).lightGray,
                               shape: BoxShape.circle,
                             ),
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(0.0),
                               child: Image.asset(
@@ -556,7 +559,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                   ),
