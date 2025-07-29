@@ -5,10 +5,7 @@ import '/bottom_flow/home/home_widget.dart';
 import '/bottom_flow/profile/profile_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'navbar_model.dart';
 export 'navbar_model.dart';
@@ -68,31 +65,31 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                       return wrapWithModel(
                         model: _model.homeModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: HomeWidget(),
+                        child: const HomeWidget(),
                       );
                     } else if (FFAppState().homePageIndex == 1) {
                       return wrapWithModel(
                         model: _model.chatsModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: ChatsWidget(),
+                        child: const ChatsWidget(),
                       );
                     } else if (FFAppState().homePageIndex == 2) {
                       return wrapWithModel(
                         model: _model.addProductModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: AddProductWidget(),
+                        child: const AddProductWidget(),
                       );
                     } else if (FFAppState().homePageIndex == 3) {
                       return wrapWithModel(
                         model: _model.favrioutModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: FavrioutWidget(),
+                        child: const FavrioutWidget(),
                       );
                     } else {
                       return wrapWithModel(
                         model: _model.profileModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: ProfileWidget(),
+                        child: const ProfileWidget(),
                       );
                     }
                   },
@@ -104,7 +101,8 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                   color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 19.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      0.0, 20.0, 0.0, 19.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -164,7 +162,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                       lineHeight: 1.5,
                                     ),
                               ),
-                            ].divide(SizedBox(height: 8.0)),
+                            ].divide(const SizedBox(height: 8.0)),
                           ),
                         ),
                       ),
@@ -224,7 +222,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                       lineHeight: 1.5,
                                     ),
                               ),
-                            ].divide(SizedBox(height: 8.0)),
+                            ].divide(const SizedBox(height: 8.0)),
                           ),
                         ),
                       ),
@@ -249,7 +247,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                   color: FlutterFlowTheme.of(context).primary,
                                   shape: BoxShape.circle,
                                 ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(0.0),
                                   child: Image.asset(
@@ -320,7 +318,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                       lineHeight: 1.5,
                                     ),
                               ),
-                            ].divide(SizedBox(height: 8.0)),
+                            ].divide(const SizedBox(height: 8.0)),
                           ),
                         ),
                       ),
@@ -380,7 +378,7 @@ class _NavbarWidgetState extends State<NavbarWidget> {
                                       lineHeight: 1.5,
                                     ),
                               ),
-                            ].divide(SizedBox(height: 8.0)),
+                            ].divide(const SizedBox(height: 8.0)),
                           ),
                         ),
                       ),

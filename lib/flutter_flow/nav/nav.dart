@@ -1,22 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
-import '/backend/supabase/supabase.dart';
-
 import '/auth/base_auth_user_provider.dart';
 
-import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 import '/index.dart';
 
@@ -85,25 +76,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavbarWidget() : OnboardingPageWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? const NavbarWidget()
+          : const OnboardingPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? NavbarWidget()
-              : OnboardingPageWidget(),
+              ? const NavbarWidget()
+              : const OnboardingPageWidget(),
         ),
         FFRoute(
           name: SplashPageWidget.routeName,
           path: SplashPageWidget.routePath,
-          builder: (context, params) => SplashPageWidget(),
+          builder: (context, params) => const SplashPageWidget(),
         ),
         FFRoute(
           name: OnboardingPageWidget.routeName,
           path: OnboardingPageWidget.routePath,
-          builder: (context, params) => OnboardingPageWidget(),
+          builder: (context, params) => const OnboardingPageWidget(),
         ),
         FFRoute(
           name: SignInPageWidget.routeName,
@@ -128,22 +120,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: AboutUsPageWidget.routeName,
           path: AboutUsPageWidget.routePath,
-          builder: (context, params) => AboutUsPageWidget(),
+          builder: (context, params) => const AboutUsPageWidget(),
         ),
         FFRoute(
           name: SearchPageWidget.routeName,
           path: SearchPageWidget.routePath,
-          builder: (context, params) => SearchPageWidget(),
+          builder: (context, params) => const SearchPageWidget(),
         ),
         FFRoute(
           name: NavbarWidget.routeName,
           path: NavbarWidget.routePath,
-          builder: (context, params) => NavbarWidget(),
+          builder: (context, params) => const NavbarWidget(),
         ),
         FFRoute(
           name: ForgotPasswordPageWidget.routeName,
           path: ForgotPasswordPageWidget.routePath,
-          builder: (context, params) => ForgotPasswordPageWidget(),
+          builder: (context, params) => const ForgotPasswordPageWidget(),
         ),
         FFRoute(
           name: ForgotVerificationsPageWidget.routeName,
@@ -158,37 +150,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: ResetPasswordPageWidget.routeName,
           path: ResetPasswordPageWidget.routePath,
-          builder: (context, params) => ResetPasswordPageWidget(),
+          builder: (context, params) => const ResetPasswordPageWidget(),
         ),
         FFRoute(
           name: TermsConditionPageWidget.routeName,
           path: TermsConditionPageWidget.routePath,
-          builder: (context, params) => TermsConditionPageWidget(),
+          builder: (context, params) => const TermsConditionPageWidget(),
         ),
         FFRoute(
           name: PrivacyPolicyPageWidget.routeName,
           path: PrivacyPolicyPageWidget.routePath,
-          builder: (context, params) => PrivacyPolicyPageWidget(),
+          builder: (context, params) => const PrivacyPolicyPageWidget(),
         ),
         FFRoute(
           name: ChangePasswordPageWidget.routeName,
           path: ChangePasswordPageWidget.routePath,
-          builder: (context, params) => ChangePasswordPageWidget(),
+          builder: (context, params) => const ChangePasswordPageWidget(),
         ),
         FFRoute(
           name: SettingsPageWidget.routeName,
           path: SettingsPageWidget.routePath,
-          builder: (context, params) => SettingsPageWidget(),
+          builder: (context, params) => const SettingsPageWidget(),
         ),
         FFRoute(
           name: MyProfilePageWidget.routeName,
           path: MyProfilePageWidget.routePath,
-          builder: (context, params) => MyProfilePageWidget(),
+          builder: (context, params) => const MyProfilePageWidget(),
         ),
         FFRoute(
           name: EditProfilePageWidget.routeName,
           path: EditProfilePageWidget.routePath,
-          builder: (context, params) => EditProfilePageWidget(),
+          builder: (context, params) => const EditProfilePageWidget(),
         ),
         FFRoute(
           name: ChatDetailsPageWidget.routeName,
@@ -207,12 +199,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: NotificationPageWidget.routeName,
           path: NotificationPageWidget.routePath,
-          builder: (context, params) => NotificationPageWidget(),
+          builder: (context, params) => const NotificationPageWidget(),
         ),
         FFRoute(
           name: ReviewPageWidget.routeName,
           path: ReviewPageWidget.routePath,
-          builder: (context, params) => ReviewPageWidget(),
+          builder: (context, params) => const ReviewPageWidget(),
         ),
         FFRoute(
           name: VerificationsPageWidget.routeName,
@@ -227,82 +219,82 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: CategoriesPageWidget.routeName,
           path: CategoriesPageWidget.routePath,
-          builder: (context, params) => CategoriesPageWidget(),
+          builder: (context, params) => const CategoriesPageWidget(),
         ),
         FFRoute(
           name: LeptopWidget.routeName,
           path: LeptopWidget.routePath,
-          builder: (context, params) => LeptopWidget(),
+          builder: (context, params) => const LeptopWidget(),
         ),
         FFRoute(
           name: PhoneWidget.routeName,
           path: PhoneWidget.routePath,
-          builder: (context, params) => PhoneWidget(),
+          builder: (context, params) => const PhoneWidget(),
         ),
         FFRoute(
           name: ClothesWidget.routeName,
           path: ClothesWidget.routePath,
-          builder: (context, params) => ClothesWidget(),
+          builder: (context, params) => const ClothesWidget(),
         ),
         FFRoute(
           name: ShoesWidget.routeName,
           path: ShoesWidget.routePath,
-          builder: (context, params) => ShoesWidget(),
+          builder: (context, params) => const ShoesWidget(),
         ),
         FFRoute(
           name: PetsWidget.routeName,
           path: PetsWidget.routePath,
-          builder: (context, params) => PetsWidget(),
+          builder: (context, params) => const PetsWidget(),
         ),
         FFRoute(
           name: ToysWidget.routeName,
           path: ToysWidget.routePath,
-          builder: (context, params) => ToysWidget(),
+          builder: (context, params) => const ToysWidget(),
         ),
         FFRoute(
           name: CarsWidget.routeName,
           path: CarsWidget.routePath,
-          builder: (context, params) => CarsWidget(),
+          builder: (context, params) => const CarsWidget(),
         ),
         FFRoute(
           name: RealestateWidget.routeName,
           path: RealestateWidget.routePath,
-          builder: (context, params) => RealestateWidget(),
+          builder: (context, params) => const RealestateWidget(),
         ),
         FFRoute(
           name: BikesWidget.routeName,
           path: BikesWidget.routePath,
-          builder: (context, params) => BikesWidget(),
+          builder: (context, params) => const BikesWidget(),
         ),
         FFRoute(
           name: PopularItemsWidget.routeName,
           path: PopularItemsWidget.routePath,
-          builder: (context, params) => PopularItemsWidget(),
+          builder: (context, params) => const PopularItemsWidget(),
         ),
         FFRoute(
           name: RecommendedforyouWidget.routeName,
           path: RecommendedforyouWidget.routePath,
-          builder: (context, params) => RecommendedforyouWidget(),
+          builder: (context, params) => const RecommendedforyouWidget(),
         ),
         FFRoute(
           name: LatestVendorWidget.routeName,
           path: LatestVendorWidget.routePath,
-          builder: (context, params) => LatestVendorWidget(),
+          builder: (context, params) => const LatestVendorWidget(),
         ),
         FFRoute(
           name: TopratedsellerWidget.routeName,
           path: TopratedsellerWidget.routePath,
-          builder: (context, params) => TopratedsellerWidget(),
+          builder: (context, params) => const TopratedsellerWidget(),
         ),
         FFRoute(
           name: FeaturedproductsWidget.routeName,
           path: FeaturedproductsWidget.routePath,
-          builder: (context, params) => FeaturedproductsWidget(),
+          builder: (context, params) => const FeaturedproductsWidget(),
         ),
         FFRoute(
           name: DiscoutItemsWidget.routeName,
           path: DiscoutItemsWidget.routePath,
-          builder: (context, params) => DiscoutItemsWidget(),
+          builder: (context, params) => const DiscoutItemsWidget(),
         ),
         FFRoute(
           name: AsusWidget.routeName,
@@ -317,7 +309,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: FilterWidget.routeName,
           path: FilterWidget.routePath,
-          builder: (context, params) => FilterWidget(),
+          builder: (context, params) => const FilterWidget(),
         ),
         FFRoute(
           name: DetailPageWidget.routeName,
@@ -368,27 +360,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: MyProductWidget.routeName,
           path: MyProductWidget.routePath,
-          builder: (context, params) => MyProductWidget(),
+          builder: (context, params) => const MyProductWidget(),
         ),
         FFRoute(
           name: EditProductWidget.routeName,
           path: EditProductWidget.routePath,
-          builder: (context, params) => EditProductWidget(),
+          builder: (context, params) => const EditProductWidget(),
         ),
         FFRoute(
           name: MyProductDetailWidget.routeName,
           path: MyProductDetailWidget.routePath,
-          builder: (context, params) => MyProductDetailWidget(),
+          builder: (context, params) => const MyProductDetailWidget(),
         ),
         FFRoute(
           name: SearchResultWidget.routeName,
           path: SearchResultWidget.routePath,
-          builder: (context, params) => SearchResultWidget(),
+          builder: (context, params) => const SearchResultWidget(),
         ),
         FFRoute(
           name: DiscountProductsWidget.routeName,
           path: DiscountProductsWidget.routePath,
-          builder: (context, params) => DiscountProductsWidget(),
+          builder: (context, params) => const DiscountProductsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -622,7 +614,8 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() =>
+      const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

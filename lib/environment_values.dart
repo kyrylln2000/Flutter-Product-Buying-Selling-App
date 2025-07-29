@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 
 class FFDevEnvironmentValues {
   static const String currentEnvironment = 'Production';
