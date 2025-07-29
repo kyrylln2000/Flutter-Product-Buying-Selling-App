@@ -19,8 +19,15 @@ import 'package:flutter/material.dart';
 class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   ///  State fields for stateful widgets in this component.
 
+  // Dynamic image upload management
   List<FFUploadedFile> uploadedImages = [];
   bool isImageUploading = false;
+
+  // Product submission state
+  bool isSubmitting = false;
+  bool isUploadingImages = false;
+  String? currentUserId;
+  List<String> uploadedImageUrls = []; // R2 URLs only
 
   // Method to add a new image
   void addImage(FFUploadedFile image) {
@@ -33,6 +40,7 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   // Method to clear all images
   void clearAllImages() {
     uploadedImages.clear();
+    uploadedImageUrls.clear();
     notifyListeners();
   }
 
@@ -57,47 +65,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Model for CenterAppbar component.
   late CenterAppbarModel centerAppbarModel;
-
-  // // Image upload fields (keeping all existing ones)
-  // bool isDataUploading_uploadData11 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData11 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // bool isDataUploading_uploadData22 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData22 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // bool isDataUploading_uploadData33 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData33 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // bool isDataUploading_uploadData44 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData44 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // bool isDataUploading_uploadData55 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData55 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // bool isDataUploading_uploadData66 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData66 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // bool isDataUploading_uploadData77 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData77 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // bool isDataUploading_uploadData88 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData88 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // bool isDataUploading_uploadData99 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData99 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // bool isDataUploading_uploadData10 = false;
-  // FFUploadedFile uploadedLocalFile_uploadData10 =
-  //     FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // DYNAMIC DROPDOWN DATA
   List<dynamic> categories = [];
@@ -249,12 +216,15 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     loadConditions();
     loadCountries();
     loadProductTypes();
+
+    getCurrentUser();
   }
 
   @override
   void dispose() {
     // Clear images when disposing
     uploadedImages.clear();
+    uploadedImageUrls.clear();
     centerAppbarModel.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
@@ -272,25 +242,277 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     textController7?.dispose();
   }
 
+  // Get current user ID
+  Future<void> getCurrentUser() async {
+    try {
+      final response = await GetCurrentUserCall.call();
+      if (response.succeeded) {
+        final userData = response.jsonBody;
+        currentUserId = userData['id']?.toString();
+        print('✅ Current user ID: $currentUserId');
+      } else {
+        print('❌ Failed to get current user');
+      }
+    } catch (e) {
+      print('🚨 Error getting current user: $e');
+    }
+  }
+
+  // Upload single image to Cloudflare R2
+  Future<String?> uploadImageToR2(FFUploadedFile imageFile, int index) async {
+    try {
+      // Generate unique filename
+      final timestamp = DateTime.now().millisecondsSinceEpoch;
+      final fileName = 'product_${timestamp}_$index.jpg';
+
+      print('📤 Uploading image $index to R2: $fileName');
+
+      final response = await UploadImageToR2Call.call(
+        imageFile: imageFile,
+        fileName: fileName,
+      );
+      print("${response.succeeded} ====================");
+      if (response.succeeded) {
+        final responseData = response.jsonBody;
+        final imageUrl = responseData['url']?.toString();
+        print('✅ Image $index uploaded to R2: $imageUrl');
+        return imageUrl;
+      } else {
+        print('❌ Failed to upload image $index to R2: ${response.statusCode}');
+        print('Error: ${response.bodyText}');
+        return null;
+      }
+    } catch (e) {
+      print('🚨 Exception uploading image $index to R2: $e');
+      return null;
+    }
+  }
+
+  // Upload all images to Cloudflare R2
+  Future<List<String>> uploadAllImagesToR2() async {
+    if (uploadedImages.isEmpty) {
+      print('ℹ️ No images to upload to R2');
+      return [];
+    }
+
+    print(
+        '📤 Starting upload of ${uploadedImages.length} images to Cloudflare R2...');
+    isUploadingImages = true;
+    notifyListeners();
+
+    List<String> r2ImageUrls = [];
+
+    try {
+      // Upload images sequentially to avoid overwhelming R2
+      for (int i = 0; i < uploadedImages.length; i++) {
+        print('📤 Uploading image ${i + 1}/${uploadedImages.length} to R2...');
+
+        final imageUrl = await uploadImageToR2(uploadedImages[i], i + 1);
+
+        if (imageUrl != null) {
+          r2ImageUrls.add(imageUrl);
+          // print('✅ Image ${i + 1} uploaded to R2 successfully');
+        } else {
+          print('⚠️ Failed to upload image ${i + 1} to R2');
+        }
+
+        // Small delay between uploads
+        await Future.delayed(const Duration(milliseconds: 500));
+      }
+
+      print(
+          '✅ R2 Upload complete: ${r2ImageUrls.length}/${uploadedImages.length} images uploaded');
+      print('📋 R2 URLs:');
+      r2ImageUrls.forEach((url) => print('  - $url'));
+
+      return r2ImageUrls;
+    } catch (e) {
+      print('🚨 Error uploading images to R2: $e');
+      return r2ImageUrls; // Return partial results
+    } finally {
+      isUploadingImages = false;
+      notifyListeners();
+    }
+  }
+
+  // Validate form data
+  bool validateForm() {
+    // Basic validation
+    if (textController1?.text.isEmpty ?? true) {
+      print('❌ Product name is required');
+      return false;
+    }
+
+    if (textController2?.text.isEmpty ?? true) {
+      print('❌ Price is required');
+      return false;
+    }
+
+    if (selectedCategoryId == null) {
+      print('❌ Category is required');
+      return false;
+    }
+
+    if (uploadedImages.isEmpty) {
+      print('⚠️ No product images selected');
+      // You can make this required if needed
+      // return false;
+    }
+
+    return true;
+  }
+
+  // Parse price from text controller
+  double? getPriceValue() {
+    try {
+      final priceText = textController2?.text ?? '';
+      // Remove currency symbols and parse
+      final cleanPrice = priceText.replaceAll(RegExp(r'[^\d.]'), '');
+      return double.tryParse(cleanPrice);
+    } catch (e) {
+      print('Error parsing price: $e');
+      return null;
+    }
+  }
+
+  // Get phone number from custom widget
+  String? getPhoneNumber() {
+    // You'll need to implement this based on your CustomLabelCountryCodeWidget
+    // For now, return a placeholder or implement proper phone number extraction
+    return '(405) 555-0128'; // Replace with actual implementation
+  }
+
+  // Submit product to Supabase (with R2 image URLs)
+  Future<bool> submitProduct() async {
+    if (isSubmitting) {
+      print('⚠️ Already submitting, please wait...');
+      return false;
+    }
+
+    print('🚀 Starting product submission to Supabase...');
+    isSubmitting = true;
+    notifyListeners();
+
+    try {
+      // Step 1: Validate form
+      if (!validateForm()) {
+        print('❌ Form validation failed');
+        return false;
+      }
+
+      // Step 2: Get current user
+      if (currentUserId == null) {
+        await getCurrentUser();
+        if (currentUserId == null) {
+          print('❌ Could not get current user ID');
+          return false;
+        }
+      }
+
+      // Step 3: Upload images to Cloudflare R2
+      uploadedImageUrls = await uploadAllImagesToR2();
+
+      // Step 4: Create product record in Supabase (with R2 URLs)
+      print('💾 Creating product in Supabase database...');
+
+      final response = await CreateProductCall.call(
+        userId: currentUserId,
+        name: textController1?.text,
+        price: getPriceValue(),
+        description: textController3?.text,
+        phoneNumber: getPhoneNumber(),
+        dealOptionRemark: textController4?.text,
+        modelNo: textController5?.text,
+        ram: textController6?.text,
+        address: textController7?.text,
+        imageUrls: uploadedImageUrls, // R2 URLs stored in Supabase
+        categoryId: selectedCategoryId,
+        productTypeId: selectedProductTypeId,
+        conditionId: selectedConditionId,
+        dealOptionId: selectedDealOptionId,
+        countryId: selectedCountryId,
+        townshipId: selectedTownshipId,
+      );
+
+      if (response.succeeded) {
+        final productData = response.jsonBody;
+        print('✅ Product created successfully in Supabase!');
+        print('📋 Product Details:');
+        print('  - Product ID: ${productData[0]['id']}');
+        print('  - Name: ${textController1?.text}');
+        print('  - Price: \$${getPriceValue()}');
+        print('  - Images stored in R2: ${uploadedImageUrls.length}');
+        print(
+            '  - Image URLs saved in Supabase: ${uploadedImageUrls.join(', ')}');
+        return true;
+      } else {
+        print('❌ Failed to create product in Supabase: ${response.statusCode}');
+        print('Error: ${response.bodyText}');
+        return false;
+      }
+    } catch (e) {
+      print('🚨 Exception during product submission: $e');
+      return false;
+    } finally {
+      isSubmitting = false;
+      notifyListeners();
+    }
+  }
+
+  // Reset form after successful submission
+  void resetForm() {
+    // Clear text controllers
+    textController1?.clear();
+    textController2?.clear();
+    textController3?.clear();
+    textController4?.clear();
+    textController5?.clear();
+    textController6?.clear();
+    textController7?.clear();
+
+    // Reset dropdown selections
+    selectedCategoryId = null;
+    selectedProductTypeId = null;
+    selectedConditionId = null;
+    selectedDealOptionId = null;
+    selectedCountryId = null;
+    selectedTownshipId = null;
+
+    // Reset dropdown controllers
+    dropDownValueController1?.reset();
+    dropDownValueController2?.reset();
+    dropDownValueController3?.reset();
+    dropDownValueController4?.reset();
+    dropDownValueController5?.reset();
+    dropDownValueController6?.reset();
+
+    // Clear images and URLs
+    uploadedImages.clear();
+    uploadedImageUrls.clear();
+
+    // print('📝 Form reset successfully');
+    notifyListeners();
+  }
+
   // Load Categories from Supabase
   Future<void> loadCategories() async {
-    print('🔄 Loading categories...');
+    // print('🔄 Loading categories...');
     isCategoriesLoading = true;
     notifyListeners();
 
     try {
       getCategoriesResponse = await PqzoepcjuqyvtosffqafCall.call();
 
-      print('📡 Categories API Response: ${getCategoriesResponse?.succeeded}');
-      print('📄 Response body: ${getCategoriesResponse?.jsonBody}');
+      // print('📡 Categories API Response: ${getCategoriesResponse?.succeeded}');
+      // print('📄 Response body: ${getCategoriesResponse?.jsonBody}');
 
       if (getCategoriesResponse?.succeeded ?? false) {
         categories = getCategoriesResponse?.jsonBody ?? [];
-        print('✅ Successfully loaded ${categories.length} categories');
+        // print('✅ Successfully loaded ${categories.length} categories');
 
-        for (var category in categories) {
-          print('📂 Category: ${category['name']} (ID: ${category['id']})');
-        }
+        // for (var category in categories) {
+        //   print('📂 Category: ${category['name']} (ID: ${category['id']})');
+        // }
       } else {
         print('❌ Failed to load categories');
         print('Status: ${getCategoriesResponse?.statusCode}');
@@ -307,24 +529,24 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Deal Options from Supabase
   Future<void> loadDealOptions() async {
-    print('🔄 Loading deal options...');
+    // print('🔄 Loading deal options...');
     isDealOptionsLoading = true;
     notifyListeners();
 
     try {
       getDealOptionsResponse = await GetDealOptionsCall.call();
 
-      print(
-          '📡 Deal Options API Response: ${getDealOptionsResponse?.succeeded}');
-      print('📄 Response body: ${getDealOptionsResponse?.jsonBody}');
+      // print(
+      //     '📡 Deal Options API Response: ${getDealOptionsResponse?.succeeded}');
+      // print('📄 Response body: ${getDealOptionsResponse?.jsonBody}');
 
       if (getDealOptionsResponse?.succeeded ?? false) {
         dealOptions = getDealOptionsResponse?.jsonBody ?? [];
-        print('✅ Successfully loaded ${dealOptions.length} deal options');
+        // print('✅ Successfully loaded ${dealOptions.length} deal options');
 
-        for (var option in dealOptions) {
-          print('🤝 Deal Option: ${option['name']} (ID: ${option['id']})');
-        }
+        // for (var option in dealOptions) {
+        //   print('🤝 Deal Option: ${option['name']} (ID: ${option['id']})');
+        // }
       } else {
         print('❌ Failed to load deal options');
         print('Status: ${getDealOptionsResponse?.statusCode}');
@@ -341,23 +563,23 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Conditions from Supabase
   Future<void> loadConditions() async {
-    print('🔄 Loading conditions...');
+    // print('🔄 Loading conditions...');
     isConditionsLoading = true;
     notifyListeners();
 
     try {
       getConditionsResponse = await GetConditionsCall.call();
 
-      print('📡 Conditions API Response: ${getConditionsResponse?.succeeded}');
-      print('📄 Response body: ${getConditionsResponse?.jsonBody}');
+      // print('📡 Conditions API Response: ${getConditionsResponse?.succeeded}');
+      // print('📄 Response body: ${getConditionsResponse?.jsonBody}');
 
       if (getConditionsResponse?.succeeded ?? false) {
         conditions = getConditionsResponse?.jsonBody ?? [];
-        print('✅ Successfully loaded ${conditions.length} conditions');
+        // print('✅ Successfully loaded ${conditions.length} conditions');
 
-        for (var condition in conditions) {
-          print('🔧 Condition: ${condition['name']} (ID: ${condition['id']})');
-        }
+        // for (var condition in conditions) {
+        //   print('🔧 Condition: ${condition['name']} (ID: ${condition['id']})');
+        // }
       } else {
         print('❌ Failed to load conditions');
         print('Status: ${getConditionsResponse?.statusCode}');
@@ -374,23 +596,23 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Countries from Supabase
   Future<void> loadCountries() async {
-    print('🔄 Loading countries...');
+    // print('🔄 Loading countries...');
     isCountriesLoading = true;
     notifyListeners();
 
     try {
       getCountriesResponse = await GetCountriesCall.call();
 
-      print('📡 Countries API Response: ${getCountriesResponse?.succeeded}');
-      print('📄 Response body: ${getCountriesResponse?.jsonBody}');
+      // print('📡 Countries API Response: ${getCountriesResponse?.succeeded}');
+      // print('📄 Response body: ${getCountriesResponse?.jsonBody}');
 
       if (getCountriesResponse?.succeeded ?? false) {
         countries = getCountriesResponse?.jsonBody ?? [];
-        print('✅ Successfully loaded ${countries.length} countries');
+        // print('✅ Successfully loaded ${countries.length} countries');
 
-        for (var country in countries) {
-          print('🌍 Country: ${country['name']} (ID: ${country['id']})');
-        }
+        // for (var country in countries) {
+        //   print('🌍 Country: ${country['name']} (ID: ${country['id']})');
+        // }
       } else {
         print('❌ Failed to load countries');
         print('Status: ${getCountriesResponse?.statusCode}');
@@ -414,16 +636,16 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     try {
       getTownshipsResponse = await GetTownshipsCall.call(countryId: countryId);
 
-      print('📡 Townships API Response: ${getTownshipsResponse?.succeeded}');
-      print('📄 Response body: ${getTownshipsResponse?.jsonBody}');
+      // print('📡 Townships API Response: ${getTownshipsResponse?.succeeded}');
+      // print('📄 Response body: ${getTownshipsResponse?.jsonBody}');
 
       if (getTownshipsResponse?.succeeded ?? false) {
         townships = getTownshipsResponse?.jsonBody ?? [];
-        print('✅ Successfully loaded ${townships.length} townships');
+        // print('✅ Successfully loaded ${townships.length} townships');
 
-        for (var township in townships) {
-          print('🏘️ Township: ${township['name']} (ID: ${township['id']})');
-        }
+        // for (var township in townships) {
+        //   print('🏘️ Township: ${township['name']} (ID: ${township['id']})');
+        // }
       } else {
         print('❌ Failed to load townships');
         print('Status: ${getTownshipsResponse?.statusCode}');
@@ -440,24 +662,24 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Product Types from Supabase
   Future<void> loadProductTypes() async {
-    print('🔄 Loading product types...');
+    // print('🔄 Loading product types...');
     isProductTypesLoading = true;
     notifyListeners();
 
     try {
       getProductTypesResponse = await GetProductTypesCall.call();
 
-      print(
-          '📡 Product Types API Response: ${getProductTypesResponse?.succeeded}');
-      print('📄 Response body: ${getProductTypesResponse?.jsonBody}');
+      // print(
+      //     '📡 Product Types API Response: ${getProductTypesResponse?.succeeded}');
+      // print('📄 Response body: ${getProductTypesResponse?.jsonBody}');
 
       if (getProductTypesResponse?.succeeded ?? false) {
         productTypes = getProductTypesResponse?.jsonBody ?? [];
-        print('✅ Successfully loaded ${productTypes.length} product types');
+        // print('✅ Successfully loaded ${productTypes.length} product types');
 
-        for (var type in productTypes) {
-          print('📦 Product Type: ${type['name']} (ID: ${type['id']})');
-        }
+        // for (var type in productTypes) {
+        //   print('📦 Product Type: ${type['name']} (ID: ${type['id']})');
+        // }
       } else {
         print('❌ Failed to load product types');
         print('Status: ${getProductTypesResponse?.statusCode}');
@@ -561,8 +783,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onCategoryChanged(String? categoryId) {
     selectedCategoryId = categoryId;
     dropDownValue1 = categoryId;
-    print(
-        '🎯 Selected category: ${getCategoryNameById(categoryId)} (ID: $categoryId)');
+    // print(
+    //     '🎯 Selected category: ${getCategoryNameById(categoryId)} (ID: $categoryId)');
     notifyListeners();
   }
 
@@ -570,8 +792,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onProductTypeChanged(String? productTypeId) {
     selectedProductTypeId = productTypeId;
     dropDownValue2 = productTypeId;
-    print(
-        '🎯 Selected product type: ${getProductTypeNameById(productTypeId)} (ID: $productTypeId)');
+    // print(
+    //     '🎯 Selected product type: ${getProductTypeNameById(productTypeId)} (ID: $productTypeId)');
     notifyListeners();
   }
 
@@ -579,8 +801,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onConditionChanged(String? conditionId) {
     selectedConditionId = conditionId;
     dropDownValue3 = conditionId;
-    print(
-        '🎯 Selected condition: ${getConditionNameById(conditionId)} (ID: $conditionId)');
+    // print(
+    //     '🎯 Selected condition: ${getConditionNameById(conditionId)} (ID: $conditionId)');
     notifyListeners();
   }
 
@@ -588,8 +810,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onDealOptionChanged(String? dealOptionId) {
     selectedDealOptionId = dealOptionId;
     dropDownValue4 = dealOptionId;
-    print(
-        '🎯 Selected deal option: ${getDealOptionNameById(dealOptionId)} (ID: $dealOptionId)');
+    // print(
+    //     '🎯 Selected deal option: ${getDealOptionNameById(dealOptionId)} (ID: $dealOptionId)');
     notifyListeners();
   }
 
@@ -597,8 +819,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onCountryChanged(String? countryId) {
     selectedCountryId = countryId;
     dropDownValue5 = countryId;
-    print(
-        '🎯 Selected country: ${getCountryNameById(countryId)} (ID: $countryId)');
+    // print(
+    //     '🎯 Selected country: ${getCountryNameById(countryId)} (ID: $countryId)');
 
     // Reset township selection when country changes
     selectedTownshipId = null;
@@ -614,8 +836,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onTownshipChanged(String? townshipId) {
     selectedTownshipId = townshipId;
     dropDownValue6 = townshipId;
-    print(
-        '🎯 Selected township: ${getTownshipNameById(townshipId)} (ID: $townshipId)');
+    // print(
+    //     '🎯 Selected township: ${getTownshipNameById(townshipId)} (ID: $townshipId)');
     notifyListeners();
   }
 

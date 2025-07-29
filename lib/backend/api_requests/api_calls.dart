@@ -5,11 +5,17 @@
 // import 'package:flutter/foundation.dart';
 
 // import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:convert';
+import 'package:sougk/auth/supabase_auth/auth_util.dart';
+import 'package:sougk/flutter_flow/uploaded_file.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
 
 // const _kPrivateApiFunctionName = 'ffPrivateApiCall';
+String? getSupabaseToken() {
+  return currentJwtToken;
+}
 
 class PqzoepcjuqyvtosffqafCall {
   static Future<ApiCallResponse> call() async {
@@ -152,6 +158,132 @@ class GetProductTypesCall {
         'is_active': 'eq.true',
         'order': 'name.asc',
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+// CLOUDFLARE R2 + PRODUCT SUBMISSION API CALLS
+
+// Upload image to Cloudflare R2 via Supabase Edge Function
+class UploadImageToR2Call {
+  static Future<ApiCallResponse> call({
+    FFUploadedFile? imageFile,
+    String? fileName,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'UploadImageToR2',
+      apiUrl:
+          'https://pqzoepcjuqyvtosffqaf.supabase.co/functions/v1/upload-to-r2',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer $currentJwtToken',
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxem9lcGNqdXF5dnRvc2ZmcWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTMwMTQsImV4cCI6MjA2ODgyOTAxNH0.hJCeLCDeXB9gVbl1n8Qk18CXJt250-3tH_BxhRkzzDQ',
+      },
+      params: {
+        'image': imageFile,
+        'fileName':
+            fileName ?? 'product_${DateTime.now().millisecondsSinceEpoch}.jpg',
+        'folder': 'products',
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+// Create product in Supabase with R2 image URLs
+class CreateProductCall {
+  static Future<ApiCallResponse> call({
+    String? userId,
+    String? name,
+    double? price,
+    String? description,
+    String? phoneNumber,
+    String? dealOptionRemark,
+    String? modelNo,
+    String? ram,
+    String? address,
+    List<String>? imageUrls,
+    String? categoryId,
+    String? productTypeId,
+    String? conditionId,
+    String? dealOptionId,
+    String? countryId,
+    String? townshipId,
+  }) async {
+    final body = {
+      'user_id': userId,
+      'name': name,
+      'price': price,
+      'description': description,
+      'phone_number': phoneNumber,
+      'deal_option_remark': dealOptionRemark,
+      'model_no': modelNo,
+      'ram': ram,
+      'address': address,
+      'image_url': imageUrls ?? [],
+      'category_id': categoryId,
+      'product_type_id': productTypeId,
+      'condition_id': conditionId,
+      'deal_option_id': dealOptionId,
+      'country_id': countryId,
+      'township_id': townshipId,
+      'is_active': true,
+      'is_featured': false,
+    };
+
+    // Remove null values
+    body.removeWhere((key, value) => value == null);
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'CreateProduct',
+      apiUrl: 'https://pqzoepcjuqyvtosffqaf.supabase.co/rest/v1/products',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxem9lcGNqdXF5dnRvc2ZmcWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTMwMTQsImV4cCI6MjA2ODgyOTAxNH0.hJCeLCDeXB9gVbl1n8Qk18CXJt250-3tH_BxhRkzzDQ',
+        'Authorization': 'Bearer $currentJwtToken',
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+      },
+      params: {},
+      body: json.encode(body),
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+// Get current authenticated user
+class GetCurrentUserCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetCurrentUser',
+      apiUrl: 'https://pqzoepcjuqyvtosffqaf.supabase.co/auth/v1/user',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxem9lcGNqdXF5dnRvc2ZmcWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTMwMTQsImV4cCI6MjA2ODgyOTAxNH0.hJCeLCDeXB9gVbl1n8Qk18CXJt250-3tH_BxhRkzzDQ',
+        'Authorization': 'Bearer $currentJwtToken',
+      },
+      params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

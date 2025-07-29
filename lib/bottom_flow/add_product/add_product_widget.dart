@@ -103,7 +103,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                 padding: const EdgeInsets.fromLTRB(0, 16.0, 0, 16.0),
                 scrollDirection: Axis.vertical,
                 children: [
-                  // Image Upload Section - KEEPING ALL YOUR EXISTING CODE
+                  // DYNAMIC IMAGE UPLOAD SECTION
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 0.0, 0.0, 0.0),
@@ -143,7 +143,8 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       textAlign: TextAlign.start,
                     ),
                   ),
-                  // ALL YOUR EXISTING IMAGE UPLOAD CODE
+
+                  // Dynamic Image Upload Row
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -203,24 +204,24 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                     ),
                                   ),
                                   // Remove button overlay
-                                  // Positioned(
-                                  //   top: 4.0,
-                                  //   right: 4.0,
-                                  //   child: Container(
-                                  //     width: 24.0,
-                                  //     height: 24.0,
-                                  //     decoration: BoxDecoration(
-                                  //       color: Colors.red,
-                                  //       borderRadius:
-                                  //           BorderRadius.circular(12.0),
-                                  //     ),
-                                  //     child: const Icon(
-                                  //       Icons.close,
-                                  //       color: Colors.white,
-                                  //       size: 16.0,
-                                  //     ),
-                                  //   ),
-                                  // ),
+                                  Positioned(
+                                    top: 4.0,
+                                    right: 4.0,
+                                    child: Container(
+                                      width: 24.0,
+                                      height: 24.0,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      child: const Icon(
+                                        Icons.close,
+                                        color: Colors.white,
+                                        size: 16.0,
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -293,7 +294,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText
-                                          .withValues(),
+                                          .withOpacity(0.3),
                                       width: 2.0,
                                       style: BorderStyle.solid,
                                     ),
@@ -329,7 +330,24 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // DYNAMIC CATEGORIES DROPDOWN - REPLACING YOUR FIRST STATIC ONE
+                  // Image count indicator
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 16.0),
+                    child: Text(
+                      '${_model.uploadedImages.length}/10 images uploaded',
+                      style: FlutterFlowTheme.of(context).bodySmall.override(
+                            fontFamily: 'Satoshi',
+                            fontSize: 14.0,
+                            letterSpacing: 0.0,
+                            color: FlutterFlowTheme.of(context)
+                                .primaryText
+                                .withOpacity(0.7),
+                          ),
+                    ),
+                  ),
+
+                  // DYNAMIC CATEGORIES DROPDOWN
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 0.0, 0.0, 4.0),
@@ -398,12 +416,12 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // KEEPING ALL YOUR EXISTING FORM FIELDS
+                  // PRODUCT NAME FIELD
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
                     child: Text(
-                      'Choose category',
+                      'Product Name',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Satoshi',
                             fontSize: 17.0,
@@ -486,7 +504,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // PHONE NUMBER FIELD - KEEPING YOUR EXISTING
+                  // PHONE NUMBER FIELD
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -511,7 +529,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // PRICE FIELD - KEEPING YOUR EXISTING
+                  // PRICE FIELD
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -599,7 +617,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // DESCRIPTION FIELD - KEEPING YOUR EXISTING
+                  // DESCRIPTION FIELD
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -690,7 +708,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // STATIC DROPDOWNS - KEEPING YOUR EXISTING
+                  // PRODUCT TYPE DROPDOWN
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -759,7 +777,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // CONDITION DROPDOWN - KEEPING YOUR EXISTING
+                  // CONDITION DROPDOWN
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -828,7 +846,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // DEAL OPTION REMARK FIELD - KEEPING YOUR EXISTING
+                  // DEAL OPTION REMARK FIELD
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -855,7 +873,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           isDense: false,
-                          hintText: 'Enter product description',
+                          hintText: 'Enter deal option remark',
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Satoshi',
@@ -919,7 +937,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // DYNAMIC DEAL OPTIONS DROPDOWN - REPLACING YOUR STATIC ONE
+                  // DEAL OPTIONS DROPDOWN
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -988,8 +1006,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // CONTINUE WITH ALL YOUR REMAINING FIELDS...
-                  // MODEL NO FIELD - KEEPING YOUR EXISTING
+                  // MODEL NO FIELD
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -1011,94 +1028,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       child: TextFormField(
                         controller: _model.textController5,
                         focusNode: _model.textFieldFocusNode5,
-                        autofocus: false,
-                        textInputAction: TextInputAction.next,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: false,
-                          hintText: 'Enter ram ',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    lineHeight: 1.0,
-                                  ),
-                          errorStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.5, 16.0, 16.5),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Satoshi',
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              lineHeight: 1.0,
-                            ),
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.textController5Validator
-                            .asValidator(context),
-                      ),
-                    ),
-                  ),
-
-                  // RAM FIELD - KEEPING YOUR EXISTING
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Enter ram',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: TextFormField(
-                        controller: _model.textController6,
-                        focusNode: _model.textFieldFocusNode6,
                         autofocus: false,
                         textInputAction: TextInputAction.next,
                         obscureText: false,
@@ -1159,13 +1088,101 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                               lineHeight: 1.0,
                             ),
                         cursorColor: FlutterFlowTheme.of(context).primaryText,
+                        validator: _model.textController5Validator
+                            .asValidator(context),
+                      ),
+                    ),
+                  ),
+
+                  // RAM FIELD
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 16.0, 0.0, 4.0),
+                    child: Text(
+                      'Enter ram',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Satoshi',
+                            fontSize: 17.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: TextFormField(
+                        controller: _model.textController6,
+                        focusNode: _model.textFieldFocusNode6,
+                        autofocus: false,
+                        textInputAction: TextInputAction.next,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          isDense: false,
+                          hintText: 'Enter ram',
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Satoshi',
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    lineHeight: 1.0,
+                                  ),
+                          errorStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Satoshi',
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 15.0,
+                                    letterSpacing: 0.0,
+                                    lineHeight: 1.0,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).black20,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).black20,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 16.5, 16.0, 16.5),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Satoshi',
+                              fontSize: 17.0,
+                              letterSpacing: 0.0,
+                              lineHeight: 1.0,
+                            ),
+                        cursorColor: FlutterFlowTheme.of(context).primaryText,
                         validator: _model.textController6Validator
                             .asValidator(context),
                       ),
                     ),
                   ),
 
-                  // LOCATION DROPDOWN - KEEPING YOUR EXISTING
+                  // COUNTRIES DROPDOWN
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -1234,7 +1251,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // TOWNSHIP DROPDOWN - KEEPING YOUR EXISTING
+                  // TOWNSHIPS DROPDOWN
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
@@ -1312,12 +1329,12 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // ADDRESS FIELD - KEEPING YOUR EXISTING
+                  // ADDRESS FIELD
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
                     child: Text(
-                      'Township',
+                      'Address',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Satoshi',
                             fontSize: 17.0,
@@ -1406,45 +1423,139 @@ class _AddProductWidgetState extends State<AddProductWidget> {
           ),
         ),
 
-        // SUBMIT BUTTON - KEEPING YOUR EXISTING BUT ADDING DEBUG INFO
+        // ENHANCED SUBMIT BUTTON WITH COMPLETE R2 + SUPABASE FLOW
         Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 24.0),
           child: FFButtonWidget(
-            onPressed: () async {
-              // Debug: Print all selected data
-              print('=== FORM SUBMISSION DEBUG ===');
-              print(
-                  'Selected Category: ${_model.getCategoryNameById(_model.selectedCategoryId)} (ID: ${_model.selectedCategoryId})');
-              print(
-                  'Selected Product Type: ${_model.getProductTypeNameById(_model.selectedProductTypeId)} (ID: ${_model.selectedProductTypeId})');
-              print(
-                  'Selected Condition: ${_model.getConditionNameById(_model.selectedConditionId)} (ID: ${_model.selectedConditionId})');
-              print(
-                  'Selected Deal Option: ${_model.getDealOptionNameById(_model.selectedDealOptionId)} (ID: ${_model.selectedDealOptionId})');
-              print(
-                  'Selected Country: ${_model.getCountryNameById(_model.selectedCountryId)} (ID: ${_model.selectedCountryId})');
-              print(
-                  'Selected Township: ${_model.getTownshipNameById(_model.selectedTownshipId)} (ID: ${_model.selectedTownshipId})');
-              print('=============================');
+            onPressed: _model.isSubmitting
+                ? null
+                : () async {
+                    // Show loading dialog
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CircularProgressIndicator(
+                                color: FlutterFlowTheme.of(context).primary,
+                              ),
+                              const SizedBox(height: 16.0),
+                              Text(
+                                _model.isUploadingImages
+                                    ? 'Uploading images to R2...'
+                                    : 'Creating product...',
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
 
-              FFAppState().homePageIndex = 0;
-              safeSetState(() {});
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'Product Added Successfully!\nCategory: ${_model.getCategoryNameById(_model.selectedCategoryId)}\nLocation: ${_model.getCountryNameById(_model.selectedCountryId)} - ${_model.getTownshipNameById(_model.selectedTownshipId)}',
-                    style: TextStyle(
-                      color: FlutterFlowTheme.of(context).primaryText,
-                    ),
-                  ),
-                  duration: const Duration(milliseconds: 3000),
-                  backgroundColor: FlutterFlowTheme.of(context).secondary,
-                ),
-              );
+                    try {
+                      // Submit the product with R2 upload
+                      final success = await _model.submitProduct();
 
-              context.pushNamed(NavbarWidget.routeName);
-            },
-            text: 'Add product',
+                      // Close loading dialog
+                      Navigator.of(context).pop();
+
+                      if (success) {
+                        // Debug: Print all submitted data
+                        print('=== PRODUCT SUBMISSION SUCCESS ===');
+                        print('User ID: ${_model.currentUserId}');
+                        print('Product Name: ${_model.textController1?.text}');
+                        print('Price: ${_model.getPriceValue()}');
+                        print(
+                            'Selected Category: ${_model.getCategoryNameById(_model.selectedCategoryId)} (ID: ${_model.selectedCategoryId})');
+                        print(
+                            'Selected Product Type: ${_model.getProductTypeNameById(_model.selectedProductTypeId)} (ID: ${_model.selectedProductTypeId})');
+                        print(
+                            'Selected Condition: ${_model.getConditionNameById(_model.selectedConditionId)} (ID: ${_model.selectedConditionId})');
+                        print(
+                            'Selected Deal Option: ${_model.getDealOptionNameById(_model.selectedDealOptionId)} (ID: ${_model.selectedDealOptionId})');
+                        print(
+                            'Selected Country: ${_model.getCountryNameById(_model.selectedCountryId)} (ID: ${_model.selectedCountryId})');
+                        print(
+                            'Selected Township: ${_model.getTownshipNameById(_model.selectedTownshipId)} (ID: ${_model.selectedTownshipId})');
+                        print(
+                            'R2 Images: ${_model.uploadedImageUrls.length} images');
+                        _model.uploadedImageUrls
+                            .forEach((url) => print('  - $url'));
+                        print('==================================');
+
+                        // Show success message
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              '🎉 Product Added Successfully!\n'
+                              '📱 ${_model.textController1?.text}\n'
+                              '💰 \${_model.getPriceValue()}\n'
+                              '📂 ${_model.getCategoryNameById(_model.selectedCategoryId)}\n'
+                              '📍 ${_model.getCountryNameById(_model.selectedCountryId)} - ${_model.getTownshipNameById(_model.selectedTownshipId)}\n'
+                              '📸 ${_model.uploadedImageUrls.length} images stored in R2',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor: Colors.green,
+                            behavior: SnackBarBehavior.floating,
+                          ),
+                        );
+
+                        // Reset form
+                        _model.resetForm();
+
+                        // Update app state
+                        FFAppState().homePageIndex = 0;
+                        safeSetState(() {});
+
+                        // Navigate to home/navbar
+                        context.pushNamed(NavbarWidget.routeName);
+                      } else {
+                        // Show error message
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              '❌ Failed to add product. Please check your connection and try again.',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 3000),
+                            backgroundColor: Colors.red,
+                            behavior: SnackBarBehavior.floating,
+                          ),
+                        );
+                      }
+                    } catch (e) {
+                      // Close loading dialog if still open
+                      if (Navigator.of(context).canPop()) {
+                        Navigator.of(context).pop();
+                      }
+
+                      print('🚨 Unexpected error: $e');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            '🚨 Unexpected error occurred. Please try again.',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          duration: const Duration(milliseconds: 3000),
+                          backgroundColor: Colors.red,
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+                    }
+                  },
+            text: _model.isSubmitting
+                ? (_model.isUploadingImages
+                    ? 'Uploading Images...'
+                    : 'Creating Product...')
+                : 'Add Product',
             options: FFButtonOptions(
               width: double.infinity,
               height: 54.0,
@@ -1452,7 +1563,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                   const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               iconPadding:
                   const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: FlutterFlowTheme.of(context).primary,
+              color: _model.isSubmitting
+                  ? FlutterFlowTheme.of(context).secondaryText
+                  : FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Satoshi',
                     color: Colors.white,

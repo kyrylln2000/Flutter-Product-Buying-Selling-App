@@ -10,5 +10,9 @@
     ".vscode/settings.json": true
   },
   "files.readonlyFromPermissions": false,
-  "debug.closeReadonlyTabsOnEnd": false
+  "debug.closeReadonlyTabsOnEnd": false,
+
+  "deno.enable": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "denoland.vscode-deno"
 }
