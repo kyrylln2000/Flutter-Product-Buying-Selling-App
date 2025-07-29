@@ -1,12 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'empty_fav_model.dart';
 export 'empty_fav_model.dart';
 
@@ -44,9 +41,9 @@ class _EmptyFavWidgetState extends State<EmptyFavWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(35.0, 0.0, 35.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(35.0, 0.0, 35.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +59,8 @@ class _EmptyFavWidgetState extends State<EmptyFavWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 16.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 16.0),
               child: AutoSizeText(
                 'No favorite yet',
                 textAlign: TextAlign.center,
@@ -78,7 +76,8 @@ class _EmptyFavWidgetState extends State<EmptyFavWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 28.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 28.0),
               child: AutoSizeText(
                 'Your favorite list is empty please wait for some time and go to home ',
                 textAlign: TextAlign.center,
@@ -104,8 +103,10 @@ class _EmptyFavWidgetState extends State<EmptyFavWidget> {
               options: FFButtonOptions(
                 width: 250.0,
                 height: 54.0,
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                iconPadding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Satoshi',

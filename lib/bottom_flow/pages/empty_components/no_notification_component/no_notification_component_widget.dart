@@ -1,10 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'no_notification_component_model.dart';
 export 'no_notification_component_model.dart';
 
@@ -44,9 +40,9 @@ class _NoNotificationComponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(36.0, 0.0, 36.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(36.0, 0.0, 36.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +54,7 @@ class _NoNotificationComponentWidgetState
                 color: FlutterFlowTheme.of(context).secondary,
                 shape: BoxShape.circle,
               ),
-              alignment: AlignmentDirectional(0.0, 0.0),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(0.0),
                 child: Image.asset(
@@ -70,7 +66,8 @@ class _NoNotificationComponentWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
               child: Text(
                 'No notifications yet',
                 textAlign: TextAlign.center,

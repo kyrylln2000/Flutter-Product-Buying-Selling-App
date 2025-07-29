@@ -1,11 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'no_chat_component_model.dart';
 export 'no_chat_component_model.dart';
 
@@ -43,9 +40,9 @@ class _NoChatComponentWidgetState extends State<NoChatComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(36.0, 0.0, 36.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(36.0, 0.0, 36.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +57,8 @@ class _NoChatComponentWidgetState extends State<NoChatComponentWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
               child: Text(
                 'No chats yet',
                 textAlign: TextAlign.center,
@@ -85,7 +83,8 @@ class _NoChatComponentWidgetState extends State<NoChatComponentWidget> {
                   ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   context.pushNamed(NavbarWidget.routeName);
@@ -97,9 +96,10 @@ class _NoChatComponentWidgetState extends State<NoChatComponentWidget> {
                 options: FFButtonOptions(
                   width: 250.0,
                   height: 54.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      20.0, 0.0, 20.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Satoshi',

@@ -1,10 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'no_search_component_model.dart';
 export 'no_search_component_model.dart';
 
@@ -43,9 +39,9 @@ class _NoSearchComponentWidgetState extends State<NoSearchComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +53,7 @@ class _NoSearchComponentWidgetState extends State<NoSearchComponentWidget> {
                 color: FlutterFlowTheme.of(context).secondary,
                 shape: BoxShape.circle,
               ),
-              alignment: AlignmentDirectional(0.0, 0.0),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(0.0),
                 child: Image.asset(
@@ -69,7 +65,8 @@ class _NoSearchComponentWidgetState extends State<NoSearchComponentWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 16.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 16.0),
               child: Text(
                 'What are you searching for?',
                 textAlign: TextAlign.center,
