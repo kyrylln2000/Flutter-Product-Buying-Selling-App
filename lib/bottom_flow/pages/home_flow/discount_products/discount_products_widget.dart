@@ -1,14 +1,10 @@
-import '/backend/schema/structs/index.dart';
 import '/bottom_flow/pages/components/items_component/items_component_widget.dart';
 import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'discount_products_model.dart';
 export 'discount_products_model.dart';
@@ -74,7 +70,7 @@ class _DiscountProductsWidgetState extends State<DiscountProductsWidget> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     0,
                     0,
@@ -83,8 +79,8 @@ class _DiscountProductsWidgetState extends State<DiscountProductsWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 16.0, 0.0),
                       child: Builder(
                         builder: (context) {
                           final discountList = functions
@@ -130,7 +126,7 @@ class _DiscountProductsWidgetState extends State<DiscountProductsWidget> {
                                         6);
                                   }
                                 }(),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,

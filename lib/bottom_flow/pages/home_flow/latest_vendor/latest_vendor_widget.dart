@@ -1,12 +1,8 @@
-import '/backend/schema/structs/index.dart';
 import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/bottom_flow/pages/components/vendor_component/vendor_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'latest_vendor_model.dart';
 export 'latest_vendor_model.dart';
@@ -71,7 +67,7 @@ class _LatestVendorWidgetState extends State<LatestVendorWidget> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     0,
                     0,
@@ -80,7 +76,7 @@ class _LatestVendorWidgetState extends State<LatestVendorWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           16.0, 16.0, 16.0, 16.0),
                       child: Builder(
                         builder: (context) {
@@ -123,7 +119,7 @@ class _LatestVendorWidgetState extends State<LatestVendorWidget> {
                                         8);
                                   }
                                 }(),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: wrapWithModel(
                                   model: _model.vendorComponentModels.getModel(
                                     vendorListIndex.toString(),
