@@ -5,11 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'edit_product_model.dart';
 export 'edit_product_model.dart';
@@ -106,7 +103,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     16.0,
                     0,
@@ -115,8 +112,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 0.0, 0.0),
                       child: RichText(
                         textScaler: MediaQuery.of(context).textScaler,
                         text: TextSpan(
@@ -133,7 +130,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                                     lineHeight: 1.5,
                                   ),
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: '(max 10 photos)',
                               style: TextStyle(
                                 color: Color(0xFFFF5943),
@@ -160,9 +157,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -246,9 +243,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -332,9 +329,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -418,9 +415,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -504,9 +501,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -590,9 +587,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -676,9 +673,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -762,9 +759,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -848,9 +845,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -934,9 +931,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 16.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -1020,14 +1017,14 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             ),
                           ),
                         ]
-                            .divide(SizedBox(width: 16.0))
-                            .addToStart(SizedBox(width: 16.0))
-                            .addToEnd(SizedBox(width: 16.0)),
+                            .divide(const SizedBox(width: 16.0))
+                            .addToStart(const SizedBox(width: 16.0))
+                            .addToEnd(const SizedBox(width: 16.0)),
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 0.0, 4.0),
                       child: Text(
                         'Choose category',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1039,12 +1036,12 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController1 ??=
                             FormFieldController<String>(null),
-                        options: ['Phone', 'Laptop', 'Clothes'],
+                        options: const ['Phone', 'Laptop', 'Clothes'],
                         onChanged: (val) =>
                             safeSetState(() => _model.dropDownValue1 = val),
                         width: double.infinity,
@@ -1070,7 +1067,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                         borderColor: FlutterFlowTheme.of(context).black20,
                         borderWidth: 1.0,
                         borderRadius: 12.0,
-                        margin: EdgeInsetsDirectional.fromSTEB(
+                        margin: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 15.0, 12.0, 15.0),
                         hidesUnderline: true,
                         isOverButton: false,
@@ -1079,8 +1076,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Choose category',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1092,9 +1089,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Container(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.textController1,
@@ -1153,8 +1150,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.5, 16.0, 16.5),
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 16.5, 16.0, 16.5),
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1170,8 +1168,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Phone number',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1183,8 +1181,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: custom_widgets.CustomLabelCountryCodeWidget(
                         width: double.infinity,
                         height: 54.0,
@@ -1193,8 +1191,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Price',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1206,9 +1204,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Container(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.textController2,
@@ -1265,8 +1263,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.5, 16.0, 16.5),
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 16.5, 16.0, 16.5),
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1282,8 +1281,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Description',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1295,9 +1294,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Container(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.textController3,
@@ -1354,8 +1353,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.5, 16.0, 16.5),
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 16.5, 16.0, 16.5),
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1374,8 +1374,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Choose category',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1387,12 +1387,12 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController2 ??=
                             FormFieldController<String>(null),
-                        options: ['Sell', 'sell2'],
+                        options: const ['Sell', 'sell2'],
                         onChanged: (val) =>
                             safeSetState(() => _model.dropDownValue2 = val),
                         width: double.infinity,
@@ -1418,7 +1418,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                         borderColor: FlutterFlowTheme.of(context).black20,
                         borderWidth: 1.0,
                         borderRadius: 12.0,
-                        margin: EdgeInsetsDirectional.fromSTEB(
+                        margin: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 15.0, 12.0, 15.0),
                         hidesUnderline: true,
                         isOverButton: false,
@@ -1427,8 +1427,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Condition',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1440,12 +1440,12 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController3 ??=
                             FormFieldController<String>(null),
-                        options: ['New', 'Old'],
+                        options: const ['New', 'Old'],
                         onChanged: (val) =>
                             safeSetState(() => _model.dropDownValue3 = val),
                         width: double.infinity,
@@ -1471,7 +1471,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                         borderColor: FlutterFlowTheme.of(context).black20,
                         borderWidth: 1.0,
                         borderRadius: 12.0,
-                        margin: EdgeInsetsDirectional.fromSTEB(
+                        margin: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 15.0, 12.0, 15.0),
                         hidesUnderline: true,
                         isOverButton: false,
@@ -1480,8 +1480,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Deal option remark',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1493,9 +1493,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Container(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.textController4,
@@ -1552,8 +1552,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.5, 16.0, 16.5),
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 16.5, 16.0, 16.5),
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1572,8 +1573,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Deal option',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1585,12 +1586,12 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController4 ??=
                             FormFieldController<String>(null),
-                        options: ['Meetup', 'Phone', 'Option 3'],
+                        options: const ['Meetup', 'Phone', 'Option 3'],
                         onChanged: (val) =>
                             safeSetState(() => _model.dropDownValue4 = val),
                         width: double.infinity,
@@ -1616,7 +1617,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                         borderColor: FlutterFlowTheme.of(context).black20,
                         borderWidth: 1.0,
                         borderRadius: 12.0,
-                        margin: EdgeInsetsDirectional.fromSTEB(
+                        margin: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 15.0, 12.0, 15.0),
                         hidesUnderline: true,
                         isOverButton: false,
@@ -1625,8 +1626,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Model no',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1638,9 +1639,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Container(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.textController5,
@@ -1697,8 +1698,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.5, 16.0, 16.5),
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 16.5, 16.0, 16.5),
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1714,8 +1716,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Enter ram',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1727,9 +1729,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Container(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.textController6,
@@ -1786,8 +1788,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.5, 16.0, 16.5),
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 16.5, 16.0, 16.5),
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1803,8 +1806,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Location',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1816,12 +1819,12 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController5 ??=
                             FormFieldController<String>(null),
-                        options: ['USA', 'UK', 'new zealand'],
+                        options: const ['USA', 'UK', 'new zealand'],
                         onChanged: (val) =>
                             safeSetState(() => _model.dropDownValue5 = val),
                         width: double.infinity,
@@ -1847,7 +1850,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                         borderColor: FlutterFlowTheme.of(context).black20,
                         borderWidth: 1.0,
                         borderRadius: 12.0,
-                        margin: EdgeInsetsDirectional.fromSTEB(
+                        margin: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 15.0, 12.0, 15.0),
                         hidesUnderline: true,
                         isOverButton: false,
@@ -1856,8 +1859,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Township',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1869,12 +1872,12 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController6 ??=
                             FormFieldController<String>(null),
-                        options: ['All', 'Option 2'],
+                        options: const ['All', 'Option 2'],
                         onChanged: (val) =>
                             safeSetState(() => _model.dropDownValue6 = val),
                         width: double.infinity,
@@ -1900,7 +1903,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                         borderColor: FlutterFlowTheme.of(context).black20,
                         borderWidth: 1.0,
                         borderRadius: 12.0,
-                        margin: EdgeInsetsDirectional.fromSTEB(
+                        margin: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 15.0, 12.0, 15.0),
                         hidesUnderline: true,
                         isOverButton: false,
@@ -1909,8 +1912,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 0.0, 4.0),
                       child: Text(
                         'Township',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1922,9 +1925,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Container(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.textController7,
@@ -1981,8 +1984,9 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.5, 16.0, 16.5),
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 16.5, 16.0, 16.5),
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2002,7 +2006,8 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 24.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(
+                    16.0, 12.0, 16.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -2013,7 +2018,7 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                             color: FlutterFlowTheme.of(context).primaryText,
                           ),
                         ),
-                        duration: Duration(milliseconds: 4000),
+                        duration: const Duration(milliseconds: 4000),
                         backgroundColor: FlutterFlowTheme.of(context).secondary,
                       ),
                     );
@@ -2023,10 +2028,10 @@ class _EditProductWidgetState extends State<EditProductWidget> {
                   options: FFButtonOptions(
                     width: double.infinity,
                     height: 54.0,
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                    iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        20.0, 0.0, 20.0, 0.0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Satoshi',

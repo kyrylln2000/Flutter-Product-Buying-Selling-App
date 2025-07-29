@@ -1,14 +1,10 @@
-import '/backend/schema/structs/index.dart';
 import '/bottom_flow/pages/components/items_component/items_component_widget.dart';
 import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'my_product_model.dart';
 export 'my_product_model.dart';
@@ -61,9 +57,10 @@ class _MyProductWidgetState extends State<MyProductWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                 child: Stack(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   children: [
                     wrapWithModel(
                       model: _model.mainAppbarModel,
@@ -91,7 +88,7 @@ class _MyProductWidgetState extends State<MyProductWidget> {
                           color: FlutterFlowTheme.of(context).lightGray,
                           shape: BoxShape.circle,
                         ),
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
                           child: Image.asset(
@@ -108,7 +105,7 @@ class _MyProductWidgetState extends State<MyProductWidget> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     0,
                     0,
@@ -117,8 +114,8 @@ class _MyProductWidgetState extends State<MyProductWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 16.0, 0.0),
                       child: Builder(
                         builder: (context) {
                           final popularList = functions
@@ -164,7 +161,7 @@ class _MyProductWidgetState extends State<MyProductWidget> {
                                         6);
                                   }
                                 }(),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,

@@ -2,10 +2,8 @@ import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'change_password_page_model.dart';
 export 'change_password_page_model.dart';
@@ -84,10 +82,10 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                   key: _model.formKey,
                   autovalidateMode: AutovalidateMode.disabled,
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        16.0, 0.0, 16.0, 0.0),
                     child: ListView(
-                      padding: EdgeInsets.fromLTRB(
+                      padding: const EdgeInsets.fromLTRB(
                         0,
                         16.0,
                         0,
@@ -108,9 +106,9 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                                   ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 26.0, 0.0, 0.0),
-                          child: Container(
+                          child: SizedBox(
                             width: double.infinity,
                             child: TextFormField(
                               controller: _model.textController1,
@@ -169,8 +167,9 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.5, 16.0, 16.5),
+                                contentPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.5, 16.0, 16.5),
                                 suffixIcon: InkWell(
                                   onTap: () => safeSetState(
                                     () => _model.passwordVisibility1 =
@@ -204,9 +203,9 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 26.0, 0.0, 26.0),
-                          child: Container(
+                          child: SizedBox(
                             width: double.infinity,
                             child: TextFormField(
                               controller: _model.textController2,
@@ -265,8 +264,9 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 16.5, 16.0, 16.5),
+                                contentPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 16.5, 16.0, 16.5),
                                 suffixIcon: InkWell(
                                   onTap: () => safeSetState(
                                     () => _model.passwordVisibility2 =
@@ -299,7 +299,7 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           child: TextFormField(
                             controller: _model.textController3,
@@ -358,8 +358,9 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 16.5, 16.0, 16.5),
+                              contentPadding:
+                                  const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.5, 16.0, 16.5),
                               suffixIcon: InkWell(
                                 onTap: () => safeSetState(
                                   () => _model.passwordVisibility3 =
@@ -397,7 +398,8 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 26.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(
+                    16.0, 12.0, 16.0, 26.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     if (_model.formKey.currentState == null ||
@@ -411,6 +413,7 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                         await actions.showCustomToastBottom(
                           'Password Updated Successfully',
                         );
+                        // ignore: use_build_context_synchronously
                         context.safePop();
                       } else {
                         await actions.showCustomToastBottom(
@@ -427,10 +430,10 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                   options: FFButtonOptions(
                     width: double.infinity,
                     height: 54.0,
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                    iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        20.0, 0.0, 20.0, 0.0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Satoshi',
