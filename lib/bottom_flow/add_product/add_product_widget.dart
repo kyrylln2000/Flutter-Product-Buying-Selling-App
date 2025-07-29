@@ -1447,7 +1447,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                               const SizedBox(height: 16.0),
                               Text(
                                 _model.isUploadingImages
-                                    ? 'Uploading images to R2...'
+                                    ? 'Uploading images...'
                                     : 'Creating product...',
                                 style: FlutterFlowTheme.of(context).bodyMedium,
                               ),
@@ -1493,12 +1493,12 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              '🎉 Product Added Successfully!\n'
-                              '📱 ${_model.textController1?.text}\n'
-                              '💰 \${_model.getPriceValue()}\n'
-                              '📂 ${_model.getCategoryNameById(_model.selectedCategoryId)}\n'
-                              '📍 ${_model.getCountryNameById(_model.selectedCountryId)} - ${_model.getTownshipNameById(_model.selectedTownshipId)}\n'
-                              '📸 ${_model.uploadedImageUrls.length} images stored in R2',
+                              'Product Added Successfully!\n',
+                              // '📱 ${_model.textController1?.text}\n'
+                              // '💰 \${_model.getPriceValue()}\n'
+                              // '📂 ${_model.getCategoryNameById(_model.selectedCategoryId)}\n'
+                              // '📍 ${_model.getCountryNameById(_model.selectedCountryId)} - ${_model.getTownshipNameById(_model.selectedTownshipId)}\n'
+                              // '📸 ${_model.uploadedImageUrls.length} images stored in R2',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
