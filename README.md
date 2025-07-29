@@ -7,22 +7,22 @@ A modern Flutter application built with FlutterFlow.
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](#)
 
-## 📱 About
+## About
 
-Sougk is a Flutter application that provides [brief description of what your app does]. Built using FlutterFlow for rapid development and deployment across iOS and Android platforms.
+Sougk is a comprehensive buying and selling marketplace application that connects buyers and sellers in a secure, user-friendly environment. Built using FlutterFlow for rapid development and deployment across iOS and Android platforms.
 
-## ✨ Features
+## Features
 
-- 🎨 Modern and intuitive UI/UX design
-- 📱 Cross-platform support (iOS & Android)
-- 🔐 Secure authentication
-- 🌐 Real-time data synchronization
-- 🎯 [Add your specific features here]
-- 📊 Analytics and performance tracking
-- 🌙 Dark/Light theme support
-- 🌍 Multi-language support
+-  Modern and intuitive UI/UX design
+-  Cross-platform support (iOS & Android)
+-  Secure authentication
+-  Real-time data synchronization
+-  [Add your specific features here]
+-  Analytics and performance tracking
+-  Dark/Light theme support
+-  Multi-language support
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
@@ -44,7 +44,7 @@ Before you begin, ensure you have the following installed:
 - **Android Emulator** or physical Android device
 - **Java JDK** 11 or higher
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -59,30 +59,7 @@ cd sougk
 flutter pub get
 ```
 
-### 3. Environment Setup
-
-Create a `.env` file in the root directory:
-
-```env
-# API Configuration
-API_BASE_URL=https://your-api-url.com
-API_KEY=your-api-key
-
-# Firebase Configuration (if using)
-FIREBASE_PROJECT_ID=your-project-id
-FIREBASE_API_KEY=your-firebase-api-key
-
-# FlutterFlow Configuration
-FLUTTERFLOW_PROJECT_ID=your-flutterflow-project-id
-```
-
-### 4. Configure Firebase (if applicable)
-
-1. Add your `google-services.json` (Android) to `android/app/`
-2. Add your `GoogleService-Info.plist` (iOS) to `ios/Runner/`
-3. Update Firebase configuration in `lib/firebase_options.dart`
-
-### 5. Run the Application
+### 3. Run the Application
 
 ```bash
 # Run on connected device/emulator
@@ -99,35 +76,39 @@ flutter run -d ios
 flutter run -d android
 ```
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 sougk/
 ├── android/                 # Android-specific files
+├── assets/                  # Static assets
+│   ├── audios/              # Audoi files
+│   ├── environment_values/  # Environment values
+│   ├── fonts/               # Custom fonts
+│   ├── images/              # Image files
+│   ├── jsons/               # Json files
+│   ├── pdfs/                # PDF files
+│   ├── rive_animations/     # Rive animations
+│   └── videos/              # Vidoe files
 ├── ios/                     # iOS-specific files
 ├── lib/                     # Main application code
-│   ├── components/          # Reusable UI components
-│   ├── pages/              # App screens/pages
-│   ├── models/             # Data models
-│   ├── services/           # API and business logic
-│   ├── utils/              # Utility functions
-│   ├── constants/          # App constants
-│   ├── themes/             # Theme configurations
-│   ├── widgets/            # Custom widgets
-│   └── main.dart           # Application entry point
-├── assets/                 # Static assets
-│   ├── images/            # Image files
-│   ├── icons/             # Icon files
-│   └── fonts/             # Custom fonts
-├── test/                  # Unit and widget tests
-├── integration_test/      # Integration tests
-├── docs/                  # Documentation
-├── .env                   # Environment variables
-├── pubspec.yaml          # Project dependencies
+│   ├── auth/                # Auth
+│   ├── backend/             # API and business logic
+│   ├── bottom_flow/
+│   ├── custom_code/
+│   ├── flutter_flow/
+│   ├── navbar/
+│   ├── app_state.dart       # Static states
+│   ├── environment_values.dart
+│   ├── index.dart
+│   └── main.dart            # Application entry point
+├── test/                    # Unit and widget tests
+├── web/                     # Web-specific files
+├── pubspec.yaml             # Project dependencies
 └── README.md             # This file
 ```
 
-## 🔧 Development
+## Development
 
 ### Code Generation
 
@@ -158,7 +139,7 @@ This project uses [specify your state management solution]:
 - Provider / Riverpod / Bloc / GetX
 - [Brief explanation of your architecture]
 
-## 🧪 Testing
+## Testing
 
 ### Run Tests
 
@@ -186,7 +167,7 @@ genhtml coverage/lcov.info -o coverage/html
 open coverage/html/index.html
 ```
 
-## 📦 Build & Release
+## Build & Release
 
 ### Android
 
@@ -218,14 +199,14 @@ flutter build ipa --release
 flutter build web --release
 ```
 
-## 🔐 Security
+## Security
 
 - API keys are stored securely using environment variables
 - Sensitive data is encrypted before storage
 - Network communications use HTTPS/TLS
 - User authentication follows industry best practices
 
-## 📊 Performance
+## Performance
 
 ### Optimization Tips
 
@@ -244,7 +225,7 @@ flutter run --profile
 flutter build apk --analyze-size
 ```
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md).
 
@@ -273,7 +254,7 @@ flutter analyze
 dart run dart_code_metrics:metrics analyze lib
 ```
 
-## 📱 FlutterFlow Integration
+## FlutterFlow Integration
 
 This project is built with FlutterFlow. To sync changes:
 
@@ -292,7 +273,7 @@ flutterflow download
 flutterflow upload
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -334,7 +315,7 @@ flutter inspector
 flutter run --profile
 ```
 
-## 📚 Documentation
+## Documentation
 
 - [Flutter Documentation](https://flutter.dev/docs)
 - [FlutterFlow Documentation](https://docs.flutterflow.io/)
@@ -342,7 +323,7 @@ flutter run --profile
 - [API Documentation](docs/api.md)
 - [Architecture Guide](docs/architecture.md)
 
-## 🔄 Deployment
+## Deployment
 
 ### Continuous Integration
 
@@ -354,31 +335,31 @@ This project uses GitHub Actions for CI/CD. See `.github/workflows/` for configu
 - **Staging**: Automatic deployment on `staging` branch  
 - **Production**: Manual deployment from `main` branch
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Team
+## Team
 
 - **Project Lead**: [Your Name](mailto:your.email@example.com)
 - **Developers**: [Team Members]
 - **Designers**: [Design Team]
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Flutter team for the amazing framework
 - FlutterFlow for rapid development tools
 - Contributors and community members
 - [Any third-party libraries or resources used]
 
-## 📞 Support
+## Support
 
 For support and questions:
 
-- 📧 Email: support@yourapp.com
-- 💬 Discord: [Your Discord Server]
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/sougk/issues)
-- 📖 Wiki: [Project Wiki](https://github.com/yourusername/sougk/wiki)
+-  Email: support@yourapp.com
+-  Discord: [Your Discord Server]
+-  Issues: [GitHub Issues](https://github.com/yourusername/sougk/issues)
+-  Wiki: [Project Wiki](https://github.com/yourusername/sougk/wiki)
 
 ---
 
