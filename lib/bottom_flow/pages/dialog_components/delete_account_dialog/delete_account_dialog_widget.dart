@@ -1,12 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'delete_account_dialog_model.dart';
 export 'delete_account_dialog_model.dart';
 
@@ -50,9 +47,9 @@ class _DeleteAccountDialogWidgetState extends State<DeleteAccountDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
         child: Container(
           width: () {
             if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
@@ -118,7 +115,8 @@ class _DeleteAccountDialogWidgetState extends State<DeleteAccountDialogWidget> {
                   animate: true,
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 28.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      0.0, 28.0, 0.0, 28.0),
                   child: AutoSizeText(
                     'Are you sure you want to delete account ?',
                     textAlign: TextAlign.center,
@@ -146,9 +144,9 @@ class _DeleteAccountDialogWidgetState extends State<DeleteAccountDialogWidget> {
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 54.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: Colors.transparent,
                           textStyle:
@@ -177,9 +175,9 @@ class _DeleteAccountDialogWidgetState extends State<DeleteAccountDialogWidget> {
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 54.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -196,7 +194,7 @@ class _DeleteAccountDialogWidgetState extends State<DeleteAccountDialogWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(width: 16.0)),
+                  ].divide(const SizedBox(width: 16.0)),
                 ),
               ],
             ),

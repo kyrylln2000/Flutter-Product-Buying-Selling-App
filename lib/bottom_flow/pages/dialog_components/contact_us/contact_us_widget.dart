@@ -1,11 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'contact_us_model.dart';
 export 'contact_us_model.dart';
 
@@ -46,7 +42,7 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(32.0),
@@ -60,9 +56,10 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
           Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -83,7 +80,8 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(
+                    16.0, 24.0, 16.0, 16.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +89,7 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                     Container(
                       width: 44.0,
                       height: 44.0,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -122,7 +120,7 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                           color: FlutterFlowTheme.of(context).lightGray,
                           shape: BoxShape.circle,
                         ),
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
                           child: SvgPicture.asset(
@@ -134,7 +132,7 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(width: 8.0)),
+                  ].divide(const SizedBox(width: 8.0)),
                 ),
               ),
             ],
@@ -147,7 +145,8 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+            padding:
+                const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
             child: Wrap(
               spacing: 16.0,
               runSpacing: 16.0,
@@ -171,7 +170,7 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                   }(),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 15.0,
                         color: Color(0x19000000),
@@ -185,8 +184,8 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 16.0, 0.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -226,7 +225,7 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                   }(),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 15.0,
                         color: Color(0x19000000),
@@ -240,8 +239,8 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 16.0, 0.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -281,7 +280,7 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                   }(),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 15.0,
                         color: Color(0x19000000),
@@ -295,8 +294,8 @@ class _ContactUsWidgetState extends State<ContactUsWidget> {
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 16.0, 0.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
