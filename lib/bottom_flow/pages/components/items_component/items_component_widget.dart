@@ -1,11 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'items_component_model.dart';
 export 'items_component_model.dart';
 
@@ -22,8 +18,8 @@ class ItemsComponentWidget extends StatefulWidget {
     required this.isLikeTap,
     bool? isdiscount,
     required this.price2,
-  })  : this.isLike = isLike ?? false,
-        this.isdiscount = isdiscount ?? false;
+  })  : isLike = isLike ?? false,
+        isdiscount = isdiscount ?? false;
 
   final String? img;
   final String? name;
@@ -69,7 +65,7 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 15.0,
             color: Color(0x27000000),
@@ -83,27 +79,28 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
-              alignment: AlignmentDirectional(1.0, -1.0),
+              alignment: const AlignmentDirectional(1.0, -1.0),
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12.0),
                   child: Image.network(
-                    widget!.img!,
+                    widget.img!,
                     width: double.infinity,
                     height: 115.0,
                     fit: BoxFit.cover,
                   ),
                 ),
                 Container(
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 8.0, 8.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -118,7 +115,7 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 15.0,
                               color: Color(0x33000000),
@@ -131,10 +128,10 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                           ],
                           shape: BoxShape.circle,
                         ),
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Builder(
                           builder: (context) {
-                            if (widget!.isLike == true) {
+                            if (widget.isLike == true) {
                               return Image.asset(
                                 'assets/images/heart_fill.png',
                                 width: 14.0,
@@ -156,12 +153,12 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Builder(
                     builder: (context) {
-                      if (widget!.isdiscount == true) {
+                      if (widget.isdiscount == true) {
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 6.0, 0.0, 0.0),
                           child: Container(
                             decoration: BoxDecoration(
@@ -169,7 +166,7 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                               borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 2.0, 8.0, 2.0),
                               child: Text(
                                 '10% discount',
@@ -192,7 +189,7 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                         return Container(
                           width: 50.0,
                           height: 50.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                         );
                       }
                     },
@@ -201,10 +198,10 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
               child: Text(
                 valueOrDefault<String>(
-                  widget!.name,
+                  widget.name,
                   'iPhone 15 pro max ',
                 ),
                 textAlign: TextAlign.start,
@@ -222,10 +219,11 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                   child: Text(
                     valueOrDefault<String>(
-                      widget!.price,
+                      widget.price,
                       '\$1500.00',
                     ),
                     textAlign: TextAlign.start,
@@ -241,13 +239,13 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                 ),
                 Builder(
                   builder: (context) {
-                    if (widget!.isdiscount == true) {
+                    if (widget.isdiscount == true) {
                       return Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 8.0, 0.0, 0.0),
                         child: Text(
                           valueOrDefault<String>(
-                            widget!.price2,
+                            widget.price2,
                             'fg',
                           ),
                           textAlign: TextAlign.start,
@@ -270,35 +268,35 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                       return Container(
                         width: 2.0,
                         height: 2.0,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                       );
                     }
                   },
                 ),
-              ].divide(SizedBox(width: 4.0)),
+              ].divide(const SizedBox(width: 4.0)),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Image.network(
-                    widget!.smallimge!,
+                    widget.smallimge!,
                     width: 32.0,
                     height: 32.0,
                     fit: BoxFit.contain,
                   ),
                   Expanded(
                     child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 0.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             valueOrDefault<String>(
-                              widget!.firstname,
+                              widget.firstname,
                               'Esther howards',
                             ),
                             textAlign: TextAlign.start,
@@ -316,7 +314,7 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                                 ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -334,7 +332,7 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                                 ),
                                 Text(
                                   valueOrDefault<String>(
-                                    widget!.countryname,
+                                    widget.countryname,
                                     'New york',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -348,7 +346,7 @@ class _ItemsComponentWidgetState extends State<ItemsComponentWidget> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                         ],

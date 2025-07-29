@@ -1,11 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'vendor_component_model.dart';
 export 'vendor_component_model.dart';
 
@@ -54,7 +51,7 @@ class _VendorComponentWidgetState extends State<VendorComponentWidget> {
       height: 185.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 15.0,
             color: Color(0x27000000),
@@ -68,17 +65,17 @@ class _VendorComponentWidgetState extends State<VendorComponentWidget> {
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Stack(
-              alignment: AlignmentDirectional(1.0, -1.0),
+              alignment: const AlignmentDirectional(1.0, -1.0),
               children: [
                 Image.network(
-                  widget!.img!,
+                  widget.img!,
                   width: 64.0,
                   height: 64.0,
                   fit: BoxFit.contain,
@@ -86,10 +83,10 @@ class _VendorComponentWidgetState extends State<VendorComponentWidget> {
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
               child: Text(
                 valueOrDefault<String>(
-                  widget!.name,
+                  widget.name,
                   'Shop point',
                 ),
                 textAlign: TextAlign.start,
@@ -104,18 +101,19 @@ class _VendorComponentWidgetState extends State<VendorComponentWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   context.pushNamed(
                     ShopPointWidget.routeName,
                     queryParameters: {
                       'name': serializeParam(
-                        widget!.name,
+                        widget.name,
                         ParamType.String,
                       ),
                       'img': serializeParam(
-                        widget!.img,
+                        widget.img,
                         ParamType.String,
                       ),
                     }.withoutNulls,
@@ -125,9 +123,10 @@ class _VendorComponentWidgetState extends State<VendorComponentWidget> {
                 options: FFButtonOptions(
                   width: 150.0,
                   height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      24.0, 0.0, 24.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Satoshi',

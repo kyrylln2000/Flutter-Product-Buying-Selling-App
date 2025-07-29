@@ -1,10 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'categorioes_component_model.dart';
 export 'categorioes_component_model.dart';
 
@@ -71,16 +67,16 @@ class _CategorioesComponentWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.network(
-            widget!.img!,
+            widget.img!,
             width: 34.0,
             height: 34.0,
             fit: BoxFit.cover,
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
             child: Text(
               valueOrDefault<String>(
-                widget!.name,
+                widget.name,
                 'r',
               ),
               maxLines: 1,

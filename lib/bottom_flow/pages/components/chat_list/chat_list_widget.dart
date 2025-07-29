@@ -1,12 +1,8 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'chat_list_model.dart';
 export 'chat_list_model.dart';
@@ -50,7 +46,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -90,7 +86,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                   .secondaryBackground,
                         ),
                       ),
-                    ].divide(SizedBox(height: 8.0)),
+                    ].divide(const SizedBox(height: 8.0)),
                   ),
                 ),
               ),
@@ -130,7 +126,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                   .secondaryBackground,
                         ),
                       ),
-                    ].divide(SizedBox(height: 8.0)),
+                    ].divide(const SizedBox(height: 8.0)),
                   ),
                 ),
               ),
@@ -146,7 +142,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                     final chatList = FFAppState().chatList.toList();
 
                     return ListView.separated(
-                      padding: EdgeInsets.fromLTRB(
+                      padding: const EdgeInsets.fromLTRB(
                         0,
                         8.0,
                         0,
@@ -154,11 +150,11 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                       ),
                       scrollDirection: Axis.vertical,
                       itemCount: chatList.length,
-                      separatorBuilder: (_, __) => SizedBox(height: 14.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 14.0),
                       itemBuilder: (context, chatListIndex) {
                         final chatListItem = chatList[chatListIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -185,7 +181,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     blurRadius: 15.0,
                                     color: Color(0x19000000),
@@ -199,7 +195,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 13.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -209,14 +205,14 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                       width: 58.0,
                                       height: 58.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: CachedNetworkImage(
                                         fadeInDuration:
-                                            Duration(milliseconds: 200),
+                                            const Duration(milliseconds: 200),
                                         fadeOutDuration:
-                                            Duration(milliseconds: 200),
+                                            const Duration(milliseconds: 200),
                                         imageUrl: chatListItem.image,
                                         fit: BoxFit.cover,
                                         errorWidget:
@@ -263,12 +259,13 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                                   lineHeight: 1.5,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(height: 7.0)),
+                                        ].divide(const SizedBox(height: 7.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 3.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 3.0),
                                       child: Text(
                                         chatListItem.lastCreateAt,
                                         textAlign: TextAlign.end,
@@ -287,7 +284,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                             ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(const SizedBox(width: 12.0)),
                                 ),
                               ),
                             ),
@@ -303,7 +300,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                     final chatList = FFAppState().chatSellingList.toList();
 
                     return ListView.separated(
-                      padding: EdgeInsets.fromLTRB(
+                      padding: const EdgeInsets.fromLTRB(
                         0,
                         8.0,
                         0,
@@ -311,11 +308,11 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                       ),
                       scrollDirection: Axis.vertical,
                       itemCount: chatList.length,
-                      separatorBuilder: (_, __) => SizedBox(height: 16.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 16.0),
                       itemBuilder: (context, chatListIndex) {
                         final chatListItem = chatList[chatListIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -342,7 +339,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     blurRadius: 15.0,
                                     color: Color(0x19000000),
@@ -356,7 +353,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 13.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -366,14 +363,14 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                       width: 58.0,
                                       height: 58.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: CachedNetworkImage(
                                         fadeInDuration:
-                                            Duration(milliseconds: 200),
+                                            const Duration(milliseconds: 200),
                                         fadeOutDuration:
-                                            Duration(milliseconds: 200),
+                                            const Duration(milliseconds: 200),
                                         imageUrl: chatListItem.image,
                                         fit: BoxFit.cover,
                                         errorWidget:
@@ -420,7 +417,7 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                                   lineHeight: 1.5,
                                                 ),
                                           ),
-                                        ].divide(SizedBox(height: 7.0)),
+                                        ].divide(const SizedBox(height: 7.0)),
                                       ),
                                     ),
                                     Column(
@@ -438,8 +435,8 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                                 .primary,
                                             shape: BoxShape.circle,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                          alignment: const AlignmentDirectional(
+                                              0.0, 0.0),
                                           child: Text(
                                             '1',
                                             style: FlutterFlowTheme.of(context)
@@ -456,9 +453,8 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 3.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0.0, 0.0, 0.0, 3.0),
                                           child: Text(
                                             chatListItem.lastCreateAt,
                                             textAlign: TextAlign.end,
@@ -477,9 +473,9 @@ class _ChatListWidgetState extends State<ChatListWidget> {
                                                 ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 12.0)),
+                                      ].divide(const SizedBox(height: 12.0)),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(const SizedBox(width: 12.0)),
                                 ),
                               ),
                             ),

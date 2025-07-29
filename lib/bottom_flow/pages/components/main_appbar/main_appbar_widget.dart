@@ -1,11 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'main_appbar_model.dart';
 export 'main_appbar_model.dart';
 
@@ -17,8 +13,8 @@ class MainAppbarWidget extends StatefulWidget {
     required this.backAction,
     bool? isEdit,
     required this.editAction,
-  })  : this.isBack = isBack ?? false,
-        this.isEdit = isEdit ?? false;
+  })  : isBack = isBack ?? false,
+        isEdit = isEdit ?? false;
 
   final String? title;
   final bool isBack;
@@ -62,14 +58,14 @@ class _MainAppbarWidgetState extends State<MainAppbarWidget> {
         color: FlutterFlowTheme.of(context).primaryBackground,
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 12.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 12.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Builder(
               builder: (context) {
-                if (widget!.isBack == false) {
+                if (widget.isBack == false) {
                   return InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -85,7 +81,7 @@ class _MainAppbarWidgetState extends State<MainAppbarWidget> {
                         color: FlutterFlowTheme.of(context).lightGray,
                         shape: BoxShape.circle,
                       ),
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(0.0),
                         child: SvgPicture.asset(
@@ -113,7 +109,7 @@ class _MainAppbarWidgetState extends State<MainAppbarWidget> {
                         color: FlutterFlowTheme.of(context).lightGray,
                         shape: BoxShape.circle,
                       ),
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(0.0),
                         child: SvgPicture.asset(
@@ -130,7 +126,7 @@ class _MainAppbarWidgetState extends State<MainAppbarWidget> {
             ),
             Text(
               valueOrDefault<String>(
-                widget!.title,
+                widget.title,
                 'Title',
               ),
               textAlign: TextAlign.center,
@@ -149,7 +145,7 @@ class _MainAppbarWidgetState extends State<MainAppbarWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-          ].divide(SizedBox(width: 8.0)),
+          ].divide(const SizedBox(width: 8.0)),
         ),
       ),
     );

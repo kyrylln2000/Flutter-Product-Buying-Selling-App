@@ -1,12 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'topratedseller_com_model.dart';
 export 'topratedseller_com_model.dart';
 
@@ -60,7 +57,7 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
       height: 185.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 15.0,
             color: Color(0x19000000),
@@ -74,23 +71,24 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.network(
-              widget!.img!,
+              widget.img!,
               width: 40.0,
               height: 40.0,
               fit: BoxFit.contain,
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
               child: Text(
                 valueOrDefault<String>(
-                  widget!.name,
+                  widget.name,
                   'Shop point',
                 ),
                 textAlign: TextAlign.center,
@@ -104,7 +102,8 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +114,7 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.asset(
@@ -128,11 +127,11 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 2.0, 0.0, 0.0, 0.0),
                             child: AutoSizeText(
                               valueOrDefault<String>(
-                                widget!.items,
+                                widget.items,
                                 '11 items',
                               ).maybeHandleOverflow(
                                 maxChars: 12,
@@ -170,11 +169,11 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 2.0, 0.0, 0.0, 0.0),
                             child: AutoSizeText(
                               valueOrDefault<String>(
-                                widget!.followers,
+                                widget.followers,
                                 '20 followers',
                               ).maybeHandleOverflow(
                                 maxChars: 12,
@@ -197,22 +196,23 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
                       ],
                     ),
                   ),
-                ].divide(SizedBox(width: 6.0)),
+                ].divide(const SizedBox(width: 6.0)),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 14.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 14.0, 0.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   context.pushNamed(
                     RalphEdwardsWidget.routeName,
                     queryParameters: {
                       'name': serializeParam(
-                        widget!.name,
+                        widget.name,
                         ParamType.String,
                       ),
                       'img': serializeParam(
-                        widget!.img,
+                        widget.img,
                         ParamType.String,
                       ),
                     }.withoutNulls,
@@ -222,10 +222,11 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
                 options: FFButtonOptions(
                   width: double.infinity,
                   height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      24.0, 0.0, 24.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: Color(0xFFF1F1F1),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: const Color(0xFFF1F1F1),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Satoshi',
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -233,7 +234,7 @@ class _TopratedsellerComWidgetState extends State<TopratedsellerComWidget> {
                         fontWeight: FontWeight.bold,
                       ),
                   elevation: 0.0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),
