@@ -323,7 +323,9 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       print(
           '✅ R2 Upload complete: ${r2ImageUrls.length}/${uploadedImages.length} images uploaded');
       print('📋 R2 URLs:');
-      r2ImageUrls.forEach((url) => print('  - $url'));
+      for (var url in r2ImageUrls) {
+        print('  - $url');
+      }
 
       return r2ImageUrls;
     } catch (e) {

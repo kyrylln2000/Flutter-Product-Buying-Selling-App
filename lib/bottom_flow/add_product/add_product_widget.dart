@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
+
 import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -226,7 +228,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                               ),
                             ),
                           );
-                        }).toList(),
+                        }),
 
                         // Add new image button (only show if less than 10 images)
                         if (_model.uploadedImages.length < 10)
@@ -1482,8 +1484,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             'Selected Township: ${_model.getTownshipNameById(_model.selectedTownshipId)} (ID: ${_model.selectedTownshipId})');
                         print(
                             'R2 Images: ${_model.uploadedImageUrls.length} images');
-                        _model.uploadedImageUrls
-                            .forEach((url) => print('  - $url'));
+                        for (var url in _model.uploadedImageUrls) {
+                          print('  - $url');
+                        }
                         print('==================================');
 
                         // Show success message
@@ -1518,14 +1521,14 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       } else {
                         // Show error message
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text(
                               '❌ Failed to add product. Please check your connection and try again.',
                               style: TextStyle(
                                 color: Colors.white,
                               ),
                             ),
-                            duration: const Duration(milliseconds: 3000),
+                            duration: Duration(milliseconds: 3000),
                             backgroundColor: Colors.red,
                             behavior: SnackBarBehavior.floating,
                           ),
@@ -1539,12 +1542,12 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
                       print('🚨 Unexpected error: $e');
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           content: Text(
                             '🚨 Unexpected error occurred. Please try again.',
                             style: TextStyle(color: Colors.white),
                           ),
-                          duration: const Duration(milliseconds: 3000),
+                          duration: Duration(milliseconds: 3000),
                           backgroundColor: Colors.red,
                           behavior: SnackBarBehavior.floating,
                         ),

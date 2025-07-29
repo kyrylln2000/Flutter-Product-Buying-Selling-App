@@ -243,7 +243,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                     width: double.infinity,
                     height: 177.0,
                     decoration: const BoxDecoration(),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       height: double.infinity,
                       child: Stack(
@@ -252,7 +252,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 18.0),
-                            child: Container(
+                            child: SizedBox(
                               width: double.infinity,
                               height: double.infinity,
                               child: CarouselSlider(
@@ -261,7 +261,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     padding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: Stack(
@@ -383,7 +383,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     padding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: Stack(
@@ -504,7 +504,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     padding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: Stack(

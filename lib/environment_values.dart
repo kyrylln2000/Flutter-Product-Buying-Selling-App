@@ -1,5 +1,5 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
+// import 'dart:convert';
+// import 'package:flutter/services.dart';
 
 class FFDevEnvironmentValues {
   static const String currentEnvironment = 'Production';
@@ -17,9 +17,9 @@ class FFDevEnvironmentValues {
 
   Future<void> initialize() async {
     try {
-      final String response =
-          await rootBundle.loadString(environmentValuesPath);
-      final data = await json.decode(response);
+      // final String response =
+      //     await rootBundle.loadString(environmentValuesPath);
+      // final data = await json.decode(response);
     } catch (e) {
       print('Error loading environment values: $e');
     }
