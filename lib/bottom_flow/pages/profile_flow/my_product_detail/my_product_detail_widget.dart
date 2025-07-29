@@ -1,15 +1,11 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'my_product_detail_model.dart';
 export 'my_product_detail_model.dart';
 
@@ -56,7 +52,7 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: ListView(
-          padding: EdgeInsets.fromLTRB(
+          padding: const EdgeInsets.fromLTRB(
             0,
             0,
             0,
@@ -66,7 +62,7 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
           children: [
             Stack(
               children: [
-                Container(
+                SizedBox(
                   width: double.infinity,
                   height: 323.0,
                   child: Stack(
@@ -115,9 +111,9 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                         ],
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 1.0),
+                        alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: smooth_page_indicator.SmoothPageIndicator(
                             controller: _model.pageViewController ??=
@@ -127,7 +123,7 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                             onDotClicked: (i) async {
                               await _model.pageViewController!.animateToPage(
                                 i,
-                                duration: Duration(milliseconds: 500),
+                                duration: const Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
                               safeSetState(() {});
@@ -137,7 +133,7 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                               radius: 8.0,
                               dotWidth: 8.0,
                               dotHeight: 8.0,
-                              dotColor: Color(0xFFC2D6E5),
+                              dotColor: const Color(0xFFC2D6E5),
                               activeDotColor:
                                   FlutterFlowTheme.of(context).secondary,
                               paintStyle: PaintingStyle.fill,
@@ -149,14 +145,15 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 65.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 65.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -172,7 +169,7 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                                 color: FlutterFlowTheme.of(context).lightGray,
                                 shape: BoxShape.circle,
                               ),
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
                                 child: SvgPicture.asset(
@@ -193,7 +190,7 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                           color: FlutterFlowTheme.of(context).lightGray,
                           shape: BoxShape.circle,
                         ),
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
                           child: Image.asset(
@@ -205,14 +202,15 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                         ),
                       ),
                     ]
-                        .addToStart(SizedBox(width: 16.0))
-                        .addToEnd(SizedBox(width: 16.0)),
+                        .addToStart(const SizedBox(width: 16.0))
+                        .addToEnd(const SizedBox(width: 16.0)),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -244,7 +242,8 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -264,11 +263,12 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                           letterSpacing: 0.0,
                         ),
                   ),
-                ].divide(SizedBox(width: 4.0)),
+                ].divide(const SizedBox(width: 4.0)),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
               child: Text(
                 'Product description',
                 textAlign: TextAlign.start,
@@ -282,7 +282,8 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: Text(
                 'iPhone 15 pro max, a titanium marvel, boasts an aerospace-grade build, making it the lightest pro model ever. The A17 pro chip marks a historic leap in apple GPUs, delivering unparalleled graphics performance and immersive gaming experiences. the camera system shines with a 48 MP main camera, offering remarkable detail and automatic portrait enhancements. convenience is key with the action button for quick tasks and focus filters. plus, it\'s USB 3 compatible, revolutionizing data transfer speeds. this iPhone even shares its charging cable with your Mac or iPad. embrace innovation, cut cable clutter, and elevate your mobile experience with the iPhone 15 pro max.',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -295,7 +296,8 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
               child: Text(
                 'Product description',
                 textAlign: TextAlign.start,
@@ -309,12 +311,13 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 16.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 16.0),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 15.0,
                       color: Color(0x19000000),
@@ -328,7 +331,7 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -364,8 +367,8 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                         ],
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 8.0, 0.0, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -430,8 +433,8 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                         ],
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 8.0, 0.0, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -496,8 +499,8 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                         ],
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 8.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -535,7 +538,8 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
                 child: Container(
@@ -550,7 +554,7 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                       controller: _model.expandableExpandableController,
                       child: ExpandablePanel(
                         header: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 16.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -578,17 +582,17 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 12.0)),
+                            ].divide(const SizedBox(width: 12.0)),
                           ),
                         ),
                         collapsed: Container(
                           width: double.infinity,
                           height: 0.0,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.transparent,
                           ),
                         ),
-                        expanded: Padding(
+                        expanded: const Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 16.0),
                           child: custom_widgets.Readmore(
@@ -596,7 +600,7 @@ class _MyProductDetailWidgetState extends State<MyProductDetailWidget> {
                             height: 50.0,
                           ),
                         ),
-                        theme: ExpandableThemeData(
+                        theme: const ExpandableThemeData(
                           tapHeaderToExpand: true,
                           tapBodyToExpand: false,
                           tapBodyToCollapse: false,

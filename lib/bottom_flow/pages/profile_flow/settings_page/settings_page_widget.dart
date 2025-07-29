@@ -2,12 +2,9 @@ import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/bottom_flow/pages/dialog_components/delete_account_dialog/delete_account_dialog_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'settings_page_model.dart';
 export 'settings_page_model.dart';
@@ -73,7 +70,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     16.0,
                     0,
@@ -82,8 +79,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -101,7 +98,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               BoxShadow(
                                 blurRadius: 16.0,
                                 color: FlutterFlowTheme.of(context).shadowColor,
-                                offset: Offset(
+                                offset: const Offset(
                                   0.0,
                                   4.0,
                                 ),
@@ -110,7 +107,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 8.0, 16.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -123,7 +120,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         FlutterFlowTheme.of(context).lightGray,
                                     shape: BoxShape.circle,
                                   ),
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment:
+                                      const AlignmentDirectional(0.0, 0.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(0.0),
                                     child: Image.asset(
@@ -159,15 +157,15 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -185,7 +183,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               BoxShadow(
                                 blurRadius: 16.0,
                                 color: FlutterFlowTheme.of(context).shadowColor,
-                                offset: Offset(
+                                offset: const Offset(
                                   0.0,
                                   4.0,
                                 ),
@@ -194,7 +192,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 8.0, 16.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -207,7 +205,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         FlutterFlowTheme.of(context).lightGray,
                                     shape: BoxShape.circle,
                                   ),
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment:
+                                      const AlignmentDirectional(0.0, 0.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(0.0),
                                     child: Image.asset(
@@ -243,7 +242,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 16.0)),
+                              ].divide(const SizedBox(width: 16.0)),
                             ),
                           ),
                         ),
@@ -252,7 +251,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                     if (FFAppState().isLogin == true)
                       Builder(
                         builder: (context) => Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -267,7 +266,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(
+                                            0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: GestureDetector(
                                       onTap: () {
@@ -309,7 +309,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     blurRadius: 16.0,
                                     color: FlutterFlowTheme.of(context)
                                         .shadowColor,
-                                    offset: Offset(
+                                    offset: const Offset(
                                       0.0,
                                       4.0,
                                     ),
@@ -318,7 +318,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 8.0, 16.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -331,7 +331,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                             .lightGray,
                                         shape: BoxShape.circle,
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment:
+                                          const AlignmentDirectional(0.0, 0.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(0.0),
@@ -368,14 +369,14 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         fit: BoxFit.cover,
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 16.0)),
+                                  ].divide(const SizedBox(width: 16.0)),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                  ].divide(SizedBox(height: 16.0)),
+                  ].divide(const SizedBox(height: 16.0)),
                 ),
               ),
             ],

@@ -1,11 +1,8 @@
 import '/bottom_flow/pages/components/main_appbar/main_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'my_profile_page_model.dart';
 export 'my_profile_page_model.dart';
@@ -59,9 +56,10 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                 child: Stack(
-                  alignment: AlignmentDirectional(1.0, 0.0),
+                  alignment: const AlignmentDirectional(1.0, 0.0),
                   children: [
                     wrapWithModel(
                       model: _model.mainAppbarModel,
@@ -91,7 +89,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
                           color: FlutterFlowTheme.of(context).lightGray,
                           shape: BoxShape.circle,
                         ),
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
                           child: Image.asset(
@@ -108,7 +106,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(
                     0,
                     16.0,
                     0,
@@ -124,7 +122,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
                           width: 104.0,
                           height: 104.0,
                           clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                           ),
                           child: Image.asset(
@@ -135,14 +133,14 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
                       ],
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 24.0, 16.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 15.0,
                               color: Color(0x19000000),
@@ -155,7 +153,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 14.0, 16.0, 15.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -189,20 +187,20 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
                                       lineHeight: 1.5,
                                     ),
                               ),
-                            ].divide(SizedBox(height: 6.0)),
+                            ].divide(const SizedBox(height: 6.0)),
                           ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           16.0, 16.0, 16.0, 16.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 15.0,
                               color: Color(0x19000000),
@@ -215,7 +213,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 14.0, 16.0, 15.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -249,20 +247,20 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
                                       lineHeight: 1.5,
                                     ),
                               ),
-                            ].divide(SizedBox(height: 6.0)),
+                            ].divide(const SizedBox(height: 6.0)),
                           ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 16.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 15.0,
                               color: Color(0x19000000),
@@ -275,7 +273,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 14.0, 16.0, 15.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -309,7 +307,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget> {
                                       lineHeight: 1.5,
                                     ),
                               ),
-                            ].divide(SizedBox(height: 6.0)),
+                            ].divide(const SizedBox(height: 6.0)),
                           ),
                         ),
                       ),
