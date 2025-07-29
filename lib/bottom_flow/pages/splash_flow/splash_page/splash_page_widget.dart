@@ -1,15 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'splash_page_model.dart';
@@ -41,12 +39,12 @@ class _SplashPageWidgetState extends State<SplashPageWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(
-        Duration(
+        const Duration(
           milliseconds: 3000,
         ),
       );
       await actions.getCountryCodeLocal();
-      _model.currencyAdd = await actions.getCurrencySymbol(
+      _model.currencyAdd = actions.getCurrencySymbol(
         'USD',
       );
       FFAppState().currencyType = _model.currencyAdd!;
@@ -123,7 +121,7 @@ class _SplashPageWidgetState extends State<SplashPageWidget>
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
             child: Text(
               'Page Title',
               style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -134,7 +132,7 @@ class _SplashPageWidgetState extends State<SplashPageWidget>
                   ),
             ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -143,7 +141,7 @@ class _SplashPageWidgetState extends State<SplashPageWidget>
           child: Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -173,11 +171,11 @@ class _SplashPageWidgetState extends State<SplashPageWidget>
                           ),
                     ).animateOnPageLoad(
                         animationsMap['textOnPageLoadAnimation']!),
-                  ].divide(SizedBox(height: 16.0)),
+                  ].divide(const SizedBox(height: 16.0)),
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
+                alignment: const AlignmentDirectional(0.0, 1.0),
                 child: Lottie.asset(
                   'assets/jsons/infinty-blue_.json',
                   width: 150.0,

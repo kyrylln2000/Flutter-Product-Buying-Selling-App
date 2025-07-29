@@ -1,12 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'chat_details_page_model.dart';
 export 'chat_details_page_model.dart';
 
@@ -67,7 +63,8 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 17.0, 16.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(
+                    16.0, 17.0, 16.0, 16.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -86,7 +83,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                           color: FlutterFlowTheme.of(context).lightGray,
                           shape: BoxShape.circle,
                         ),
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0.0),
                           child: SvgPicture.asset(
@@ -102,13 +99,13 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                       width: 50.0,
                       height: 50.0,
                       clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                       child: CachedNetworkImage(
-                        fadeInDuration: Duration(milliseconds: 200),
-                        fadeOutDuration: Duration(milliseconds: 200),
-                        imageUrl: widget!.image!,
+                        fadeInDuration: const Duration(milliseconds: 200),
+                        fadeOutDuration: const Duration(milliseconds: 200),
+                        imageUrl: widget.image!,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -119,7 +116,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                         children: [
                           Text(
                             valueOrDefault<String>(
-                              widget!.name,
+                              widget.name,
                               'Name',
                             ),
                             textAlign: TextAlign.start,
@@ -149,7 +146,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                                   lineHeight: 1.5,
                                 ),
                           ),
-                        ].divide(SizedBox(height: 4.0)),
+                        ].divide(const SizedBox(height: 4.0)),
                       ),
                     ),
                     ClipRRect(
@@ -170,7 +167,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                  ].divide(SizedBox(width: 12.0)),
+                  ].divide(const SizedBox(width: 12.0)),
                 ),
               ),
               Container(
@@ -182,9 +179,10 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 0.0, 16.0, 0.0),
                   child: ListView(
-                    padding: EdgeInsets.fromLTRB(
+                    padding: const EdgeInsets.fromLTRB(
                       0,
                       16.0,
                       0,
@@ -194,14 +192,14 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                     scrollDirection: Axis.vertical,
                     children: [
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 0.0, 0.0, 16.0),
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 blurRadius: 15.0,
                                 color: Color(0x19000000),
@@ -214,7 +212,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 8.0, 16.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -256,7 +254,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                       ),
-                                    ].divide(SizedBox(height: 12.0)),
+                                    ].divide(const SizedBox(height: 12.0)),
                                   ),
                                 ),
                                 ClipRRect(
@@ -268,14 +266,14 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 12.0)),
+                              ].divide(const SizedBox(width: 12.0)),
                             ),
                           ),
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 8.0, 0.0, 0.0),
                         child: Text(
                           'TODAY',
                           textAlign: TextAlign.center,
@@ -296,7 +294,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                           Container(
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(12.0),
                                 bottomRight: Radius.circular(12.0),
                                 topLeft: Radius.circular(12.0),
@@ -304,7 +302,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 12.0, 16.0, 12.0),
                               child: Text(
                                 'Hi, Esther 👋🏻',
@@ -326,7 +324,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                           Container(
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(12.0),
                                 bottomRight: Radius.circular(12.0),
                                 topLeft: Radius.circular(12.0),
@@ -334,7 +332,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 12.0, 16.0, 12.0),
                               child: Text(
                                 'I\'m looking for information about \nyour phone. can I visit to see your \nhouse to watch phone?',
@@ -369,7 +367,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                                   lineHeight: 1.5,
                                 ),
                           ),
-                        ].divide(SizedBox(height: 12.0)),
+                        ].divide(const SizedBox(height: 12.0)),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
@@ -379,7 +377,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   blurRadius: 15.0,
                                   color: Color(0x0F000000),
@@ -390,7 +388,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                                   spreadRadius: 0.0,
                                 )
                               ],
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(12.0),
                                 bottomRight: Radius.circular(12.0),
                                 topLeft: Radius.circular(0.0),
@@ -398,7 +396,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 12.0, 16.0, 12.0),
                               child: Text(
                                 'Hi. ronald! of course, the door \nis always open 😉',
@@ -433,7 +431,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                                   lineHeight: 1.5,
                                 ),
                           ),
-                        ].divide(SizedBox(height: 12.0)),
+                        ].divide(const SizedBox(height: 12.0)),
                       ),
                     ],
                   ),
@@ -443,7 +441,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 26.0,
                       color: Color(0x14000000),
@@ -456,8 +454,8 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                   ],
                 ),
                 child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 24.0, 16.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -478,7 +476,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                         ),
                       ),
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           width: double.infinity,
                           child: TextFormField(
                             controller: _model.textController,
@@ -499,35 +497,36 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                                     lineHeight: 1.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  4.0, 16.5, 16.0, 16.5),
+                              contentPadding:
+                                  const EdgeInsetsDirectional.fromSTEB(
+                                      4.0, 16.5, 16.0, 16.5),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -561,7 +560,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                             color: FlutterFlowTheme.of(context).primary,
                             shape: BoxShape.circle,
                           ),
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(0.0),
                             child: Image.asset(
@@ -573,7 +572,7 @@ class _ChatDetailsPageWidgetState extends State<ChatDetailsPageWidget> {
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 8.0)),
+                    ].divide(const SizedBox(width: 8.0)),
                   ),
                 ),
               ),
