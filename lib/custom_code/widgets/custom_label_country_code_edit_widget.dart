@@ -1,11 +1,9 @@
 // Automatic FlutterFlow imports
-import '/backend/schema/structs/index.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'index.dart'; // Imports other custom widgets
-import '/custom_code/actions/index.dart'; // Imports custom actions
-import '/flutter_flow/custom_functions.dart'; // Imports custom functions
+// Imports other custom widgets
+// Imports custom actions
+// Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
@@ -60,7 +58,7 @@ class _CustomLabelCountryCodeEditWidgetState
       dropdownDecoration:
           BoxDecoration(borderRadius: BorderRadius.circular(10)),
       initialValue: widget.initialValue,
-      flagsButtonMargin: EdgeInsets.only(left: 16),
+      flagsButtonMargin: const EdgeInsets.only(left: 16),
       keyboardType: TextInputType.phone,
       cursorColor: FlutterFlowTheme.of(context).primaryText,
       inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9]'))],
@@ -87,7 +85,8 @@ class _CustomLabelCountryCodeEditWidgetState
               useGoogleFonts: false,
               lineHeight: 1.0,
             ),
-        contentPadding: EdgeInsetsDirectional.fromSTEB(16.0, 16.5, 16.0, 16.5),
+        contentPadding:
+            const EdgeInsetsDirectional.fromSTEB(16.0, 16.5, 16.0, 16.5),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: FlutterFlowTheme.of(context).error,
@@ -127,6 +126,7 @@ class _CustomLabelCountryCodeEditWidgetState
                 color: FlutterFlowTheme.of(context).primaryText, width: 1)),
       ),
       initialCountryCode: widget.code!,
+      // ignore: avoid_types_as_parameter_names
       validator: (num) {
         return "Please enter valid number.";
       },
