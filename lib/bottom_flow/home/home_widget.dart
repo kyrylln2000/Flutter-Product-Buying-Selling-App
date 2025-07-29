@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/bottom_flow/pages/components/categorioes_home/categorioes_home_widget.dart';
 import '/bottom_flow/pages/components/items_component/items_component_widget.dart';
 import '/bottom_flow/pages/components/topratedseller_com/topratedseller_com_widget.dart';
@@ -6,17 +5,12 @@ import '/bottom_flow/pages/components/vendor_component/vendor_component_widget.d
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_model.dart';
 export 'home_model.dart';
@@ -52,8 +46,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
             curve: Curves.easeInOut,
             delay: 50.0.ms,
             duration: 400.0.ms,
-            begin: Offset(0.0, -50.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -50.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -120,7 +114,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -161,7 +155,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                       borderRadius: BorderRadius.circular(8.0),
                       shape: BoxShape.rectangle,
                     ),
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(0.0),
                       child: Image.asset(
@@ -173,11 +167,12 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
-              ].divide(SizedBox(width: 8.0)),
+              ].divide(const SizedBox(width: 8.0)),
             ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation']!),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 8.0),
+            padding:
+                const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 8.0),
             child: InkWell(
               splashColor: Colors.transparent,
               focusColor: Colors.transparent,
@@ -229,9 +224,9 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                       ),
                     ),
                   ]
-                      .divide(SizedBox(width: 12.0))
-                      .addToStart(SizedBox(width: 16.0))
-                      .addToEnd(SizedBox(width: 16.0)),
+                      .divide(const SizedBox(width: 12.0))
+                      .addToStart(const SizedBox(width: 16.0))
+                      .addToEnd(const SizedBox(width: 16.0)),
                 ),
               ),
             ),
@@ -242,19 +237,20 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
               scrollDirection: Axis.vertical,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                   child: Container(
                     width: double.infinity,
                     height: 177.0,
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: Container(
                       width: double.infinity,
                       height: double.infinity,
                       child: Stack(
-                        alignment: AlignmentDirectional(0.0, 1.0),
+                        alignment: const AlignmentDirectional(0.0, 1.0),
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 18.0),
                             child: Container(
                               width: double.infinity,
@@ -262,28 +258,29 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                               child: CarouselSlider(
                                 items: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: Stack(
                                         children: [
                                           Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 17.0, 0.0, 0.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(0.0, 17.0, 0.0, 0.0),
                                             child: Container(
                                               width: double.infinity,
                                               height: double.infinity,
                                               decoration: BoxDecoration(
-                                                color: Color(0xFFC2F2FF),
+                                                color: const Color(0xFFC2F2FF),
                                                 borderRadius:
                                                     BorderRadius.circular(12.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         16.0, 20.0, 0.0, 20.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -332,7 +329,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                 .circular(6.0),
                                                       ),
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         'Buy now',
@@ -356,15 +353,16 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                 ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      SizedBox(height: 12.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 12.0)),
                                                 ),
                                               ),
                                             ),
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(1.0, 1.0),
+                                                const AlignmentDirectional(
+                                                    1.0, 1.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
@@ -382,28 +380,29 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                         'stackOnPageLoadAnimation1']!),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: Stack(
                                         children: [
                                           Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 17.0, 0.0, 0.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(0.0, 17.0, 0.0, 0.0),
                                             child: Container(
                                               width: double.infinity,
                                               height: double.infinity,
                                               decoration: BoxDecoration(
-                                                color: Color(0xFFECE3FF),
+                                                color: const Color(0xFFECE3FF),
                                                 borderRadius:
                                                     BorderRadius.circular(12.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         16.0, 20.0, 0.0, 20.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -452,7 +451,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                 .circular(6.0),
                                                       ),
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         'Buy now',
@@ -475,15 +474,16 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                             ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      SizedBox(height: 12.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 12.0)),
                                                 ),
                                               ),
                                             ),
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(1.0, 1.0),
+                                                const AlignmentDirectional(
+                                                    1.0, 1.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
@@ -501,28 +501,29 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                         'stackOnPageLoadAnimation2']!),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: Stack(
                                         children: [
                                           Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 17.0, 0.0, 0.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(0.0, 17.0, 0.0, 0.0),
                                             child: Container(
                                               width: double.infinity,
                                               height: double.infinity,
                                               decoration: BoxDecoration(
-                                                color: Color(0xFFCDE8FE),
+                                                color: const Color(0xFFCDE8FE),
                                                 borderRadius:
                                                     BorderRadius.circular(12.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         16.0, 20.0, 0.0, 20.0),
                                                 child: Column(
                                                   mainAxisSize:
@@ -571,7 +572,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                 .circular(6.0),
                                                       ),
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         'Buy now',
@@ -595,15 +596,16 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                                 ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      SizedBox(height: 12.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 12.0)),
                                                 ),
                                               ),
                                             ),
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(1.0, 1.0),
+                                                const AlignmentDirectional(
+                                                    1.0, 1.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
@@ -634,9 +636,9 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                   scrollDirection: Axis.horizontal,
                                   autoPlay: true,
                                   autoPlayAnimationDuration:
-                                      Duration(milliseconds: 600),
-                                  autoPlayInterval:
-                                      Duration(milliseconds: (600 + 2000)),
+                                      const Duration(milliseconds: 600),
+                                  autoPlayInterval: const Duration(
+                                      milliseconds: (600 + 2000)),
                                   autoPlayCurve: Curves.linear,
                                   pauseAutoPlayInFiniteScroll: true,
                                   onPageChanged: (index, _) async {
@@ -667,7 +669,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: List.generate(dotsList.length,
                                     (dotsListIndex) {
-                                  final dotsListItem = dotsList[dotsListIndex];
+                                  // final dotsListItem = dotsList[dotsListIndex];
                                   return Container(
                                     width: dotsListIndex ==
                                             _model.carouselCurrentIndex
@@ -683,7 +685,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                       borderRadius: BorderRadius.circular(20.0),
                                     ),
                                   );
-                                }).divide(SizedBox(width: 4.0)),
+                                }).divide(const SizedBox(width: 4.0)),
                               );
                             },
                           ),
@@ -693,8 +695,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 0.0, 16.0, 16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -734,7 +736,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 0.0, 16.0, 0.0),
                   child: Wrap(
                     spacing: 16.0,
                     runSpacing: 16.0,
@@ -756,7 +759,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                         child: wrapWithModel(
                           model: _model.categorioesHomeModel1,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesHomeWidget(
+                          child: const CategorioesHomeWidget(
                             name: 'Laptop',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/6efy3tjw6o9p/cat1.png',
@@ -774,7 +777,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                         child: wrapWithModel(
                           model: _model.categorioesHomeModel2,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesHomeWidget(
+                          child: const CategorioesHomeWidget(
                             name: 'Phone ',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/tevih0x2tbs2/cat2.png',
@@ -792,7 +795,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                         child: wrapWithModel(
                           model: _model.categorioesHomeModel3,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesHomeWidget(
+                          child: const CategorioesHomeWidget(
                             name: 'Clothes',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/2zxiey7jve4s/cat3.png',
@@ -810,7 +813,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                         child: wrapWithModel(
                           model: _model.categorioesHomeModel4,
                           updateCallback: () => safeSetState(() {}),
-                          child: CategorioesHomeWidget(
+                          child: const CategorioesHomeWidget(
                             name: 'Shoes',
                             img:
                                 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/classified-app-pdz708/assets/fsovaulpyqdl/cat4.png',
@@ -821,8 +824,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -862,8 +865,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Builder(
                     builder: (context) {
                       final popluarList = (functions
@@ -908,7 +911,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     6);
                               }
                             }(),
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -977,8 +980,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1018,8 +1021,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Builder(
                     builder: (context) {
                       final vendorList =
@@ -1059,7 +1062,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     8);
                               }
                             }(),
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: wrapWithModel(
                               model: _model.vendorComponentModels.getModel(
                                 vendorListIndex.toString(),
@@ -1081,8 +1084,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1122,8 +1125,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Builder(
                     builder: (context) {
                       final recommendedforyou = (functions
@@ -1148,7 +1151,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                           final recommendedforyouItem =
                               recommendedforyou[recommendedforyouIndex];
                           return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Container(
                               width: () {
@@ -1172,7 +1175,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                       6);
                                 }
                               }(),
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -1243,8 +1246,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 0.0, 16.0, 16.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -1283,8 +1286,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                         borderRadius: BorderRadius.circular(16.0),
                       ),
                       child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1307,7 +1310,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                 color: FlutterFlowTheme.of(context).primary,
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 'Become a vendor',
                                 style: FlutterFlowTheme.of(context)
@@ -1323,15 +1326,16 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                               ),
                             ),
                           ]
-                              .divide(SizedBox(height: 13.0))
-                              .addToStart(SizedBox(height: 21.0)),
+                              .divide(const SizedBox(height: 13.0))
+                              .addToStart(const SizedBox(height: 21.0)),
                         ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 0.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1371,7 +1375,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Builder(
                     builder: (context) {
                       final topseller =
@@ -1411,7 +1415,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                     6);
                               }
                             }(),
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: wrapWithModel(
                               model: _model.topratedsellerComModels.getModel(
                                 topsellerIndex.toString(),
@@ -1435,7 +1439,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 0.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1475,8 +1480,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Builder(
                     builder: (context) {
                       final recommendedforyou = (functions
@@ -1501,7 +1506,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                           final recommendedforyouItem =
                               recommendedforyou[recommendedforyouIndex];
                           return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Container(
                               width: () {
@@ -1525,7 +1530,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                       6);
                                 }
                               }(),
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -1596,7 +1601,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 0.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1636,8 +1642,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Builder(
                     builder: (context) {
                       final recommendedforyou = (functions
@@ -1662,7 +1668,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                           final recommendedforyouItem =
                               recommendedforyou[recommendedforyouIndex];
                           return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Container(
                               width: () {
@@ -1686,7 +1692,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                       6);
                                 }
                               }(),
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -1757,7 +1763,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 0.0, 16.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1797,8 +1804,8 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      16.0, 16.0, 16.0, 0.0),
                   child: Builder(
                     builder: (context) {
                       final discountitem = (functions
@@ -1823,7 +1830,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                           final discountitemItem =
                               discountitem[discountitemIndex];
                           return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Container(
                               width: () {
@@ -1847,7 +1854,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                       6);
                                 }
                               }(),
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -1920,7 +1927,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
               ],
             ),
           ),
-        ].addToStart(SizedBox(height: 16.0)),
+        ].addToStart(const SizedBox(height: 16.0)),
       ),
     );
   }

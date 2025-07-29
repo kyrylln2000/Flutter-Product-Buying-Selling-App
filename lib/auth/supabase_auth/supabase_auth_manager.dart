@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class SupabaseAuthManager extends AuthManager
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
     }
   }
@@ -48,16 +49,16 @@ class SupabaseAuthManager extends AuthManager
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
       return;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Email change confirmation email sent')),
+      const SnackBar(content: Text('Email change confirmation email sent')),
     );
   }
 
-  @override
+  // @override
   Future updatePassword({
     required String newPassword,
     required BuildContext context,
@@ -71,12 +72,12 @@ class SupabaseAuthManager extends AuthManager
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
       return;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Password updated successfully')),
+      const SnackBar(content: Text('Password updated successfully')),
     );
   }
 
@@ -92,12 +93,12 @@ class SupabaseAuthManager extends AuthManager
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        SnackBar(content: Text('Error: ${e.message}')),
       );
       return null;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Password reset email sent')),
+      const SnackBar(content: Text('Password reset email sent')),
     );
   }
 
@@ -149,7 +150,7 @@ class SupabaseAuthManager extends AuthManager
     } on AuthException catch (e) {
       final errorMsg = e.message.contains('User already registered')
           ? 'Error: The email is already in use by a different account'
-          : 'Error: ${e.message!}';
+          : 'Error: ${e.message}';
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMsg)),
