@@ -984,7 +984,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 SnackBar(
                                   content: Row(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 16.0,
                                         height: 16.0,
                                         child: CircularProgressIndicator(
