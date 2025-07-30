@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -305,18 +307,12 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       if (response.succeeded) {
         final userData = response.jsonBody;
         currentUserId = userData['id']?.toString();
-        print('✅ Current user ID: $currentUserId');
-      } else {
-        print('❌ Failed to get current user');
-      }
-    } catch (e) {
-      print('🚨 Error getting current user: $e');
-    }
+      } else {}
+    } catch (e) {}
   }
 
   // Load category fields when category is selected
   Future<void> loadCategoryFields(String categoryId) async {
-    print('🔄 Loading category fields for category: $categoryId');
     isCategoryFieldsLoading = true;
     notifyListeners();
 
@@ -331,27 +327,15 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
                 (fieldData) => CategoryField.fromJson(fieldData))
             .toList();
 
-        print('✅ Successfully loaded ${categoryFields.length} category fields');
-
         // Clear existing dynamic field values and controllers
         clearDynamicFields();
 
         // Initialize controllers and values for new fields
         initializeDynamicFields();
-
-        for (var field in categoryFields) {
-          print(
-              '📋 Field: ${field.fieldLabel} (${field.fieldType}) - Required: ${field.isRequired}');
-        }
       } else {
-        print('❌ Failed to load category fields');
-        print('Status: ${getCategoryFieldsResponse?.statusCode}');
-        print('Error: ${getCategoryFieldsResponse?.bodyText}');
         categoryFields = [];
       }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading category fields: $e');
-      print('Stack trace: $stackTrace');
+    } catch (e) {
       categoryFields = [];
     } finally {
       isCategoryFieldsLoading = false;
@@ -404,7 +388,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void updateDynamicFieldValue(String fieldName, dynamic value) {
     if (dynamicFieldValues.containsKey(fieldName)) {
       dynamicFieldValues[fieldName]!.value = value;
-      print('🎯 Updated dynamic field $fieldName: $value');
       notifyListeners();
     }
   }
@@ -420,8 +403,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       final timestamp = DateTime.now().millisecondsSinceEpoch;
       final fileName = 'product_${timestamp}_$index.jpg';
 
-      print('📤 Uploading image $index to R2: $fileName');
-
       final response = await UploadImageToR2Call.call(
         imageFile: imageFile,
         fileName: fileName,
@@ -430,15 +411,11 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       if (response.succeeded) {
         final responseData = response.jsonBody;
         final imageUrl = responseData['url']?.toString();
-        print('✅ Image $index uploaded to R2: $imageUrl');
         return imageUrl;
       } else {
-        print('❌ Failed to upload image $index to R2: ${response.statusCode}');
-        print('Error: ${response.bodyText}');
         return null;
       }
     } catch (e) {
-      print('🚨 Exception uploading image $index to R2: $e');
       return null;
     }
   }
@@ -446,12 +423,9 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   // Upload all images to Cloudflare R2
   Future<List<String>> uploadAllImagesToR2() async {
     if (uploadedImages.isEmpty) {
-      print('ℹ️ No images to upload to R2');
       return [];
     }
 
-    print(
-        '📤 Starting upload of ${uploadedImages.length} images to Cloudflare R2...');
     isUploadingImages = true;
     notifyListeners();
 
@@ -459,24 +433,17 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
     try {
       for (int i = 0; i < uploadedImages.length; i++) {
-        print('📤 Uploading image ${i + 1}/${uploadedImages.length} to R2...');
-
         final imageUrl = await uploadImageToR2(uploadedImages[i], i + 1);
 
         if (imageUrl != null) {
           r2ImageUrls.add(imageUrl);
-        } else {
-          print('⚠️ Failed to upload image ${i + 1} to R2');
-        }
+        } else {}
 
         await Future.delayed(const Duration(milliseconds: 500));
       }
 
-      print(
-          '✅ R2 Upload complete: ${r2ImageUrls.length}/${uploadedImages.length} images uploaded');
       return r2ImageUrls;
     } catch (e) {
-      print('🚨 Error uploading images to R2: $e');
       return r2ImageUrls;
     } finally {
       isUploadingImages = false;
@@ -488,17 +455,14 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   bool validateForm() {
     // Basic field validation
     if (textController1?.text.isEmpty ?? true) {
-      print('❌ Product name is required');
       return false;
     }
 
     if (textController2?.text.isEmpty ?? true) {
-      print('❌ Price is required');
       return false;
     }
 
     if (selectedCategoryId == null) {
-      print('❌ Category is required');
       return false;
     }
 
@@ -507,15 +471,12 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       if (field.isRequired) {
         final value = getDynamicFieldValue(field.fieldName);
         if (value == null || value.toString().isEmpty) {
-          print('❌ ${field.fieldLabel} is required');
           return false;
         }
       }
     }
 
-    if (uploadedImages.isEmpty) {
-      print('⚠️ No product images selected');
-    }
+    if (uploadedImages.isEmpty) {}
 
     return true;
   }
@@ -527,7 +488,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       final cleanPrice = priceText.replaceAll(RegExp(r'[^\d.]'), '');
       return double.tryParse(cleanPrice);
     } catch (e) {
-      print('Error parsing price: $e');
       return null;
     }
   }
@@ -557,24 +517,20 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   // Submit product to Supabase (with dynamic fields)
   Future<bool> submitProduct() async {
     if (isSubmitting) {
-      print('⚠️ Already submitting, please wait...');
       return false;
     }
 
-    print('🚀 Starting product submission to Supabase...');
     isSubmitting = true;
     notifyListeners();
 
     try {
       if (!validateForm()) {
-        print('❌ Form validation failed');
         return false;
       }
 
       if (currentUserId == null) {
         await getCurrentUser();
         if (currentUserId == null) {
-          print('❌ Could not get current user ID');
           return false;
         }
       }
@@ -583,8 +539,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       uploadedImageUrls = await uploadAllImagesToR2();
 
       // Step 2: Create basic product record
-      print('💾 Creating product in Supabase database...');
-
       final productResponse = await CreateProductCall.call(
         userId: currentUserId,
         name: textController1?.text,
@@ -603,8 +557,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
 
       if (!productResponse.succeeded) {
-        print('❌ Failed to create product: ${productResponse.statusCode}');
-        print('Error: ${productResponse.bodyText}');
         return false;
       }
 
@@ -612,16 +564,11 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       final productId = productData['id']?.toString();
 
       if (productId == null) {
-        print('❌ Product ID not returned from create product call');
         return false;
       }
 
-      print('✅ Product created successfully with ID: $productId');
-
       // Step 3: Save dynamic field values
       if (categoryFields.isNotEmpty) {
-        print('💾 Saving dynamic field values...');
-
         final fieldValues = prepareDynamicFieldValues(productId);
 
         if (fieldValues.isNotEmpty) {
@@ -631,28 +578,14 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
           );
 
           if (fieldValuesResponse.succeeded) {
-            print('✅ Dynamic field values saved successfully');
-            print('📋 Saved ${fieldValues.length} field values');
           } else {
-            print(
-                '⚠️ Failed to save some dynamic field values: ${fieldValuesResponse.statusCode}');
-            print('Error: ${fieldValuesResponse.bodyText}');
             // Don't fail the entire submission for field value errors
           }
         }
       }
 
-      print('✅ Product submission completed successfully!');
-      print('📋 Product Details:');
-      print('  - Product ID: $productId');
-      print('  - Name: ${textController1?.text}');
-      print('  - Price: \$${getPriceValue()}');
-      print('  - Images stored in R2: ${uploadedImageUrls.length}');
-      print('  - Dynamic fields saved: ${categoryFields.length}');
-
       return true;
     } catch (e) {
-      print('🚨 Exception during product submission: $e');
       return false;
     } finally {
       isSubmitting = false;
@@ -706,15 +639,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
       if (getCategoriesResponse?.succeeded ?? false) {
         categories = getCategoriesResponse?.jsonBody ?? [];
-        print('✅ Successfully loaded ${categories.length} categories');
-      } else {
-        print('❌ Failed to load categories');
-        print('Status: ${getCategoriesResponse?.statusCode}');
-        print('Error: ${getCategoriesResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading categories: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isCategoriesLoading = false;
       notifyListeners();
@@ -731,14 +657,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
       if (getDealOptionsResponse?.succeeded ?? false) {
         dealOptions = getDealOptionsResponse?.jsonBody ?? [];
-      } else {
-        print('❌ Failed to load deal options');
-        print('Status: ${getDealOptionsResponse?.statusCode}');
-        print('Error: ${getDealOptionsResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading deal options: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isDealOptionsLoading = false;
       notifyListeners();
@@ -755,14 +675,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
       if (getConditionsResponse?.succeeded ?? false) {
         conditions = getConditionsResponse?.jsonBody ?? [];
-      } else {
-        print('❌ Failed to load conditions');
-        print('Status: ${getConditionsResponse?.statusCode}');
-        print('Error: ${getConditionsResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading conditions: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isConditionsLoading = false;
       notifyListeners();
@@ -779,14 +693,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
       if (getCountriesResponse?.succeeded ?? false) {
         countries = getCountriesResponse?.jsonBody ?? [];
-      } else {
-        print('❌ Failed to load countries');
-        print('Status: ${getCountriesResponse?.statusCode}');
-        print('Error: ${getCountriesResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading countries: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isCountriesLoading = false;
       notifyListeners();
@@ -797,7 +705,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   Future<void> loadTownships({String? countryId}) async {
     // Don't load if no country is selected
     if (countryId == null || countryId.isEmpty) {
-      print('⚠️ No country selected, skipping township load');
       townships.clear();
       notifyListeners();
       return;
@@ -812,27 +719,10 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       if (getTownshipsResponse?.succeeded ?? false) {
         final newTownships = getTownshipsResponse?.jsonBody ?? [];
         townships = newTownships;
-
-        // Debug: Print first few townships
-        if (townships.isNotEmpty) {
-          print('📋 Sample townships:');
-          for (int i = 0;
-              i < (townships.length > 3 ? 3 : townships.length);
-              i++) {
-            print('  - ${townships[i]['name']} (ID: ${townships[i]['id']})');
-          }
-        } else {
-          print('⚠️ No townships found for this country');
-        }
       } else {
-        print('❌ Failed to load townships');
-        print('Status: ${getTownshipsResponse?.statusCode}');
-        print('Error: ${getTownshipsResponse?.bodyText}');
         townships.clear();
       }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading townships: $e');
-      print('Stack trace: $stackTrace');
+    } catch (e) {
       townships.clear();
     } finally {
       isTownshipsLoading = false;
@@ -850,14 +740,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
       if (getProductTypesResponse?.succeeded ?? false) {
         productTypes = getProductTypesResponse?.jsonBody ?? [];
-      } else {
-        print('❌ Failed to load product types');
-        print('Status: ${getProductTypesResponse?.statusCode}');
-        print('Error: ${getProductTypesResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading product types: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isProductTypesLoading = false;
       notifyListeners();
@@ -874,7 +758,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return category?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting category name for ID $id: $e');
       return '';
     }
   }
@@ -888,7 +771,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return option?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting deal option name for ID $id: $e');
       return '';
     }
   }
@@ -902,7 +784,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return condition?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting condition name for ID $id: $e');
       return '';
     }
   }
@@ -916,7 +797,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return country?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting country name for ID $id: $e');
       return '';
     }
   }
@@ -930,7 +810,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return township?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting township name for ID $id: $e');
       return '';
     }
   }
@@ -944,7 +823,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return type?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting product type name for ID $id: $e');
       return '';
     }
   }
@@ -963,8 +841,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       loadCategoryFields(categoryId);
     }
 
-    print(
-        '🎯 Selected category: ${getCategoryNameById(categoryId)} (ID: $categoryId)');
     notifyListeners();
   }
 

@@ -614,8 +614,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 .toList(),
                         onChanged: (val) async {
                           if (val != null && val != 'loading') {
-                            print('🎯 Category changed to: $val');
-
                             // Update category state
                             setCategoryState(() {
                               _model.onCategoryChanged(val);
@@ -970,7 +968,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                     country['name']?.toString() ?? '')
                                 .toList(),
                         onChanged: (val) async {
-                          print('🌍 Country dropdown changed: $val');
                           if (val != null && val != 'loading') {
                             // Update country state
                             setCountryState(() {
@@ -1122,15 +1119,12 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             options: options,
                             optionLabels: optionLabels,
                             onChanged: (val) {
-                              print('🏘️ Township dropdown changed: $val');
                               setTownshipState(() {
                                 if (val != null &&
                                     val != 'select_country_first' &&
                                     val != 'loading' &&
                                     val != 'no_townships') {
                                   _model.onTownshipChanged(val);
-                                  print(
-                                      '✅ Township selected: ${_model.getTownshipNameById(val)} (ID: $val)');
                                 }
                               });
                             },
@@ -1233,18 +1227,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       Navigator.of(context).pop();
 
                       if (success) {
-                        print('=== PRODUCT SUBMISSION SUCCESS ===');
-                        print('User ID: ${_model.currentUserId}');
-                        print('Product Name: ${_model.textController1?.text}');
-                        print('Price: ${_model.getPriceValue()}');
-                        print(
-                            'Category: ${_model.getCategoryNameById(_model.selectedCategoryId)}');
-                        print(
-                            'Dynamic Fields: ${_model.categoryFields.length}');
-                        print(
-                            'R2 Images: ${_model.uploadedImageUrls.length} images');
-                        print('==================================');
-
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -1283,7 +1265,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                         Navigator.of(context).pop();
                       }
 
-                      print('🚨 Unexpected error: $e');
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
