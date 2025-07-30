@@ -232,10 +232,15 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     textController7?.dispose();
 
     // Dispose dynamic controllers
-    dynamicTextControllers.values.forEach((controller) => controller.dispose());
-    dynamicFocusNodes.values.forEach((node) => node.dispose());
-    dynamicDropdownControllers.values
-        .forEach((controller) => controller.reset());
+    for (var controller in dynamicTextControllers.values) {
+      controller.dispose();
+    }
+    for (var node in dynamicFocusNodes.values) {
+      node.dispose();
+    }
+    for (var controller in dynamicDropdownControllers.values) {
+      controller.reset();
+    }
   }
 
   // Basic field validators
@@ -357,10 +362,15 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   // Clear dynamic fields
   void clearDynamicFields() {
     // Dispose existing controllers
-    dynamicTextControllers.values.forEach((controller) => controller.dispose());
-    dynamicFocusNodes.values.forEach((node) => node.dispose());
-    dynamicDropdownControllers.values
-        .forEach((controller) => controller.reset());
+    for (var controller in dynamicTextControllers.values) {
+      controller.dispose();
+    }
+    for (var node in dynamicFocusNodes.values) {
+      node.dispose();
+    }
+    for (var controller in dynamicDropdownControllers.values) {
+      controller.reset();
+    }
 
     // Clear maps
     dynamicFieldValues.clear();

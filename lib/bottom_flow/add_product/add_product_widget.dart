@@ -30,15 +30,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
     _model.onUpdate();
   }
 
-  // Method to trigger state update manually
-  // void _triggerUpdate() {
-  //   if (mounted) {
-  //     setState(() {
-  //       // Force rebuild of the widget
-  //     });
-  //   }
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -278,52 +269,62 @@ class _AddProductWidgetState extends State<AddProductWidget> {
     );
   }
 
-  // Build dynamic field widget based on field type
+  // Build dynamic field widget based on field type - WRAPPED IN STATEFUL BUILDER
   Widget _buildDynamicField(CategoryField field) {
-    switch (field.fieldType) {
-      case 'text':
-        return _buildTextField(
-          label: field.fieldLabel,
-          controller: _model.dynamicTextControllers[field.fieldName],
-          focusNode: _model.dynamicFocusNodes[field.fieldName],
-          validator: (context, val) => _model.dynamicFieldValidator(field, val),
-          hintText: field.placeholder,
-          isRequired: field.isRequired,
-        );
+    return StatefulBuilder(
+      key: ValueKey('dynamic_field_${field.id}'), // Unique key for each field
+      builder: (context, setFieldState) {
+        switch (field.fieldType) {
+          case 'text':
+            return _buildTextField(
+              label: field.fieldLabel,
+              controller: _model.dynamicTextControllers[field.fieldName],
+              focusNode: _model.dynamicFocusNodes[field.fieldName],
+              validator: (context, val) =>
+                  _model.dynamicFieldValidator(field, val),
+              hintText: field.placeholder,
+              isRequired: field.isRequired,
+            );
 
-      case 'number':
-        return _buildTextField(
-          label: field.fieldLabel,
-          controller: _model.dynamicTextControllers[field.fieldName],
-          focusNode: _model.dynamicFocusNodes[field.fieldName],
-          validator: (context, val) => _model.dynamicFieldValidator(field, val),
-          hintText: field.placeholder,
-          isRequired: field.isRequired,
-        );
+          case 'number':
+            return _buildTextField(
+              label: field.fieldLabel,
+              controller: _model.dynamicTextControllers[field.fieldName],
+              focusNode: _model.dynamicFocusNodes[field.fieldName],
+              validator: (context, val) =>
+                  _model.dynamicFieldValidator(field, val),
+              hintText: field.placeholder,
+              isRequired: field.isRequired,
+            );
 
-      case 'dropdown':
-        return _buildDropdown(
-          label: field.fieldLabel,
-          controller: _model.dynamicDropdownControllers[field.fieldName],
-          options: field.dropdownOptions,
-          optionLabels: field.dropdownOptions,
-          onChanged: (val) => safeSetState(() {
-            _model.updateDynamicFieldValue(field.fieldName, val);
-          }),
-          hintText: field.placeholder ?? 'Select ${field.fieldLabel}',
-          isRequired: field.isRequired,
-        );
+          case 'dropdown':
+            return _buildDropdown(
+              label: field.fieldLabel,
+              controller: _model.dynamicDropdownControllers[field.fieldName],
+              options: field.dropdownOptions,
+              optionLabels: field.dropdownOptions,
+              onChanged: (val) {
+                setFieldState(() {
+                  _model.updateDynamicFieldValue(field.fieldName, val);
+                });
+              },
+              hintText: field.placeholder ?? 'Select ${field.fieldLabel}',
+              isRequired: field.isRequired,
+            );
 
-      default:
-        return _buildTextField(
-          label: field.fieldLabel,
-          controller: _model.dynamicTextControllers[field.fieldName],
-          focusNode: _model.dynamicFocusNodes[field.fieldName],
-          validator: (context, val) => _model.dynamicFieldValidator(field, val),
-          hintText: field.placeholder,
-          isRequired: field.isRequired,
-        );
-    }
+          default:
+            return _buildTextField(
+              label: field.fieldLabel,
+              controller: _model.dynamicTextControllers[field.fieldName],
+              focusNode: _model.dynamicFocusNodes[field.fieldName],
+              validator: (context, val) =>
+                  _model.dynamicFieldValidator(field, val),
+              hintText: field.placeholder,
+              isRequired: field.isRequired,
+            );
+        }
+      },
+    );
   }
 
   @override
@@ -592,9 +593,9 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // CATEGORIES DROPDOWN WITH REAL-TIME UPDATES
+                  // CATEGORIES DROPDOWN - WRAPPED IN STATEFUL BUILDER
                   StatefulBuilder(
-                    builder: (context, setStateLocal) {
+                    builder: (context, setCategoryState) {
                       return _buildDropdown(
                         label: 'Choose category',
                         controller: _model.dropDownValueController1 ??=
@@ -613,43 +614,43 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 .toList(),
                         onChanged: (val) async {
                           if (val != null && val != 'loading') {
-                            // Update local state first
-                            setStateLocal(() {
+                            print('🎯 Category changed to: $val');
+
+                            // Update category state
+                            setCategoryState(() {
                               _model.onCategoryChanged(val);
                             });
-
-                            // Update main widget state
-                            safeSetState(() {});
 
                             // Wait for category fields to load
                             int attempts = 0;
                             while (_model.isCategoryFieldsLoading &&
                                 attempts < 50) {
-                              // Max 5 seconds
                               await Future.delayed(
                                   const Duration(milliseconds: 100));
                               attempts++;
-                              // Update UI during loading
-                              setStateLocal(() {});
-                              safeSetState(() {});
+                              setCategoryState(() {}); // Update loading state
                             }
 
-                            // Final UI update after loading completes
-                            setStateLocal(() {});
-                            safeSetState(() {});
+                            // Final state update
+                            setCategoryState(() {});
+                            safeSetState(() {}); // Update entire widget
 
-                            // Show notification about loaded fields
+                            // Show notification
                             if (mounted) {
-                              if (_model.categoryFields.isNotEmpty) {
+                              final categoryName =
+                                  _model.getCategoryNameById(val);
+                              final fieldCount = _model.categoryFields.length;
+
+                              if (fieldCount > 0) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      '✅ Loaded ${_model.categoryFields.length} custom fields for ${_model.getCategoryNameById(val)}',
+                                      '✅ Loaded $fieldCount custom fields for $categoryName',
                                       style:
                                           const TextStyle(color: Colors.white),
                                     ),
                                     duration:
-                                        const Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 2500),
                                     backgroundColor: Colors.green,
                                     behavior: SnackBarBehavior.floating,
                                   ),
@@ -658,12 +659,12 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      'ℹ️ No custom fields found for ${_model.getCategoryNameById(val)}',
+                                      'ℹ️ No custom fields configured for $categoryName',
                                       style:
                                           const TextStyle(color: Colors.white),
                                     ),
                                     duration:
-                                        const Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 2500),
                                     backgroundColor: Colors.orange,
                                     behavior: SnackBarBehavior.floating,
                                   ),
@@ -681,94 +682,103 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     },
                   ),
 
-                  // Show category fields loading indicator or error message
-                  if (_model.selectedCategoryId != null) ...[
-                    if (_model.isCategoryFieldsLoading)
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 16.0, 16.0),
-                        child: Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(16.0),
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context)
-                                  .primary
-                                  .withOpacity(0.3),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 20.0,
-                                height: 20.0,
-                                child: CircularProgressIndicator(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  strokeWidth: 2.0,
-                                ),
-                              ),
-                              const SizedBox(width: 12.0),
-                              Text(
-                                'Loading ${_model.getCategoryNameById(_model.selectedCategoryId)} fields...',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Satoshi',
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                  // CATEGORY FIELDS STATUS SECTION - WRAPPED IN STATEFUL BUILDER
+                  StatefulBuilder(
+                    builder: (context, setStatusState) {
+                      if (_model.selectedCategoryId == null) {
+                        return const SizedBox.shrink();
+                      }
 
-                    // Show message when no fields are found
-                    if (!_model.isCategoryFieldsLoading &&
-                        _model.categoryFields.isEmpty)
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 16.0, 0.0),
-                        child: Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(16.0),
-                          decoration: BoxDecoration(
-                            color: Colors.orange.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: Colors.orange.withOpacity(0.3),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.info_outline,
-                                color: Colors.orange,
-                                size: 20.0,
+                      if (_model.isCategoryFieldsLoading) {
+                        return Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 16.0, 16.0, 16.0),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context)
+                                    .primary
+                                    .withOpacity(0.3),
                               ),
-                              const SizedBox(width: 12.0),
-                              Expanded(
-                                child: Text(
-                                  'No custom fields configured for ${_model.getCategoryNameById(_model.selectedCategoryId)}',
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 20.0,
+                                  height: 20.0,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    strokeWidth: 2.0,
+                                  ),
+                                ),
+                                const SizedBox(width: 12.0),
+                                Text(
+                                  'Loading ${_model.getCategoryNameById(_model.selectedCategoryId)} fields...',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Satoshi',
-                                        color: Colors.orange.shade700,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ),
-                  ],
+                        );
+                      }
+
+                      if (!_model.isCategoryFieldsLoading &&
+                          _model.categoryFields.isEmpty) {
+                        return Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 16.0, 16.0, 0.0),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.orange.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(
+                                color: Colors.orange.withOpacity(0.3),
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.info_outline,
+                                  color: Colors.orange,
+                                  size: 20.0,
+                                ),
+                                const SizedBox(width: 12.0),
+                                Expanded(
+                                  child: Text(
+                                    'No custom fields configured for ${_model.getCategoryNameById(_model.selectedCategoryId)}',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Satoshi',
+                                          color: Colors.orange.shade700,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+
+                      return const SizedBox.shrink();
+                    },
+                  ),
 
                   // BASIC FIELDS (always shown)
                   _buildTextField(
@@ -824,7 +834,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     isRequired: true,
                   ),
 
-                  // PRODUCT TYPE DROPDOWN
+                  // PRODUCT TYPE DROPDOWN - Use setState instead of safeSetState for non-critical updates
                   _buildDropdown(
                     label: 'Product Type',
                     controller: _model.dropDownValueController2 ??=
@@ -840,7 +850,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             .map<String>(
                                 (type) => type['name']?.toString() ?? '')
                             .toList(),
-                    onChanged: (val) => safeSetState(() {
+                    onChanged: (val) => setState(() {
                       _model.onProductTypeChanged(val);
                     }),
                     isLoading: _model.isProductTypesLoading,
@@ -863,7 +873,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             .map<String>((condition) =>
                                 condition['name']?.toString() ?? '')
                             .toList(),
-                    onChanged: (val) => safeSetState(() {
+                    onChanged: (val) => setState(() {
                       _model.onConditionChanged(val);
                     }),
                     isLoading: _model.isConditionsLoading,
@@ -896,13 +906,13 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             .map<String>(
                                 (option) => option['name']?.toString() ?? '')
                             .toList(),
-                    onChanged: (val) => safeSetState(() {
+                    onChanged: (val) => setState(() {
                       _model.onDealOptionChanged(val);
                     }),
                     isLoading: _model.isDealOptionsLoading,
                   ),
 
-                  // DYNAMIC CATEGORY FIELDS
+                  // DYNAMIC CATEGORY FIELDS - USING KEYED STATEFUL BUILDERS
                   if (_model.categoryFields.isNotEmpty &&
                       !_model.isCategoryFieldsLoading) ...[
                     // Header for category-specific fields
@@ -922,7 +932,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                           ),
                         ),
                         child: Text(
-                          '📋 ${_model.getCategoryNameById(_model.selectedCategoryId)} Specifications',
+                          '📋 ${_model.getCategoryNameById(_model.selectedCategoryId)} Specifications (${_model.categoryFields.length} fields)',
                           style:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Satoshi',
@@ -934,7 +944,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       ),
                     ),
 
-                    // Build dynamic fields
+                    // Build dynamic fields with preserved state
                     ..._model.categoryFields
                         .map((field) => _buildDynamicField(field)),
                   ],
@@ -956,7 +966,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                             .map<String>(
                                 (country) => country['name']?.toString() ?? '')
                             .toList(),
-                    onChanged: (val) => safeSetState(() {
+                    onChanged: (val) => setState(() {
                       _model.onCountryChanged(val);
                     }),
                     isLoading: _model.isCountriesLoading,
@@ -983,7 +993,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                 .map<String>((township) =>
                                     township['name']?.toString() ?? '')
                                 .toList(),
-                    onChanged: (val) => safeSetState(() {
+                    onChanged: (val) => setState(() {
                       if (val != 'select_country_first' && val != 'loading') {
                         _model.onTownshipChanged(val);
                       }
