@@ -1,10 +1,4 @@
-// import 'dart:convert';
-// import 'dart:typed_data';
-// import '../schema/structs/index.dart';
-
-// import 'package:flutter/foundation.dart';
-
-// import '/flutter_flow/flutter_flow_util.dart';
+// Updated API calls for dynamic category fields system
 import 'dart:convert';
 import 'package:sougk/auth/supabase_auth/auth_util.dart';
 import 'package:sougk/flutter_flow/uploaded_file.dart';
@@ -12,22 +6,54 @@ import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
 
-// const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 String? getSupabaseToken() {
   return currentJwtToken;
 }
 
-class PqzoepcjuqyvtosffqafCall {
+// Get all categories
+class GetCategoriesCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
-      callName: 'pqzoepcjuqyvtosffqaf',
+      callName: 'GetCategories',
       apiUrl: 'https://pqzoepcjuqyvtosffqaf.supabase.co/rest/v1/categories',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxem9lcGNqdXF5dnRvc2ZmcWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTMwMTQsImV4cCI6MjA2ODgyOTAxNH0.hJCeLCDeXB9gVbl1n8Qk18CXJt250-3tH_BxhRkzzDQ',
       },
-      params: {},
+      params: {
+        'select': '*',
+        'is_active': 'eq.true',
+        'order': 'name.asc',
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+// Get category fields for a specific category
+class GetCategoryFieldsCall {
+  static Future<ApiCallResponse> call({String? categoryId}) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetCategoryFields',
+      apiUrl:
+          'https://pqzoepcjuqyvtosffqaf.supabase.co/rest/v1/category_fields',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxem9lcGNqdXF5dnRvc2ZmcWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTMwMTQsImV4cCI6MjA2ODgyOTAxNH0.hJCeLCDeXB9gVbl1n8Qk18CXJt250-3tH_BxhRkzzDQ',
+      },
+      params: {
+        'select': '*',
+        'category_id': 'eq.$categoryId',
+        'is_active': 'eq.true',
+        'order': 'field_order.asc',
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -48,7 +74,11 @@ class GetDealOptionsCall {
         'apikey':
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxem9lcGNqdXF5dnRvc2ZmcWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTMwMTQsImV4cCI6MjA2ODgyOTAxNH0.hJCeLCDeXB9gVbl1n8Qk18CXJt250-3tH_BxhRkzzDQ',
       },
-      params: {},
+      params: {
+        'select': '*',
+        'is_active': 'eq.true',
+        'order': 'name.asc',
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -58,8 +88,6 @@ class GetDealOptionsCall {
     );
   }
 }
-
-// NEW API CALLS FOR ADDITIONAL TABLES
 
 class GetConditionsCall {
   static Future<ApiCallResponse> call() async {
@@ -119,7 +147,6 @@ class GetTownshipsCall {
       'order': 'name.asc',
     };
 
-    // If country is selected, filter townships by country
     if (countryId != null && countryId.isNotEmpty) {
       params['country_id'] = 'eq.$countryId';
     }
@@ -168,9 +195,6 @@ class GetProductTypesCall {
   }
 }
 
-// CLOUDFLARE R2 + PRODUCT SUBMISSION API CALLS
-
-// Upload image to Cloudflare R2 via Supabase Edge Function
 class UploadImageToR2Call {
   static Future<ApiCallResponse> call({
     FFUploadedFile? imageFile,
@@ -203,7 +227,7 @@ class UploadImageToR2Call {
   }
 }
 
-// Create product in Supabase with R2 image URLs
+// Create product with basic fields only
 class CreateProductCall {
   static Future<ApiCallResponse> call({
     String? userId,
@@ -212,8 +236,6 @@ class CreateProductCall {
     String? description,
     String? phoneNumber,
     String? dealOptionRemark,
-    String? modelNo,
-    String? ram,
     String? address,
     List<String>? imageUrls,
     String? categoryId,
@@ -230,8 +252,6 @@ class CreateProductCall {
       'description': description,
       'phone_number': phoneNumber,
       'deal_option_remark': dealOptionRemark,
-      'model_no': modelNo,
-      'ram': ram,
       'address': address,
       'image_url': imageUrls ?? [],
       'category_id': categoryId,
@@ -271,7 +291,91 @@ class CreateProductCall {
   }
 }
 
-// Get current authenticated user
+// Save dynamic field values for a product
+class SaveProductFieldValuesCall {
+  static Future<ApiCallResponse> call({
+    required String productId,
+    required List<Map<String, dynamic>> fieldValues,
+  }) async {
+    // Convert field values to the format expected by Supabase
+    final List<Map<String, dynamic>> values = fieldValues
+        .map((fieldValue) => {
+              'product_id': productId,
+              'category_field_id': fieldValue['category_field_id'],
+              'field_value': fieldValue['field_value']?.toString() ?? '',
+            })
+        .toList();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'SaveProductFieldValues',
+      apiUrl:
+          'https://pqzoepcjuqyvtosffqaf.supabase.co/rest/v1/product_field_values',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxem9lcGNqdXF5dnRvc2ZmcWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTMwMTQsImV4cCI6MjA2ODgyOTAxNH0.hJCeLCDeXB9gVbl1n8Qk18CXJt250-3tH_BxhRkzzDQ',
+        'Authorization': 'Bearer $currentJwtToken',
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+      },
+      params: {},
+      body: json.encode(values),
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+// Get products with their dynamic fields (using the view)
+class GetProductsWithFieldsCall {
+  static Future<ApiCallResponse> call({
+    String? categoryId,
+    int? limit,
+    int? offset,
+  }) async {
+    Map<String, dynamic> params = {
+      'select': '*',
+      'is_active': 'eq.true',
+      'order': 'created_at.desc',
+    };
+
+    if (categoryId != null && categoryId.isNotEmpty) {
+      params['category_id'] = 'eq.$categoryId';
+    }
+
+    if (limit != null) {
+      params['limit'] = limit.toString();
+    }
+
+    if (offset != null) {
+      params['offset'] = offset.toString();
+    }
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetProductsWithFields',
+      apiUrl:
+          'https://pqzoepcjuqyvtosffqaf.supabase.co/rest/v1/products_with_fields',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxem9lcGNqdXF5dnRvc2ZmcWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTMwMTQsImV4cCI6MjA2ODgyOTAxNH0.hJCeLCDeXB9gVbl1n8Qk18CXJt250-3tH_BxhRkzzDQ',
+      },
+      params: params,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class GetCurrentUserCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
@@ -284,6 +388,60 @@ class GetCurrentUserCall {
         'Authorization': 'Bearer $currentJwtToken',
       },
       params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+// Admin APIs for managing category fields (if needed)
+class CreateCategoryFieldCall {
+  static Future<ApiCallResponse> call({
+    required String categoryId,
+    required String fieldName,
+    required String fieldLabel,
+    required String fieldType,
+    Map<String, dynamic>? fieldOptions,
+    bool isRequired = false,
+    String? placeholder,
+    Map<String, dynamic>? validationRules,
+    int fieldOrder = 0,
+  }) async {
+    final body = {
+      'category_id': categoryId,
+      'field_name': fieldName,
+      'field_label': fieldLabel,
+      'field_type': fieldType,
+      'field_options': fieldOptions,
+      'is_required': isRequired,
+      'placeholder': placeholder,
+      'validation_rules': validationRules,
+      'field_order': fieldOrder,
+      'is_active': true,
+    };
+
+    // Remove null values
+    body.removeWhere((key, value) => value == null);
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'CreateCategoryField',
+      apiUrl:
+          'https://pqzoepcjuqyvtosffqaf.supabase.co/rest/v1/category_fields',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxem9lcGNqdXF5dnRvc2ZmcWFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTMwMTQsImV4cCI6MjA2ODgyOTAxNH0.hJCeLCDeXB9gVbl1n8Qk18CXJt250-3tH_BxhRkzzDQ',
+        'Authorization': 'Bearer $currentJwtToken',
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+      },
+      params: {},
+      body: json.encode(body),
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -309,31 +467,3 @@ class ApiPagingParams {
   String toString() =>
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
-
-// String _toEncodable(dynamic item) {
-//   return item;
-// }
-
-// String _serializeList(List? list) {
-//   list ??= <String>[];
-//   try {
-//     return json.encode(list, toEncodable: _toEncodable);
-//   } catch (_) {
-//     if (kDebugMode) {
-//       print("List serialization failed. Returning empty list.");
-//     }
-//     return '[]';
-//   }
-// }
-
-// String _serializeJson(dynamic jsonVar, [bool isList = false]) {
-//   jsonVar ??= (isList ? [] : {});
-//   try {
-//     return json.encode(jsonVar, toEncodable: _toEncodable);
-//   } catch (_) {
-//     if (kDebugMode) {
-//       print("Json serialization failed. Returning empty json.");
-//     }
-//     return isList ? '[]' : '{}';
-//   }
-// }
