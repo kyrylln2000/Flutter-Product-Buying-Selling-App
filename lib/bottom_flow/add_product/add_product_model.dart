@@ -795,7 +795,14 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Townships from Supabase (filtered by country if selected)
   Future<void> loadTownships({String? countryId}) async {
-    print('🔄 Loading townships for country: $countryId');
+    // Don't load if no country is selected
+    if (countryId == null || countryId.isEmpty) {
+      print('⚠️ No country selected, skipping township load');
+      townships.clear();
+      notifyListeners();
+      return;
+    }
+
     isTownshipsLoading = true;
     notifyListeners();
 
@@ -803,15 +810,30 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       getTownshipsResponse = await GetTownshipsCall.call(countryId: countryId);
 
       if (getTownshipsResponse?.succeeded ?? false) {
-        townships = getTownshipsResponse?.jsonBody ?? [];
+        final newTownships = getTownshipsResponse?.jsonBody ?? [];
+        townships = newTownships;
+
+        // Debug: Print first few townships
+        if (townships.isNotEmpty) {
+          print('📋 Sample townships:');
+          for (int i = 0;
+              i < (townships.length > 3 ? 3 : townships.length);
+              i++) {
+            print('  - ${townships[i]['name']} (ID: ${townships[i]['id']})');
+          }
+        } else {
+          print('⚠️ No townships found for this country');
+        }
       } else {
         print('❌ Failed to load townships');
         print('Status: ${getTownshipsResponse?.statusCode}');
         print('Error: ${getTownshipsResponse?.bodyText}');
+        townships.clear();
       }
     } catch (e, stackTrace) {
       print('🚨 Exception loading townships: $e');
       print('Stack trace: $stackTrace');
+      townships.clear();
     } finally {
       isTownshipsLoading = false;
       notifyListeners();
@@ -972,13 +994,23 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     selectedCountryId = countryId;
     dropDownValue5 = countryId;
 
-    // Reset township selection when country changes
+    // IMPORTANT: Reset township selection when country changes
     selectedTownshipId = null;
     dropDownValue6 = null;
-    dropDownValueController6?.reset();
+
+    // Reset the township dropdown controller
+    if (dropDownValueController6 != null) {
+      dropDownValueController6!.reset();
+    }
+
+    // Clear townships list first
+    townships.clear();
 
     // Load townships for the selected country
-    loadTownships(countryId: countryId);
+    if (countryId != null && countryId.isNotEmpty) {
+      loadTownships(countryId: countryId);
+    }
+
     notifyListeners();
   }
 

@@ -950,58 +950,222 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                   ],
 
                   // COUNTRIES DROPDOWN
-                  _buildDropdown(
-                    label: 'Country',
-                    controller: _model.dropDownValueController5 ??=
-                        FormFieldController<String>(null),
-                    options: _model.isCountriesLoading
-                        ? ['loading']
-                        : _model.countries
-                            .map<String>(
-                                (country) => country['id']?.toString() ?? '')
-                            .toList(),
-                    optionLabels: _model.isCountriesLoading
-                        ? ['Loading countries...']
-                        : _model.countries
-                            .map<String>(
-                                (country) => country['name']?.toString() ?? '')
-                            .toList(),
-                    onChanged: (val) => setState(() {
-                      _model.onCountryChanged(val);
-                    }),
-                    isLoading: _model.isCountriesLoading,
+                  StatefulBuilder(
+                    key: const ValueKey('country_dropdown_section'),
+                    builder: (context, setCountryState) {
+                      return _buildDropdown(
+                        label: 'Country',
+                        controller: _model.dropDownValueController5 ??=
+                            FormFieldController<String>(null),
+                        options: _model.isCountriesLoading
+                            ? ['loading']
+                            : _model.countries
+                                .map<String>((country) =>
+                                    country['id']?.toString() ?? '')
+                                .toList(),
+                        optionLabels: _model.isCountriesLoading
+                            ? ['Loading countries...']
+                            : _model.countries
+                                .map<String>((country) =>
+                                    country['name']?.toString() ?? '')
+                                .toList(),
+                        onChanged: (val) async {
+                          print('🌍 Country dropdown changed: $val');
+                          if (val != null && val != 'loading') {
+                            // Update country state
+                            setCountryState(() {
+                              _model.onCountryChanged(val);
+                            });
+
+                            // Show loading message for townships
+                            if (mounted) {
+                              ScaffoldMessenger.of(context).clearSnackBars();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 16.0,
+                                        height: 16.0,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                          strokeWidth: 2.0,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 12.0),
+                                      Text(
+                                        'Loading townships for ${_model.getCountryNameById(val)}...',
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
+                                  duration: const Duration(milliseconds: 1500),
+                                  backgroundColor: Colors.blue,
+                                  behavior: SnackBarBehavior.floating,
+                                ),
+                              );
+                            }
+
+                            // Wait for townships to load
+                            int attempts = 0;
+                            while (_model.isTownshipsLoading && attempts < 30) {
+                              // 3 seconds max
+                              await Future.delayed(
+                                  const Duration(milliseconds: 100));
+                              attempts++;
+                              setCountryState(() {}); // Update loading state
+                            }
+
+                            // Final state update
+                            setCountryState(() {});
+                            safeSetState(() {}); // Update entire widget
+
+                            // Show result notification
+                            if (mounted) {
+                              final countryName =
+                                  _model.getCountryNameById(val);
+                              final townshipCount = _model.townships.length;
+
+                              // Clear any existing snackbars
+                              ScaffoldMessenger.of(context).clearSnackBars();
+
+                              if (townshipCount > 0) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      '✅ Found $townshipCount townships for $countryName',
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
+                                    duration:
+                                        const Duration(milliseconds: 2500),
+                                    backgroundColor: Colors.green,
+                                    behavior: SnackBarBehavior.floating,
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'ℹ️ No townships available for $countryName',
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
+                                    duration:
+                                        const Duration(milliseconds: 2500),
+                                    backgroundColor: Colors.orange,
+                                    behavior: SnackBarBehavior.floating,
+                                  ),
+                                );
+                              }
+                            }
+                          }
+                        },
+                        hintText: _model.isCountriesLoading
+                            ? 'Loading countries...'
+                            : 'Select country',
+                        isLoading: _model.isCountriesLoading,
+                      );
+                    },
                   ),
 
-                  // TOWNSHIPS DROPDOWN
-                  _buildDropdown(
-                    label: 'Township',
-                    controller: _model.dropDownValueController6 ??=
-                        FormFieldController<String>(null),
-                    options: _model.isTownshipsLoading
-                        ? ['loading']
-                        : _model.selectedCountryId == null
-                            ? ['select_country_first']
-                            : _model.townships
-                                .map<String>((township) =>
-                                    township['id']?.toString() ?? '')
-                                .toList(),
-                    optionLabels: _model.isTownshipsLoading
-                        ? ['Loading townships...']
-                        : _model.selectedCountryId == null
-                            ? ['Please select a country first']
-                            : _model.townships
-                                .map<String>((township) =>
-                                    township['name']?.toString() ?? '')
-                                .toList(),
-                    onChanged: (val) => setState(() {
-                      if (val != 'select_country_first' && val != 'loading') {
-                        _model.onTownshipChanged(val);
+// Replace your existing TOWNSHIPS DROPDOWN section with this:
+                  StatefulBuilder(
+                    key: const ValueKey('township_dropdown_section'),
+                    builder: (context, setTownshipState) {
+                      // Determine dropdown state and options
+                      List<String> options;
+                      List<String> optionLabels;
+                      String hintText;
+                      bool isDisabled = false;
+
+                      if (_model.isTownshipsLoading) {
+                        options = ['loading'];
+                        optionLabels = ['Loading townships...'];
+                        hintText = 'Loading townships...';
+                        isDisabled = true;
+                      } else if (_model.selectedCountryId == null ||
+                          _model.selectedCountryId!.isEmpty) {
+                        options = ['select_country_first'];
+                        optionLabels = ['Please select a country first'];
+                        hintText = 'Select a country first';
+                        isDisabled = true;
+                      } else if (_model.townships.isEmpty) {
+                        options = ['no_townships'];
+                        optionLabels = ['No townships available'];
+                        hintText = 'No townships for selected country';
+                        isDisabled = true;
+                      } else {
+                        options = _model.townships
+                            .map<String>(
+                                (township) => township['id']?.toString() ?? '')
+                            .where((id) => id.isNotEmpty)
+                            .toList();
+                        optionLabels = _model.townships
+                            .map<String>((township) =>
+                                township['name']?.toString() ?? 'Unknown')
+                            .where((name) => name != 'Unknown')
+                            .toList();
+                        hintText = 'Select township';
+                        isDisabled = false;
                       }
-                    }),
-                    isLoading: _model.isTownshipsLoading,
-                    isDisabled: _model.selectedCountryId == null,
-                  ),
 
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Township dropdown
+                          _buildDropdown(
+                            label: 'Township',
+                            controller: _model.dropDownValueController6 ??=
+                                FormFieldController<String>(null),
+                            options: options,
+                            optionLabels: optionLabels,
+                            onChanged: (val) {
+                              print('🏘️ Township dropdown changed: $val');
+                              setTownshipState(() {
+                                if (val != null &&
+                                    val != 'select_country_first' &&
+                                    val != 'loading' &&
+                                    val != 'no_townships') {
+                                  _model.onTownshipChanged(val);
+                                  print(
+                                      '✅ Township selected: ${_model.getTownshipNameById(val)} (ID: $val)');
+                                }
+                              });
+                            },
+                            hintText: hintText,
+                            isLoading: _model.isTownshipsLoading,
+                            isDisabled: isDisabled,
+                          ),
+
+                          // Debug info (you can remove this in production)
+                          if (_model.selectedCountryId != null &&
+                              !_model.isTownshipsLoading)
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 4.0, 16.0, 0.0),
+                              child: Text(
+                                _model.townships.isEmpty
+                                    ? 'No townships found for ${_model.getCountryNameById(_model.selectedCountryId)}'
+                                    : '${_model.townships.length} townships available',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .override(
+                                      fontFamily: 'Satoshi',
+                                      fontSize: 12.0,
+                                      color: _model.townships.isEmpty
+                                          ? Colors.orange
+                                          : FlutterFlowTheme.of(context)
+                                              .primaryText
+                                              .withOpacity(0.6),
+                                    ),
+                              ),
+                            ),
+                        ],
+                      );
+                    },
+                  ),
                   _buildTextField(
                     label: 'Address',
                     controller: _model.textController7,
