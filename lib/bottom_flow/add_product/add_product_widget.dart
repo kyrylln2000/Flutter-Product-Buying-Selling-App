@@ -7,12 +7,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-// import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
-// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'add_product_model.dart';
 export 'add_product_model.dart';
@@ -38,6 +35,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
     super.initState();
     _model = createModel(context, () => AddProductModel());
 
+    // Initialize basic text controllers
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
@@ -50,15 +48,10 @@ class _AddProductWidgetState extends State<AddProductWidget> {
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode4 ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
-
-    _model.textController6 ??= TextEditingController();
-    _model.textFieldFocusNode6 ??= FocusNode();
-
     _model.textController7 ??= TextEditingController();
     _model.textFieldFocusNode7 ??= FocusNode();
 
+    // Set default values for demo
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {
           _model.textController1?.text = 'iPhone 15 pro max';
           _model.textController2?.text = '\$1500.00';
@@ -66,8 +59,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
               'iPhone 15 Pro Max, a titanium marvel, boasts an aerospace-grade build, making it the lightest Pro model ever. The A17 Pro Chip marks a historic leap in Apple GPUs, delivering unparalleled graphics performance and immersive gaming experiences.';
           _model.textController4?.text =
               'The camera system shines with a 48 MP Main camera, offering remarkable detail and automatic portrait enhancements. Convenience is key with the Action button for quick tasks and Focus filters. Plus, it\'s USB 3 compatible.';
-          _model.textController5?.text = 'iPhone 15 pro max';
-          _model.textController6?.text = '8GB';
           _model.textController7?.text =
               '913 Buckridge Summit, newyork, Florida, USA, 39663-3766';
         }));
@@ -77,6 +68,263 @@ class _AddProductWidgetState extends State<AddProductWidget> {
   void dispose() {
     _model.maybeDispose();
     super.dispose();
+  }
+
+  // Helper method to build text field
+  Widget _buildTextField({
+    required String label,
+    required TextEditingController? controller,
+    required FocusNode? focusNode,
+    required String? Function(BuildContext, String?)? validator,
+    String? hintText,
+    int maxLines = 1,
+    TextInputAction textInputAction = TextInputAction.next,
+    bool isRequired = false,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: label,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Satoshi',
+                        fontSize: 17.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
+                if (isRequired)
+                  const TextSpan(
+                    text: ' *',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+          child: SizedBox(
+            width: double.infinity,
+            child: TextFormField(
+              controller: controller,
+              focusNode: focusNode,
+              autofocus: false,
+              textInputAction: textInputAction,
+              obscureText: false,
+              keyboardType:
+                  maxLines > 1 ? TextInputType.multiline : TextInputType.text,
+              decoration: InputDecoration(
+                isDense: false,
+                hintText: hintText ?? 'Enter $label',
+                hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                      fontFamily: 'Satoshi',
+                      fontSize: 17.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.normal,
+                      lineHeight: 1.0,
+                    ),
+                errorStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Satoshi',
+                      color: FlutterFlowTheme.of(context).error,
+                      fontSize: 15.0,
+                      letterSpacing: 0.0,
+                      lineHeight: 1.0,
+                    ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).black20,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).black20,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).error,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).error,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                    16.0, 16.5, 16.0, 16.5),
+              ),
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Satoshi',
+                    fontSize: maxLines > 1 ? 15.0 : 17.0,
+                    letterSpacing: 0.0,
+                    fontWeight:
+                        maxLines > 1 ? FontWeight.w500 : FontWeight.normal,
+                    lineHeight: 1.0,
+                  ),
+              maxLines: maxLines,
+              cursorColor: FlutterFlowTheme.of(context).primaryText,
+              validator: validator?.asValidator(context),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Helper method to build dropdown
+  Widget _buildDropdown({
+    required String label,
+    required FormFieldController<String>? controller,
+    required List<String> options,
+    required List<String> optionLabels,
+    required void Function(String?) onChanged,
+    String? hintText,
+    bool isLoading = false,
+    bool isDisabled = false,
+    bool isRequired = false,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 4.0),
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: label,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Satoshi',
+                        fontSize: 17.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
+                if (isRequired)
+                  const TextSpan(
+                    text: ' *',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+          child: FlutterFlowDropDown<String>(
+            controller: controller,
+            options: options,
+            optionLabels: optionLabels,
+            onChanged: onChanged,
+            width: double.infinity,
+            height: 54.0,
+            textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Satoshi',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 17.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
+                ),
+            hintText: hintText ?? 'Select $label',
+            icon: Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 24.0,
+            ),
+            fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+            elevation: 1.0,
+            borderColor: FlutterFlowTheme.of(context).black20,
+            borderWidth: 1.0,
+            borderRadius: 12.0,
+            margin:
+                const EdgeInsetsDirectional.fromSTEB(12.0, 15.0, 12.0, 15.0),
+            hidesUnderline: true,
+            isOverButton: false,
+            isSearchable: false,
+            isMultiSelect: false,
+            disabled: isLoading || isDisabled,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Build dynamic field widget based on field type - WRAPPED IN STATEFUL BUILDER
+  Widget _buildDynamicField(CategoryField field) {
+    return StatefulBuilder(
+      key: ValueKey('dynamic_field_${field.id}'), // Unique key for each field
+      builder: (context, setFieldState) {
+        switch (field.fieldType) {
+          case 'text':
+            return _buildTextField(
+              label: field.fieldLabel,
+              controller: _model.dynamicTextControllers[field.fieldName],
+              focusNode: _model.dynamicFocusNodes[field.fieldName],
+              validator: (context, val) =>
+                  _model.dynamicFieldValidator(field, val),
+              hintText: field.placeholder,
+              isRequired: field.isRequired,
+            );
+
+          case 'number':
+            return _buildTextField(
+              label: field.fieldLabel,
+              controller: _model.dynamicTextControllers[field.fieldName],
+              focusNode: _model.dynamicFocusNodes[field.fieldName],
+              validator: (context, val) =>
+                  _model.dynamicFieldValidator(field, val),
+              hintText: field.placeholder,
+              isRequired: field.isRequired,
+            );
+
+          case 'dropdown':
+            return _buildDropdown(
+              label: field.fieldLabel,
+              controller: _model.dynamicDropdownControllers[field.fieldName],
+              options: field.dropdownOptions,
+              optionLabels: field.dropdownOptions,
+              onChanged: (val) {
+                setFieldState(() {
+                  _model.updateDynamicFieldValue(field.fieldName, val);
+                });
+              },
+              hintText: field.placeholder ?? 'Select ${field.fieldLabel}',
+              isRequired: field.isRequired,
+            );
+
+          default:
+            return _buildTextField(
+              label: field.fieldLabel,
+              controller: _model.dynamicTextControllers[field.fieldName],
+              focusNode: _model.dynamicFocusNodes[field.fieldName],
+              validator: (context, val) =>
+                  _model.dynamicFieldValidator(field, val),
+              hintText: field.placeholder,
+              isRequired: field.isRequired,
+            );
+        }
+      },
+    );
   }
 
   @override
@@ -105,7 +353,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                 padding: const EdgeInsets.fromLTRB(0, 16.0, 0, 16.0),
                 scrollDirection: Axis.vertical,
                 children: [
-                  // DYNAMIC IMAGE UPLOAD SECTION
+                  // IMAGE UPLOAD SECTION
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 0.0, 0.0, 0.0),
@@ -114,7 +362,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: 'Upload property images ',
+                            text: 'Upload product images ',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -164,14 +412,12 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                   0.0, 16.0, 0.0, 16.0),
                               child: Stack(
                                 children: [
-                                  // Image container
                                   InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () {
-                                      // Remove image when clicked
                                       safeSetState(() {
                                         _model.removeImage(index);
                                       });
@@ -205,7 +451,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                       ),
                                     ),
                                   ),
-                                  // Remove button overlay
                                   Positioned(
                                     top: 4.0,
                                     right: 4.0,
@@ -230,7 +475,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                           );
                         }),
 
-                        // Add new image button (only show if less than 10 images)
+                        // Add new image button
                         if (_model.uploadedImages.length < 10)
                           Align(
                             alignment: const AlignmentDirectional(-1.0, 0.0),
@@ -279,7 +524,6 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                                     if (selectedUploadedFiles.length ==
                                         selectedMedia.length) {
                                       safeSetState(() {
-                                        // Add new image to the list
                                         _model.addImage(
                                             selectedUploadedFiles.first);
                                       });
@@ -349,169 +593,207 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // DYNAMIC CATEGORIES DROPDOWN
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 0.0, 4.0),
-                    child: Text(
-                      'Choose category',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
+                  // CATEGORIES DROPDOWN - WRAPPED IN STATEFUL BUILDER
+                  StatefulBuilder(
+                    builder: (context, setCategoryState) {
+                      return _buildDropdown(
+                        label: 'Choose category',
+                        controller: _model.dropDownValueController1 ??=
+                            FormFieldController<String>(null),
+                        options: _model.isCategoriesLoading
+                            ? ['loading']
+                            : _model.categories
+                                .map<String>((category) =>
+                                    category['id']?.toString() ?? '')
+                                .toList(),
+                        optionLabels: _model.isCategoriesLoading
+                            ? ['Loading categories...']
+                            : _model.categories
+                                .map<String>((category) =>
+                                    category['name']?.toString() ?? '')
+                                .toList(),
+                        onChanged: (val) async {
+                          if (val != null && val != 'loading') {
+                            // Update category state
+                            setCategoryState(() {
+                              _model.onCategoryChanged(val);
+                            });
+
+                            // Wait for category fields to load
+                            int attempts = 0;
+                            while (_model.isCategoryFieldsLoading &&
+                                attempts < 50) {
+                              await Future.delayed(
+                                  const Duration(milliseconds: 100));
+                              attempts++;
+                              setCategoryState(() {}); // Update loading state
+                            }
+
+                            // Final state update
+                            setCategoryState(() {});
+                            safeSetState(() {}); // Update entire widget
+
+                            // Show notification
+                            if (mounted) {
+                              final categoryName =
+                                  _model.getCategoryNameById(val);
+                              final fieldCount = _model.categoryFields.length;
+
+                              if (fieldCount > 0) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      '✅ Loaded $fieldCount custom fields for $categoryName',
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
+                                    duration:
+                                        const Duration(milliseconds: 2500),
+                                    backgroundColor: Colors.green,
+                                    behavior: SnackBarBehavior.floating,
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'ℹ️ No custom fields configured for $categoryName',
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
+                                    duration:
+                                        const Duration(milliseconds: 2500),
+                                    backgroundColor: Colors.orange,
+                                    behavior: SnackBarBehavior.floating,
+                                  ),
+                                );
+                              }
+                            }
+                          }
+                        },
+                        hintText: _model.isCategoriesLoading
+                            ? 'Loading categories...'
+                            : 'Select category',
+                        isLoading: _model.isCategoriesLoading,
+                        isRequired: true,
+                      );
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController1 ??=
-                          FormFieldController<String>(null),
-                      options: _model.isCategoriesLoading
-                          ? ['loading']
-                          : _model.categories
-                              .map<String>((category) =>
-                                  category['id']?.toString() ?? '')
-                              .toList(),
-                      optionLabels: _model.isCategoriesLoading
-                          ? ['Loading categories...']
-                          : _model.categories
-                              .map<String>((category) =>
-                                  category['name']?.toString() ?? '')
-                              .toList(),
-                      onChanged: (val) => safeSetState(() {
-                        _model.onCategoryChanged(val);
-                      }),
-                      width: double.infinity,
-                      height: 54.0,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Satoshi',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 17.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
+
+                  // CATEGORY FIELDS STATUS SECTION - WRAPPED IN STATEFUL BUILDER
+                  StatefulBuilder(
+                    builder: (context, setStatusState) {
+                      if (_model.selectedCategoryId == null) {
+                        return const SizedBox.shrink();
+                      }
+
+                      if (_model.isCategoryFieldsLoading) {
+                        return Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 16.0, 16.0, 16.0),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context)
+                                    .primary
+                                    .withOpacity(0.3),
                               ),
-                      hintText: _model.isCategoriesLoading
-                          ? 'Loading categories...'
-                          : 'Select category',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 1.0,
-                      borderColor: FlutterFlowTheme.of(context).black20,
-                      borderWidth: 1.0,
-                      borderRadius: 12.0,
-                      margin: const EdgeInsetsDirectional.fromSTEB(
-                          12.0, 15.0, 12.0, 15.0),
-                      hidesUnderline: true,
-                      isOverButton: false,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                      disabled: _model.isCategoriesLoading,
-                    ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 20.0,
+                                  height: 20.0,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    strokeWidth: 2.0,
+                                  ),
+                                ),
+                                const SizedBox(width: 12.0),
+                                Text(
+                                  'Loading ${_model.getCategoryNameById(_model.selectedCategoryId)} fields...',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Satoshi',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+
+                      if (!_model.isCategoryFieldsLoading &&
+                          _model.categoryFields.isEmpty) {
+                        return Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 16.0, 16.0, 0.0),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.orange.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(
+                                color: Colors.orange.withOpacity(0.3),
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.info_outline,
+                                  color: Colors.orange,
+                                  size: 20.0,
+                                ),
+                                const SizedBox(width: 12.0),
+                                Expanded(
+                                  child: Text(
+                                    'No custom fields configured for ${_model.getCategoryNameById(_model.selectedCategoryId)}',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Satoshi',
+                                          color: Colors.orange.shade700,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+
+                      return const SizedBox.shrink();
+                    },
                   ),
 
-                  // PRODUCT NAME FIELD
+                  // BASIC FIELDS (always shown)
+                  _buildTextField(
+                    label: 'Product Name',
+                    controller: _model.textController1,
+                    focusNode: _model.textFieldFocusNode1,
+                    validator: _model.textController1Validator,
+                    hintText: 'Enter product name',
+                    isRequired: true,
+                  ),
+
+                  // Phone number field
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         16.0, 16.0, 0.0, 4.0),
                     child: Text(
-                      'Product Name',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: TextFormField(
-                        controller: _model.textController1,
-                        focusNode: _model.textFieldFocusNode1,
-                        autofocus: false,
-                        textInputAction: TextInputAction.next,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: false,
-                          hintText: 'Enter product name',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    lineHeight: 1.0,
-                                  ),
-                          errorStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.5, 16.0, 16.5),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Satoshi',
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              lineHeight: 1.0,
-                            ),
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.textController1Validator
-                            .asValidator(context),
-                      ),
-                    ),
-                  ),
-
-                  // PHONE NUMBER FIELD
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Phone number',
+                      'Phone number *',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Satoshi',
                             fontSize: 17.0,
@@ -531,893 +813,361 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     ),
                   ),
 
-                  // PRICE FIELD
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Price',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: TextFormField(
-                        controller: _model.textController2,
-                        focusNode: _model.textFieldFocusNode2,
-                        autofocus: false,
-                        textInputAction: TextInputAction.next,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: false,
-                          hintText: 'Enter product price',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    lineHeight: 1.0,
-                                  ),
-                          errorStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.5, 16.0, 16.5),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Satoshi',
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              lineHeight: 1.0,
-                            ),
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.textController2Validator
-                            .asValidator(context),
-                      ),
-                    ),
+                  _buildTextField(
+                    label: 'Price',
+                    controller: _model.textController2,
+                    focusNode: _model.textFieldFocusNode2,
+                    validator: _model.textController2Validator,
+                    hintText: 'Enter product price',
+                    isRequired: true,
                   ),
 
-                  // DESCRIPTION FIELD
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Description',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: TextFormField(
-                        controller: _model.textController3,
-                        focusNode: _model.textFieldFocusNode3,
-                        autofocus: false,
-                        textInputAction: TextInputAction.next,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: false,
-                          hintText: 'Enter product description',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    lineHeight: 1.0,
-                                  ),
-                          errorStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.5, 16.0, 16.5),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Satoshi',
-                              fontSize: 15.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                              lineHeight: 1.0,
-                            ),
-                        textAlign: TextAlign.start,
-                        maxLines: 6,
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.textController3Validator
-                            .asValidator(context),
-                      ),
-                    ),
+                  _buildTextField(
+                    label: 'Description',
+                    controller: _model.textController3,
+                    focusNode: _model.textFieldFocusNode3,
+                    validator: _model.textController3Validator,
+                    hintText: 'Enter product description',
+                    maxLines: 6,
+                    isRequired: true,
                   ),
 
-                  // PRODUCT TYPE DROPDOWN
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Product Type',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController2 ??=
-                          FormFieldController<String>(null),
-                      options: _model.isProductTypesLoading
-                          ? ['loading']
-                          : _model.productTypes
-                              .map<String>(
-                                  (type) => type['id']?.toString() ?? '')
-                              .toList(),
-                      optionLabels: _model.isProductTypesLoading
-                          ? ['Loading product types...']
-                          : _model.productTypes
-                              .map<String>(
-                                  (type) => type['name']?.toString() ?? '')
-                              .toList(),
-                      onChanged: (val) => safeSetState(() {
-                        _model.onProductTypeChanged(val);
-                      }),
-                      width: double.infinity,
-                      height: 54.0,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Satoshi',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 17.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                      hintText: _model.isProductTypesLoading
-                          ? 'Loading...'
-                          : 'Select product type',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 1.0,
-                      borderColor: FlutterFlowTheme.of(context).black20,
-                      borderWidth: 1.0,
-                      borderRadius: 12.0,
-                      margin: const EdgeInsetsDirectional.fromSTEB(
-                          12.0, 15.0, 12.0, 15.0),
-                      hidesUnderline: true,
-                      isOverButton: false,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                      disabled: _model.isProductTypesLoading,
-                    ),
+                  // PRODUCT TYPE DROPDOWN - Use setState instead of safeSetState for non-critical updates
+                  _buildDropdown(
+                    label: 'Product Type',
+                    controller: _model.dropDownValueController2 ??=
+                        FormFieldController<String>(null),
+                    options: _model.isProductTypesLoading
+                        ? ['loading']
+                        : _model.productTypes
+                            .map<String>((type) => type['id']?.toString() ?? '')
+                            .toList(),
+                    optionLabels: _model.isProductTypesLoading
+                        ? ['Loading product types...']
+                        : _model.productTypes
+                            .map<String>(
+                                (type) => type['name']?.toString() ?? '')
+                            .toList(),
+                    onChanged: (val) => setState(() {
+                      _model.onProductTypeChanged(val);
+                    }),
+                    isLoading: _model.isProductTypesLoading,
                   ),
 
                   // CONDITION DROPDOWN
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Condition',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController3 ??=
-                          FormFieldController<String>(null),
-                      options: _model.isConditionsLoading
-                          ? ['loading']
-                          : _model.conditions
-                              .map<String>((condition) =>
-                                  condition['id']?.toString() ?? '')
-                              .toList(),
-                      optionLabels: _model.isConditionsLoading
-                          ? ['Loading conditions...']
-                          : _model.conditions
-                              .map<String>((condition) =>
-                                  condition['name']?.toString() ?? '')
-                              .toList(),
-                      onChanged: (val) => safeSetState(() {
-                        _model.onConditionChanged(val);
-                      }),
-                      width: double.infinity,
-                      height: 54.0,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Satoshi',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 17.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                      hintText: _model.isConditionsLoading
-                          ? 'Loading...'
-                          : 'Select condition',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 1.0,
-                      borderColor: FlutterFlowTheme.of(context).black20,
-                      borderWidth: 1.0,
-                      borderRadius: 12.0,
-                      margin: const EdgeInsetsDirectional.fromSTEB(
-                          12.0, 15.0, 12.0, 15.0),
-                      hidesUnderline: true,
-                      isOverButton: false,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                      disabled: _model.isConditionsLoading,
-                    ),
+                  _buildDropdown(
+                    label: 'Condition',
+                    controller: _model.dropDownValueController3 ??=
+                        FormFieldController<String>(null),
+                    options: _model.isConditionsLoading
+                        ? ['loading']
+                        : _model.conditions
+                            .map<String>((condition) =>
+                                condition['id']?.toString() ?? '')
+                            .toList(),
+                    optionLabels: _model.isConditionsLoading
+                        ? ['Loading conditions...']
+                        : _model.conditions
+                            .map<String>((condition) =>
+                                condition['name']?.toString() ?? '')
+                            .toList(),
+                    onChanged: (val) => setState(() {
+                      _model.onConditionChanged(val);
+                    }),
+                    isLoading: _model.isConditionsLoading,
                   ),
 
-                  // DEAL OPTION REMARK FIELD
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Deal option remark',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: TextFormField(
-                        controller: _model.textController4,
-                        focusNode: _model.textFieldFocusNode4,
-                        autofocus: false,
-                        textInputAction: TextInputAction.next,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: false,
-                          hintText: 'Enter deal option remark',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    lineHeight: 1.0,
-                                  ),
-                          errorStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.5, 16.0, 16.5),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Satoshi',
-                              fontSize: 15.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                              lineHeight: 1.0,
-                            ),
-                        textAlign: TextAlign.start,
-                        maxLines: 6,
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.textController4Validator
-                            .asValidator(context),
-                      ),
-                    ),
+                  _buildTextField(
+                    label: 'Deal option remark',
+                    controller: _model.textController4,
+                    focusNode: _model.textFieldFocusNode4,
+                    validator: _model.textController4Validator,
+                    hintText: 'Enter deal option remark',
+                    maxLines: 6,
+                    isRequired: true,
                   ),
 
                   // DEAL OPTIONS DROPDOWN
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Deal option',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController4 ??=
-                          FormFieldController<String>(null),
-                      options: _model.isDealOptionsLoading
-                          ? ['loading']
-                          : _model.dealOptions
-                              .map<String>(
-                                  (option) => option['id']?.toString() ?? '')
-                              .toList(),
-                      optionLabels: _model.isDealOptionsLoading
-                          ? ['Loading deal options...']
-                          : _model.dealOptions
-                              .map<String>(
-                                  (option) => option['name']?.toString() ?? '')
-                              .toList(),
-                      onChanged: (val) => safeSetState(() {
-                        _model.onDealOptionChanged(val);
-                      }),
-                      width: double.infinity,
-                      height: 54.0,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Satoshi',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 17.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                      hintText: _model.isDealOptionsLoading
-                          ? 'Loading...'
-                          : 'Select deal option',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 1.0,
-                      borderColor: FlutterFlowTheme.of(context).black20,
-                      borderWidth: 1.0,
-                      borderRadius: 12.0,
-                      margin: const EdgeInsetsDirectional.fromSTEB(
-                          12.0, 15.0, 12.0, 15.0),
-                      hidesUnderline: true,
-                      isOverButton: false,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                      disabled: _model.isDealOptionsLoading,
-                    ),
+                  _buildDropdown(
+                    label: 'Deal option',
+                    controller: _model.dropDownValueController4 ??=
+                        FormFieldController<String>(null),
+                    options: _model.isDealOptionsLoading
+                        ? ['loading']
+                        : _model.dealOptions
+                            .map<String>(
+                                (option) => option['id']?.toString() ?? '')
+                            .toList(),
+                    optionLabels: _model.isDealOptionsLoading
+                        ? ['Loading deal options...']
+                        : _model.dealOptions
+                            .map<String>(
+                                (option) => option['name']?.toString() ?? '')
+                            .toList(),
+                    onChanged: (val) => setState(() {
+                      _model.onDealOptionChanged(val);
+                    }),
+                    isLoading: _model.isDealOptionsLoading,
                   ),
 
-                  // MODEL NO FIELD
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Model no',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
+                  // DYNAMIC CATEGORY FIELDS - USING KEYED STATEFUL BUILDERS
+                  if (_model.categoryFields.isNotEmpty &&
+                      !_model.isCategoryFieldsLoading) ...[
+                    // Header for category-specific fields
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 24.0, 16.0, 8.0),
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(12.0),
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context)
+                                .primary
+                                .withOpacity(0.3),
                           ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: TextFormField(
-                        controller: _model.textController5,
-                        focusNode: _model.textFieldFocusNode5,
-                        autofocus: false,
-                        textInputAction: TextInputAction.next,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: false,
-                          hintText: 'Enter model no',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    lineHeight: 1.0,
-                                  ),
-                          errorStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.5, 16.0, 16.5),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Satoshi',
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              lineHeight: 1.0,
-                            ),
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.textController5Validator
-                            .asValidator(context),
+                        child: Text(
+                          '📋 ${_model.getCategoryNameById(_model.selectedCategoryId)} Specifications (${_model.categoryFields.length} fields)',
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Satoshi',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
-                  ),
 
-                  // RAM FIELD
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Enter ram',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: TextFormField(
-                        controller: _model.textController6,
-                        focusNode: _model.textFieldFocusNode6,
-                        autofocus: false,
-                        textInputAction: TextInputAction.next,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: false,
-                          hintText: 'Enter ram',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    lineHeight: 1.0,
-                                  ),
-                          errorStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.5, 16.0, 16.5),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Satoshi',
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              lineHeight: 1.0,
-                            ),
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.textController6Validator
-                            .asValidator(context),
-                      ),
-                    ),
-                  ),
+                    // Build dynamic fields with preserved state
+                    ..._model.categoryFields
+                        .map((field) => _buildDynamicField(field)),
+                  ],
 
                   // COUNTRIES DROPDOWN
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Country',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController5 ??=
-                          FormFieldController<String>(null),
-                      options: _model.isCountriesLoading
-                          ? ['loading']
-                          : _model.countries
-                              .map<String>(
-                                  (country) => country['id']?.toString() ?? '')
-                              .toList(),
-                      optionLabels: _model.isCountriesLoading
-                          ? ['Loading countries...']
-                          : _model.countries
-                              .map<String>((country) =>
-                                  country['name']?.toString() ?? '')
-                              .toList(),
-                      onChanged: (val) => safeSetState(() {
-                        _model.onCountryChanged(val);
-                      }),
-                      width: double.infinity,
-                      height: 54.0,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Satoshi',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 17.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                      hintText: _model.isCountriesLoading
-                          ? 'Loading...'
-                          : 'Select country',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 1.0,
-                      borderColor: FlutterFlowTheme.of(context).black20,
-                      borderWidth: 1.0,
-                      borderRadius: 12.0,
-                      margin: const EdgeInsetsDirectional.fromSTEB(
-                          12.0, 15.0, 12.0, 15.0),
-                      hidesUnderline: true,
-                      isOverButton: false,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                      disabled: _model.isCountriesLoading,
-                    ),
+                  StatefulBuilder(
+                    key: const ValueKey('country_dropdown_section'),
+                    builder: (context, setCountryState) {
+                      return _buildDropdown(
+                        label: 'Country',
+                        controller: _model.dropDownValueController5 ??=
+                            FormFieldController<String>(null),
+                        options: _model.isCountriesLoading
+                            ? ['loading']
+                            : _model.countries
+                                .map<String>((country) =>
+                                    country['id']?.toString() ?? '')
+                                .toList(),
+                        optionLabels: _model.isCountriesLoading
+                            ? ['Loading countries...']
+                            : _model.countries
+                                .map<String>((country) =>
+                                    country['name']?.toString() ?? '')
+                                .toList(),
+                        onChanged: (val) async {
+                          if (val != null && val != 'loading') {
+                            // Update country state
+                            setCountryState(() {
+                              _model.onCountryChanged(val);
+                            });
+
+                            // Show loading message for townships
+                            if (mounted) {
+                              ScaffoldMessenger.of(context).clearSnackBars();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Row(
+                                    children: [
+                                      const SizedBox(
+                                        width: 16.0,
+                                        height: 16.0,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                          strokeWidth: 2.0,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 12.0),
+                                      Text(
+                                        'Loading townships for ${_model.getCountryNameById(val)}...',
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
+                                  duration: const Duration(milliseconds: 1500),
+                                  backgroundColor: Colors.blue,
+                                  behavior: SnackBarBehavior.floating,
+                                ),
+                              );
+                            }
+
+                            // Wait for townships to load
+                            int attempts = 0;
+                            while (_model.isTownshipsLoading && attempts < 30) {
+                              // 3 seconds max
+                              await Future.delayed(
+                                  const Duration(milliseconds: 100));
+                              attempts++;
+                              setCountryState(() {}); // Update loading state
+                            }
+
+                            // Final state update
+                            setCountryState(() {});
+                            safeSetState(() {}); // Update entire widget
+
+                            // Show result notification
+                            if (mounted) {
+                              final countryName =
+                                  _model.getCountryNameById(val);
+                              final townshipCount = _model.townships.length;
+
+                              // Clear any existing snackbars
+                              ScaffoldMessenger.of(context).clearSnackBars();
+
+                              if (townshipCount > 0) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      '✅ Found $townshipCount townships for $countryName',
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
+                                    duration:
+                                        const Duration(milliseconds: 2500),
+                                    backgroundColor: Colors.green,
+                                    behavior: SnackBarBehavior.floating,
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'ℹ️ No townships available for $countryName',
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
+                                    duration:
+                                        const Duration(milliseconds: 2500),
+                                    backgroundColor: Colors.orange,
+                                    behavior: SnackBarBehavior.floating,
+                                  ),
+                                );
+                              }
+                            }
+                          }
+                        },
+                        hintText: _model.isCountriesLoading
+                            ? 'Loading countries...'
+                            : 'Select country',
+                        isLoading: _model.isCountriesLoading,
+                      );
+                    },
                   ),
 
-                  // TOWNSHIPS DROPDOWN
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Township',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController6 ??=
-                          FormFieldController<String>(null),
-                      options: _model.isTownshipsLoading
-                          ? ['loading']
-                          : _model.selectedCountryId == null
-                              ? ['select_country_first']
-                              : _model.townships
-                                  .map<String>((township) =>
-                                      township['id']?.toString() ?? '')
-                                  .toList(),
-                      optionLabels: _model.isTownshipsLoading
-                          ? ['Loading townships...']
-                          : _model.selectedCountryId == null
-                              ? ['Please select a country first']
-                              : _model.townships
-                                  .map<String>((township) =>
-                                      township['name']?.toString() ?? '')
-                                  .toList(),
-                      onChanged: (val) => safeSetState(() {
-                        if (val != 'select_country_first' && val != 'loading') {
-                          _model.onTownshipChanged(val);
-                        }
-                      }),
-                      width: double.infinity,
-                      height: 54.0,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Satoshi',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 17.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                      hintText: _model.isTownshipsLoading
-                          ? 'Loading...'
-                          : _model.selectedCountryId == null
-                              ? 'Select country first'
-                              : 'Select township',
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 1.0,
-                      borderColor: FlutterFlowTheme.of(context).black20,
-                      borderWidth: 1.0,
-                      borderRadius: 12.0,
-                      margin: const EdgeInsetsDirectional.fromSTEB(
-                          12.0, 15.0, 12.0, 15.0),
-                      hidesUnderline: true,
-                      isOverButton: false,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                      disabled: _model.isTownshipsLoading ||
-                          _model.selectedCountryId == null,
-                    ),
-                  ),
+// Replace your existing TOWNSHIPS DROPDOWN section with this:
+                  StatefulBuilder(
+                    key: const ValueKey('township_dropdown_section'),
+                    builder: (context, setTownshipState) {
+                      // Determine dropdown state and options
+                      List<String> options;
+                      List<String> optionLabels;
+                      String hintText;
+                      bool isDisabled = false;
 
-                  // ADDRESS FIELD
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 16.0, 0.0, 4.0),
-                    child: Text(
-                      'Address',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Satoshi',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
+                      if (_model.isTownshipsLoading) {
+                        options = ['loading'];
+                        optionLabels = ['Loading townships...'];
+                        hintText = 'Loading townships...';
+                        isDisabled = true;
+                      } else if (_model.selectedCountryId == null ||
+                          _model.selectedCountryId!.isEmpty) {
+                        options = ['select_country_first'];
+                        optionLabels = ['Please select a country first'];
+                        hintText = 'Select a country first';
+                        isDisabled = true;
+                      } else if (_model.townships.isEmpty) {
+                        options = ['no_townships'];
+                        optionLabels = ['No townships available'];
+                        hintText = 'No townships for selected country';
+                        isDisabled = true;
+                      } else {
+                        options = _model.townships
+                            .map<String>(
+                                (township) => township['id']?.toString() ?? '')
+                            .where((id) => id.isNotEmpty)
+                            .toList();
+                        optionLabels = _model.townships
+                            .map<String>((township) =>
+                                township['name']?.toString() ?? 'Unknown')
+                            .where((name) => name != 'Unknown')
+                            .toList();
+                        hintText = 'Select township';
+                        isDisabled = false;
+                      }
+
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Township dropdown
+                          _buildDropdown(
+                            label: 'Township',
+                            controller: _model.dropDownValueController6 ??=
+                                FormFieldController<String>(null),
+                            options: options,
+                            optionLabels: optionLabels,
+                            onChanged: (val) {
+                              setTownshipState(() {
+                                if (val != null &&
+                                    val != 'select_country_first' &&
+                                    val != 'loading' &&
+                                    val != 'no_townships') {
+                                  _model.onTownshipChanged(val);
+                                }
+                              });
+                            },
+                            hintText: hintText,
+                            isLoading: _model.isTownshipsLoading,
+                            isDisabled: isDisabled,
                           ),
-                    ),
+
+                          // Debug info (you can remove this in production)
+                          if (_model.selectedCountryId != null &&
+                              !_model.isTownshipsLoading)
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 4.0, 16.0, 0.0),
+                              child: Text(
+                                _model.townships.isEmpty
+                                    ? 'No townships found for ${_model.getCountryNameById(_model.selectedCountryId)}'
+                                    : '${_model.townships.length} townships available',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .override(
+                                      fontFamily: 'Satoshi',
+                                      fontSize: 12.0,
+                                      color: _model.townships.isEmpty
+                                          ? Colors.orange
+                                          : FlutterFlowTheme.of(context)
+                                              .primaryText
+                                              .withOpacity(0.6),
+                                    ),
+                              ),
+                            ),
+                        ],
+                      );
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        16.0, 0.0, 16.0, 0.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: TextFormField(
-                        controller: _model.textController7,
-                        focusNode: _model.textFieldFocusNode7,
-                        autofocus: false,
-                        textInputAction: TextInputAction.next,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: false,
-                          hintText: 'Enter your address',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    lineHeight: 1.0,
-                                  ),
-                          errorStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Satoshi',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).black20,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.5, 16.0, 16.5),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Satoshi',
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              lineHeight: 1.0,
-                            ),
-                        maxLines: 3,
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        validator: _model.textController7Validator
-                            .asValidator(context),
-                      ),
-                    ),
+                  _buildTextField(
+                    label: 'Address',
+                    controller: _model.textController7,
+                    focusNode: _model.textFieldFocusNode7,
+                    validator: _model.textController7Validator,
+                    hintText: 'Enter your address',
+                    maxLines: 3,
+                    isRequired: true,
                   ),
                 ],
               ),
@@ -1425,13 +1175,26 @@ class _AddProductWidgetState extends State<AddProductWidget> {
           ),
         ),
 
-        // ENHANCED SUBMIT BUTTON WITH COMPLETE R2 + SUPABASE FLOW
+        // ENHANCED SUBMIT BUTTON
         Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 24.0),
           child: FFButtonWidget(
             onPressed: _model.isSubmitting
                 ? null
                 : () async {
+                    // Update dynamic field values from controllers
+                    for (var field in _model.categoryFields) {
+                      if (field.fieldType == 'text' ||
+                          field.fieldType == 'number') {
+                        final controller =
+                            _model.dynamicTextControllers[field.fieldName];
+                        if (controller != null) {
+                          _model.updateDynamicFieldValue(
+                              field.fieldName, controller.text);
+                        }
+                      }
+                    }
+
                     // Show loading dialog
                     showDialog(
                       context: context,
@@ -1458,47 +1221,18 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                     );
 
                     try {
-                      // Submit the product with R2 upload
                       final success = await _model.submitProduct();
 
                       // Close loading dialog
                       Navigator.of(context).pop();
 
                       if (success) {
-                        // Debug: Print all submitted data
-                        print('=== PRODUCT SUBMISSION SUCCESS ===');
-                        print('User ID: ${_model.currentUserId}');
-                        print('Product Name: ${_model.textController1?.text}');
-                        print('Price: ${_model.getPriceValue()}');
-                        print(
-                            'Selected Category: ${_model.getCategoryNameById(_model.selectedCategoryId)} (ID: ${_model.selectedCategoryId})');
-                        print(
-                            'Selected Product Type: ${_model.getProductTypeNameById(_model.selectedProductTypeId)} (ID: ${_model.selectedProductTypeId})');
-                        print(
-                            'Selected Condition: ${_model.getConditionNameById(_model.selectedConditionId)} (ID: ${_model.selectedConditionId})');
-                        print(
-                            'Selected Deal Option: ${_model.getDealOptionNameById(_model.selectedDealOptionId)} (ID: ${_model.selectedDealOptionId})');
-                        print(
-                            'Selected Country: ${_model.getCountryNameById(_model.selectedCountryId)} (ID: ${_model.selectedCountryId})');
-                        print(
-                            'Selected Township: ${_model.getTownshipNameById(_model.selectedTownshipId)} (ID: ${_model.selectedTownshipId})');
-                        print(
-                            'R2 Images: ${_model.uploadedImageUrls.length} images');
-                        for (var url in _model.uploadedImageUrls) {
-                          print('  - $url');
-                        }
-                        print('==================================');
-
-                        // Show success message
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Product Added Successfully!\n',
-                              // '📱 ${_model.textController1?.text}\n'
-                              // '💰 \${_model.getPriceValue()}\n'
-                              // '📂 ${_model.getCategoryNameById(_model.selectedCategoryId)}\n'
-                              // '📍 ${_model.getCountryNameById(_model.selectedCountryId)} - ${_model.getTownshipNameById(_model.selectedTownshipId)}\n'
-                              // '📸 ${_model.uploadedImageUrls.length} images stored in R2',
+                              'Product Added Successfully!\n'
+                              'Category: ${_model.getCategoryNameById(_model.selectedCategoryId)}\n'
+                              'Fields: ${_model.categoryFields.length} custom fields saved',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
@@ -1509,24 +1243,16 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                           ),
                         );
 
-                        // Reset form
                         _model.resetForm();
-
-                        // Update app state
                         FFAppState().homePageIndex = 0;
                         safeSetState(() {});
-
-                        // Navigate to home/navbar
                         context.pushNamed(NavbarWidget.routeName);
                       } else {
-                        // Show error message
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text(
                               '❌ Failed to add product. Please check your connection and try again.',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
+                              style: TextStyle(color: Colors.white),
                             ),
                             duration: Duration(milliseconds: 3000),
                             backgroundColor: Colors.red,
@@ -1535,12 +1261,10 @@ class _AddProductWidgetState extends State<AddProductWidget> {
                         );
                       }
                     } catch (e) {
-                      // Close loading dialog if still open
                       if (Navigator.of(context).canPop()) {
                         Navigator.of(context).pop();
                       }
 
-                      print('🚨 Unexpected error: $e');
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(

@@ -1,20 +1,71 @@
-// import '/backend/schema/structs/index.dart';
-// import '/flutter_flow/flutter_flow_drop_down.dart';
-// import '/flutter_flow/flutter_flow_theme.dart';
-// import '/flutter_flow/flutter_flow_widgets.dart';
-// import '/flutter_flow/upload_data.dart';
-// import 'dart:ui';
-// import '/custom_code/widgets/index.dart' as custom_widgets;
-// import '/index.dart';
-// import 'package:flutter/gestures.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:provider/provider.dart';
+// ignore_for_file: empty_catches
+
 import '/bottom_flow/pages/components/center_appbar/center_appbar_widget.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'add_product_widget.dart' show AddProductWidget;
 import 'package:flutter/material.dart';
+
+// Category field model
+class CategoryField {
+  final String id;
+  final String fieldName;
+  final String fieldLabel;
+  final String fieldType; // text, number, dropdown, boolean, date
+  final Map<String, dynamic>? fieldOptions;
+  final bool isRequired;
+  final String? placeholder;
+  final Map<String, dynamic>? validationRules;
+  final int fieldOrder;
+
+  CategoryField({
+    required this.id,
+    required this.fieldName,
+    required this.fieldLabel,
+    required this.fieldType,
+    this.fieldOptions,
+    required this.isRequired,
+    this.placeholder,
+    this.validationRules,
+    required this.fieldOrder,
+  });
+
+  factory CategoryField.fromJson(Map<String, dynamic> json) {
+    return CategoryField(
+      id: json['id']?.toString() ?? '',
+      fieldName: json['field_name']?.toString() ?? '',
+      fieldLabel: json['field_label']?.toString() ?? '',
+      fieldType: json['field_type']?.toString() ?? 'text',
+      fieldOptions: json['field_options'] as Map<String, dynamic>?,
+      isRequired: json['is_required'] ?? false,
+      placeholder: json['placeholder']?.toString(),
+      validationRules: json['validation_rules'] as Map<String, dynamic>?,
+      fieldOrder: (json['field_order'] as num?)?.toInt() ?? 0,
+    );
+  }
+
+  List<String> get dropdownOptions {
+    if (fieldType != 'dropdown' || fieldOptions == null) return [];
+    return (fieldOptions!['options'] as List<dynamic>?)
+            ?.map((e) => e.toString())
+            .toList() ??
+        [];
+  }
+}
+
+// Dynamic field value model
+class DynamicFieldValue {
+  final String categoryFieldId;
+  final String fieldName;
+  dynamic value;
+
+  DynamicFieldValue({
+    required this.categoryFieldId,
+    required this.fieldName,
+    this.value,
+  });
+}
 
 class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   ///  State fields for stateful widgets in this component.
@@ -28,6 +79,13 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   bool isUploadingImages = false;
   String? currentUserId;
   List<String> uploadedImageUrls = []; // R2 URLs only
+
+  // Dynamic category fields
+  List<CategoryField> categoryFields = [];
+  Map<String, DynamicFieldValue> dynamicFieldValues = {};
+  Map<String, TextEditingController> dynamicTextControllers = {};
+  Map<String, FocusNode> dynamicFocusNodes = {};
+  Map<String, FormFieldController<String>> dynamicDropdownControllers = {};
 
   // Method to add a new image
   void addImage(FFUploadedFile image) {
@@ -81,6 +139,7 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   bool isCountriesLoading = false;
   bool isTownshipsLoading = false;
   bool isProductTypesLoading = false;
+  bool isCategoryFieldsLoading = false;
 
   // Selected values (store IDs)
   String? selectedCategoryId;
@@ -92,131 +151,66 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // API responses
   ApiCallResponse? getCategoriesResponse;
+  ApiCallResponse? getCategoryFieldsResponse;
   ApiCallResponse? getDealOptionsResponse;
   ApiCallResponse? getConditionsResponse;
   ApiCallResponse? getCountriesResponse;
   ApiCallResponse? getTownshipsResponse;
   ApiCallResponse? getProductTypesResponse;
 
-  // Existing dropdown states
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
-
-  // State field(s) for TextField widget
+  // Basic form fields
   FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
+  TextEditingController? textController1; // Product name
   String? Function(BuildContext, String?)? textController1Validator;
-  String? _textController1Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter a valid product name';
-    }
-    return null;
-  }
 
-  // State field(s) for TextField widget
   FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
+  TextEditingController? textController2; // Price
   String? Function(BuildContext, String?)? textController2Validator;
-  String? _textController2Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter a valid price';
-    }
-    return null;
-  }
 
-  // State field(s) for TextField widget
   FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
+  TextEditingController? textController3; // Description
   String? Function(BuildContext, String?)? textController3Validator;
-  String? _textController3Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter a valid description';
-    }
-    return null;
-  }
 
-  // State field(s) for DropDown widget - Product Type (Dynamic)
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
-
-  // State field(s) for DropDown widget - Condition (Dynamic)
-  String? dropDownValue3;
-  FormFieldController<String>? dropDownValueController3;
-
-  // State field(s) for TextField widget
   FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
+  TextEditingController? textController4; // Deal option remark
   String? Function(BuildContext, String?)? textController4Validator;
-  String? _textController4Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter a valid deal option remark';
-    }
-    return null;
-  }
 
-  // State field(s) for DropDown widget - Deal Options (Dynamic)
-  String? dropDownValue4;
-  FormFieldController<String>? dropDownValueController4;
-
-  // State field(s) for TextField widget
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
-  String? _textController5Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter a valid model no';
-    }
-    return null;
-  }
-
-  // State field(s) for TextField widget
-  FocusNode? textFieldFocusNode6;
-  TextEditingController? textController6;
-  String? Function(BuildContext, String?)? textController6Validator;
-  String? _textController6Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter a valid RAM';
-    }
-    return null;
-  }
-
-  // State field(s) for DropDown widget - Countries (Dynamic)
-  String? dropDownValue5;
-  FormFieldController<String>? dropDownValueController5;
-
-  // State field(s) for DropDown widget - Townships (Dynamic)
-  String? dropDownValue6;
-  FormFieldController<String>? dropDownValueController6;
-
-  // State field(s) for TextField widget
   FocusNode? textFieldFocusNode7;
-  TextEditingController? textController7;
+  TextEditingController? textController7; // Address
   String? Function(BuildContext, String?)? textController7Validator;
-  String? _textController7Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter a valid address';
-    }
-    return null;
-  }
+
+  // Dropdown controllers for static fields
+  FormFieldController<String>? dropDownValueController1; // Category
+  FormFieldController<String>? dropDownValueController2; // Product Type
+  FormFieldController<String>? dropDownValueController3; // Condition
+  FormFieldController<String>? dropDownValueController4; // Deal Option
+  FormFieldController<String>? dropDownValueController5; // Country
+  FormFieldController<String>? dropDownValueController6; // Township
+
+  String? dropDownValue1;
+  String? dropDownValue2;
+  String? dropDownValue3;
+  String? dropDownValue4;
+  String? dropDownValue5;
+  String? dropDownValue6;
 
   @override
   void initState(BuildContext context) {
     centerAppbarModel = createModel(context, () => CenterAppbarModel());
+
+    // Initialize validators for basic fields
     textController1Validator = _textController1Validator;
     textController2Validator = _textController2Validator;
     textController3Validator = _textController3Validator;
     textController4Validator = _textController4Validator;
-    textController5Validator = _textController5Validator;
-    textController6Validator = _textController6Validator;
     textController7Validator = _textController7Validator;
 
-    // Load all dynamic data
+    // Load all static dropdown data
     loadCategories();
     loadDealOptions();
     loadConditions();
     loadCountries();
     loadProductTypes();
-
     getCurrentUser();
   }
 
@@ -226,6 +220,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     uploadedImages.clear();
     uploadedImageUrls.clear();
     centerAppbarModel.dispose();
+
+    // Dispose basic text controllers and focus nodes
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
     textFieldFocusNode2?.dispose();
@@ -234,12 +230,74 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     textController3?.dispose();
     textFieldFocusNode4?.dispose();
     textController4?.dispose();
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
-    textFieldFocusNode6?.dispose();
-    textController6?.dispose();
     textFieldFocusNode7?.dispose();
     textController7?.dispose();
+
+    // Dispose dynamic controllers
+    for (var controller in dynamicTextControllers.values) {
+      controller.dispose();
+    }
+    for (var node in dynamicFocusNodes.values) {
+      node.dispose();
+    }
+    for (var controller in dynamicDropdownControllers.values) {
+      controller.reset();
+    }
+  }
+
+  // Basic field validators
+  String? _textController1Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Please enter a valid product name';
+    }
+    return null;
+  }
+
+  String? _textController2Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Please enter a valid price';
+    }
+    return null;
+  }
+
+  String? _textController3Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Please enter a valid description';
+    }
+    return null;
+  }
+
+  String? _textController4Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Please enter a valid deal option remark';
+    }
+    return null;
+  }
+
+  String? _textController7Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Please enter a valid address';
+    }
+    return null;
+  }
+
+  // Dynamic field validator
+  String? dynamicFieldValidator(CategoryField field, String? val) {
+    if (field.isRequired && (val == null || val.isEmpty)) {
+      return 'Please enter ${field.fieldLabel.toLowerCase()}';
+    }
+
+    // Additional validation based on field type
+    if (val != null && val.isNotEmpty) {
+      if (field.fieldType == 'number') {
+        if (double.tryParse(val) == null) {
+          return 'Please enter a valid number';
+        }
+      }
+      // Add more validation rules as needed
+    }
+
+    return null;
   }
 
   // Get current user ID
@@ -249,41 +307,115 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       if (response.succeeded) {
         final userData = response.jsonBody;
         currentUserId = userData['id']?.toString();
-        print('✅ Current user ID: $currentUserId');
+      } else {}
+    } catch (e) {}
+  }
+
+  // Load category fields when category is selected
+  Future<void> loadCategoryFields(String categoryId) async {
+    isCategoryFieldsLoading = true;
+    notifyListeners();
+
+    try {
+      getCategoryFieldsResponse =
+          await GetCategoryFieldsCall.call(categoryId: categoryId);
+
+      if (getCategoryFieldsResponse?.succeeded ?? false) {
+        final fieldsData = getCategoryFieldsResponse?.jsonBody ?? [];
+        categoryFields = fieldsData
+            .map<CategoryField>(
+                (fieldData) => CategoryField.fromJson(fieldData))
+            .toList();
+
+        // Clear existing dynamic field values and controllers
+        clearDynamicFields();
+
+        // Initialize controllers and values for new fields
+        initializeDynamicFields();
       } else {
-        print('❌ Failed to get current user');
+        categoryFields = [];
       }
     } catch (e) {
-      print('🚨 Error getting current user: $e');
+      categoryFields = [];
+    } finally {
+      isCategoryFieldsLoading = false;
+      notifyListeners();
     }
+  }
+
+  // Clear dynamic fields
+  void clearDynamicFields() {
+    // Dispose existing controllers
+    for (var controller in dynamicTextControllers.values) {
+      controller.dispose();
+    }
+    for (var node in dynamicFocusNodes.values) {
+      node.dispose();
+    }
+    for (var controller in dynamicDropdownControllers.values) {
+      controller.reset();
+    }
+
+    // Clear maps
+    dynamicFieldValues.clear();
+    dynamicTextControllers.clear();
+    dynamicFocusNodes.clear();
+    dynamicDropdownControllers.clear();
+  }
+
+  // Initialize dynamic fields
+  void initializeDynamicFields() {
+    for (var field in categoryFields) {
+      // Initialize field value
+      dynamicFieldValues[field.fieldName] = DynamicFieldValue(
+        categoryFieldId: field.id,
+        fieldName: field.fieldName,
+        value: null,
+      );
+
+      // Initialize controllers based on field type
+      if (field.fieldType == 'text' || field.fieldType == 'number') {
+        dynamicTextControllers[field.fieldName] = TextEditingController();
+        dynamicFocusNodes[field.fieldName] = FocusNode();
+      } else if (field.fieldType == 'dropdown') {
+        dynamicDropdownControllers[field.fieldName] =
+            FormFieldController<String>(null);
+      }
+    }
+  }
+
+  // Update dynamic field value
+  void updateDynamicFieldValue(String fieldName, dynamic value) {
+    if (dynamicFieldValues.containsKey(fieldName)) {
+      dynamicFieldValues[fieldName]!.value = value;
+      notifyListeners();
+    }
+  }
+
+  // Get dynamic field value
+  dynamic getDynamicFieldValue(String fieldName) {
+    return dynamicFieldValues[fieldName]?.value;
   }
 
   // Upload single image to Cloudflare R2
   Future<String?> uploadImageToR2(FFUploadedFile imageFile, int index) async {
     try {
-      // Generate unique filename
       final timestamp = DateTime.now().millisecondsSinceEpoch;
       final fileName = 'product_${timestamp}_$index.jpg';
-
-      print('📤 Uploading image $index to R2: $fileName');
 
       final response = await UploadImageToR2Call.call(
         imageFile: imageFile,
         fileName: fileName,
       );
-      print("${response.succeeded} ====================");
+
       if (response.succeeded) {
         final responseData = response.jsonBody;
         final imageUrl = responseData['url']?.toString();
-        print('✅ Image $index uploaded to R2: $imageUrl');
         return imageUrl;
       } else {
-        print('❌ Failed to upload image $index to R2: ${response.statusCode}');
-        print('Error: ${response.bodyText}');
         return null;
       }
     } catch (e) {
-      print('🚨 Exception uploading image $index to R2: $e');
       return null;
     }
   }
@@ -291,46 +423,28 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   // Upload all images to Cloudflare R2
   Future<List<String>> uploadAllImagesToR2() async {
     if (uploadedImages.isEmpty) {
-      print('ℹ️ No images to upload to R2');
       return [];
     }
 
-    print(
-        '📤 Starting upload of ${uploadedImages.length} images to Cloudflare R2...');
     isUploadingImages = true;
     notifyListeners();
 
     List<String> r2ImageUrls = [];
 
     try {
-      // Upload images sequentially to avoid overwhelming R2
       for (int i = 0; i < uploadedImages.length; i++) {
-        print('📤 Uploading image ${i + 1}/${uploadedImages.length} to R2...');
-
         final imageUrl = await uploadImageToR2(uploadedImages[i], i + 1);
 
         if (imageUrl != null) {
           r2ImageUrls.add(imageUrl);
-          // print('✅ Image ${i + 1} uploaded to R2 successfully');
-        } else {
-          print('⚠️ Failed to upload image ${i + 1} to R2');
-        }
+        } else {}
 
-        // Small delay between uploads
         await Future.delayed(const Duration(milliseconds: 500));
-      }
-
-      print(
-          '✅ R2 Upload complete: ${r2ImageUrls.length}/${uploadedImages.length} images uploaded');
-      print('📋 R2 URLs:');
-      for (var url in r2ImageUrls) {
-        print('  - $url');
       }
 
       return r2ImageUrls;
     } catch (e) {
-      print('🚨 Error uploading images to R2: $e');
-      return r2ImageUrls; // Return partial results
+      return r2ImageUrls;
     } finally {
       isUploadingImages = false;
       notifyListeners();
@@ -339,27 +453,30 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Validate form data
   bool validateForm() {
-    // Basic validation
+    // Basic field validation
     if (textController1?.text.isEmpty ?? true) {
-      print('❌ Product name is required');
       return false;
     }
 
     if (textController2?.text.isEmpty ?? true) {
-      print('❌ Price is required');
       return false;
     }
 
     if (selectedCategoryId == null) {
-      print('❌ Category is required');
       return false;
     }
 
-    if (uploadedImages.isEmpty) {
-      print('⚠️ No product images selected');
-      // You can make this required if needed
-      // return false;
+    // Validate dynamic fields
+    for (var field in categoryFields) {
+      if (field.isRequired) {
+        final value = getDynamicFieldValue(field.fieldName);
+        if (value == null || value.toString().isEmpty) {
+          return false;
+        }
+      }
     }
+
+    if (uploadedImages.isEmpty) {}
 
     return true;
   }
@@ -368,66 +485,69 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   double? getPriceValue() {
     try {
       final priceText = textController2?.text ?? '';
-      // Remove currency symbols and parse
       final cleanPrice = priceText.replaceAll(RegExp(r'[^\d.]'), '');
       return double.tryParse(cleanPrice);
     } catch (e) {
-      print('Error parsing price: $e');
       return null;
     }
   }
 
   // Get phone number from custom widget
   String? getPhoneNumber() {
-    // You'll need to implement this based on your CustomLabelCountryCodeWidget
-    // For now, return a placeholder or implement proper phone number extraction
     return '(405) 555-0128'; // Replace with actual implementation
   }
 
-  // Submit product to Supabase (with R2 image URLs)
+  // Prepare dynamic field values for submission
+  List<Map<String, dynamic>> prepareDynamicFieldValues(String productId) {
+    List<Map<String, dynamic>> fieldValues = [];
+
+    for (var field in categoryFields) {
+      final value = getDynamicFieldValue(field.fieldName);
+      if (value != null && value.toString().isNotEmpty) {
+        fieldValues.add({
+          'category_field_id': field.id,
+          'field_value': value.toString(),
+        });
+      }
+    }
+
+    return fieldValues;
+  }
+
+  // Submit product to Supabase (with dynamic fields)
   Future<bool> submitProduct() async {
     if (isSubmitting) {
-      print('⚠️ Already submitting, please wait...');
       return false;
     }
 
-    print('🚀 Starting product submission to Supabase...');
     isSubmitting = true;
     notifyListeners();
 
     try {
-      // Step 1: Validate form
       if (!validateForm()) {
-        print('❌ Form validation failed');
         return false;
       }
 
-      // Step 2: Get current user
       if (currentUserId == null) {
         await getCurrentUser();
         if (currentUserId == null) {
-          print('❌ Could not get current user ID');
           return false;
         }
       }
 
-      // Step 3: Upload images to Cloudflare R2
+      // Step 1: Upload images to Cloudflare R2
       uploadedImageUrls = await uploadAllImagesToR2();
 
-      // Step 4: Create product record in Supabase (with R2 URLs)
-      print('💾 Creating product in Supabase database...');
-
-      final response = await CreateProductCall.call(
+      // Step 2: Create basic product record
+      final productResponse = await CreateProductCall.call(
         userId: currentUserId,
         name: textController1?.text,
         price: getPriceValue(),
         description: textController3?.text,
         phoneNumber: getPhoneNumber(),
         dealOptionRemark: textController4?.text,
-        modelNo: textController5?.text,
-        ram: textController6?.text,
         address: textController7?.text,
-        imageUrls: uploadedImageUrls, // R2 URLs stored in Supabase
+        imageUrls: uploadedImageUrls,
         categoryId: selectedCategoryId,
         productTypeId: selectedProductTypeId,
         conditionId: selectedConditionId,
@@ -436,24 +556,36 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
         townshipId: selectedTownshipId,
       );
 
-      if (response.succeeded) {
-        final productData = response.jsonBody;
-        print('✅ Product created successfully in Supabase!');
-        print('📋 Product Details:');
-        print('  - Product ID: ${productData[0]['id']}');
-        print('  - Name: ${textController1?.text}');
-        print('  - Price: \$${getPriceValue()}');
-        print('  - Images stored in R2: ${uploadedImageUrls.length}');
-        print(
-            '  - Image URLs saved in Supabase: ${uploadedImageUrls.join(', ')}');
-        return true;
-      } else {
-        print('❌ Failed to create product in Supabase: ${response.statusCode}');
-        print('Error: ${response.bodyText}');
+      if (!productResponse.succeeded) {
         return false;
       }
+
+      final productData = productResponse.jsonBody[0];
+      final productId = productData['id']?.toString();
+
+      if (productId == null) {
+        return false;
+      }
+
+      // Step 3: Save dynamic field values
+      if (categoryFields.isNotEmpty) {
+        final fieldValues = prepareDynamicFieldValues(productId);
+
+        if (fieldValues.isNotEmpty) {
+          final fieldValuesResponse = await SaveProductFieldValuesCall.call(
+            productId: productId,
+            fieldValues: fieldValues,
+          );
+
+          if (fieldValuesResponse.succeeded) {
+          } else {
+            // Don't fail the entire submission for field value errors
+          }
+        }
+      }
+
+      return true;
     } catch (e) {
-      print('🚨 Exception during product submission: $e');
       return false;
     } finally {
       isSubmitting = false;
@@ -463,13 +595,11 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Reset form after successful submission
   void resetForm() {
-    // Clear text controllers
+    // Clear basic text controllers
     textController1?.clear();
     textController2?.clear();
     textController3?.clear();
     textController4?.clear();
-    textController5?.clear();
-    textController6?.clear();
     textController7?.clear();
 
     // Reset dropdown selections
@@ -488,41 +618,29 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
     dropDownValueController5?.reset();
     dropDownValueController6?.reset();
 
+    // Clear dynamic fields
+    clearDynamicFields();
+    categoryFields.clear();
+
     // Clear images and URLs
     uploadedImages.clear();
     uploadedImageUrls.clear();
 
-    // print('📝 Form reset successfully');
     notifyListeners();
   }
 
   // Load Categories from Supabase
   Future<void> loadCategories() async {
-    // print('🔄 Loading categories...');
     isCategoriesLoading = true;
     notifyListeners();
 
     try {
-      getCategoriesResponse = await PqzoepcjuqyvtosffqafCall.call();
-
-      // print('📡 Categories API Response: ${getCategoriesResponse?.succeeded}');
-      // print('📄 Response body: ${getCategoriesResponse?.jsonBody}');
+      getCategoriesResponse = await GetCategoriesCall.call();
 
       if (getCategoriesResponse?.succeeded ?? false) {
         categories = getCategoriesResponse?.jsonBody ?? [];
-        // print('✅ Successfully loaded ${categories.length} categories');
-
-        // for (var category in categories) {
-        //   print('📂 Category: ${category['name']} (ID: ${category['id']})');
-        // }
-      } else {
-        print('❌ Failed to load categories');
-        print('Status: ${getCategoriesResponse?.statusCode}');
-        print('Error: ${getCategoriesResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading categories: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isCategoriesLoading = false;
       notifyListeners();
@@ -531,32 +649,16 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Deal Options from Supabase
   Future<void> loadDealOptions() async {
-    // print('🔄 Loading deal options...');
     isDealOptionsLoading = true;
     notifyListeners();
 
     try {
       getDealOptionsResponse = await GetDealOptionsCall.call();
 
-      // print(
-      //     '📡 Deal Options API Response: ${getDealOptionsResponse?.succeeded}');
-      // print('📄 Response body: ${getDealOptionsResponse?.jsonBody}');
-
       if (getDealOptionsResponse?.succeeded ?? false) {
         dealOptions = getDealOptionsResponse?.jsonBody ?? [];
-        // print('✅ Successfully loaded ${dealOptions.length} deal options');
-
-        // for (var option in dealOptions) {
-        //   print('🤝 Deal Option: ${option['name']} (ID: ${option['id']})');
-        // }
-      } else {
-        print('❌ Failed to load deal options');
-        print('Status: ${getDealOptionsResponse?.statusCode}');
-        print('Error: ${getDealOptionsResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading deal options: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isDealOptionsLoading = false;
       notifyListeners();
@@ -565,31 +667,16 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Conditions from Supabase
   Future<void> loadConditions() async {
-    // print('🔄 Loading conditions...');
     isConditionsLoading = true;
     notifyListeners();
 
     try {
       getConditionsResponse = await GetConditionsCall.call();
 
-      // print('📡 Conditions API Response: ${getConditionsResponse?.succeeded}');
-      // print('📄 Response body: ${getConditionsResponse?.jsonBody}');
-
       if (getConditionsResponse?.succeeded ?? false) {
         conditions = getConditionsResponse?.jsonBody ?? [];
-        // print('✅ Successfully loaded ${conditions.length} conditions');
-
-        // for (var condition in conditions) {
-        //   print('🔧 Condition: ${condition['name']} (ID: ${condition['id']})');
-        // }
-      } else {
-        print('❌ Failed to load conditions');
-        print('Status: ${getConditionsResponse?.statusCode}');
-        print('Error: ${getConditionsResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading conditions: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isConditionsLoading = false;
       notifyListeners();
@@ -598,31 +685,16 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Countries from Supabase
   Future<void> loadCountries() async {
-    // print('🔄 Loading countries...');
     isCountriesLoading = true;
     notifyListeners();
 
     try {
       getCountriesResponse = await GetCountriesCall.call();
 
-      // print('📡 Countries API Response: ${getCountriesResponse?.succeeded}');
-      // print('📄 Response body: ${getCountriesResponse?.jsonBody}');
-
       if (getCountriesResponse?.succeeded ?? false) {
         countries = getCountriesResponse?.jsonBody ?? [];
-        // print('✅ Successfully loaded ${countries.length} countries');
-
-        // for (var country in countries) {
-        //   print('🌍 Country: ${country['name']} (ID: ${country['id']})');
-        // }
-      } else {
-        print('❌ Failed to load countries');
-        print('Status: ${getCountriesResponse?.statusCode}');
-        print('Error: ${getCountriesResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading countries: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isCountriesLoading = false;
       notifyListeners();
@@ -631,31 +703,27 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Townships from Supabase (filtered by country if selected)
   Future<void> loadTownships({String? countryId}) async {
-    print('🔄 Loading townships for country: $countryId');
+    // Don't load if no country is selected
+    if (countryId == null || countryId.isEmpty) {
+      townships.clear();
+      notifyListeners();
+      return;
+    }
+
     isTownshipsLoading = true;
     notifyListeners();
 
     try {
       getTownshipsResponse = await GetTownshipsCall.call(countryId: countryId);
 
-      // print('📡 Townships API Response: ${getTownshipsResponse?.succeeded}');
-      // print('📄 Response body: ${getTownshipsResponse?.jsonBody}');
-
       if (getTownshipsResponse?.succeeded ?? false) {
-        townships = getTownshipsResponse?.jsonBody ?? [];
-        // print('✅ Successfully loaded ${townships.length} townships');
-
-        // for (var township in townships) {
-        //   print('🏘️ Township: ${township['name']} (ID: ${township['id']})');
-        // }
+        final newTownships = getTownshipsResponse?.jsonBody ?? [];
+        townships = newTownships;
       } else {
-        print('❌ Failed to load townships');
-        print('Status: ${getTownshipsResponse?.statusCode}');
-        print('Error: ${getTownshipsResponse?.bodyText}');
+        townships.clear();
       }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading townships: $e');
-      print('Stack trace: $stackTrace');
+    } catch (e) {
+      townships.clear();
     } finally {
       isTownshipsLoading = false;
       notifyListeners();
@@ -664,32 +732,16 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
 
   // Load Product Types from Supabase
   Future<void> loadProductTypes() async {
-    // print('🔄 Loading product types...');
     isProductTypesLoading = true;
     notifyListeners();
 
     try {
       getProductTypesResponse = await GetProductTypesCall.call();
 
-      // print(
-      //     '📡 Product Types API Response: ${getProductTypesResponse?.succeeded}');
-      // print('📄 Response body: ${getProductTypesResponse?.jsonBody}');
-
       if (getProductTypesResponse?.succeeded ?? false) {
         productTypes = getProductTypesResponse?.jsonBody ?? [];
-        // print('✅ Successfully loaded ${productTypes.length} product types');
-
-        // for (var type in productTypes) {
-        //   print('📦 Product Type: ${type['name']} (ID: ${type['id']})');
-        // }
-      } else {
-        print('❌ Failed to load product types');
-        print('Status: ${getProductTypesResponse?.statusCode}');
-        print('Error: ${getProductTypesResponse?.bodyText}');
-      }
-    } catch (e, stackTrace) {
-      print('🚨 Exception loading product types: $e');
-      print('Stack trace: $stackTrace');
+      } else {}
+    } catch (e) {
     } finally {
       isProductTypesLoading = false;
       notifyListeners();
@@ -706,7 +758,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return category?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting category name for ID $id: $e');
       return '';
     }
   }
@@ -720,7 +771,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return option?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting deal option name for ID $id: $e');
       return '';
     }
   }
@@ -734,7 +784,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return condition?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting condition name for ID $id: $e');
       return '';
     }
   }
@@ -748,7 +797,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return country?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting country name for ID $id: $e');
       return '';
     }
   }
@@ -762,7 +810,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return township?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting township name for ID $id: $e');
       return '';
     }
   }
@@ -776,7 +823,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       );
       return type?['name']?.toString() ?? '';
     } catch (e) {
-      print('Error getting product type name for ID $id: $e');
       return '';
     }
   }
@@ -785,8 +831,16 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onCategoryChanged(String? categoryId) {
     selectedCategoryId = categoryId;
     dropDownValue1 = categoryId;
-    // print(
-    //     '🎯 Selected category: ${getCategoryNameById(categoryId)} (ID: $categoryId)');
+
+    // Clear existing dynamic fields when category changes
+    clearDynamicFields();
+    categoryFields.clear();
+
+    // Load category fields for the selected category
+    if (categoryId != null) {
+      loadCategoryFields(categoryId);
+    }
+
     notifyListeners();
   }
 
@@ -794,8 +848,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onProductTypeChanged(String? productTypeId) {
     selectedProductTypeId = productTypeId;
     dropDownValue2 = productTypeId;
-    // print(
-    //     '🎯 Selected product type: ${getProductTypeNameById(productTypeId)} (ID: $productTypeId)');
     notifyListeners();
   }
 
@@ -803,8 +855,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onConditionChanged(String? conditionId) {
     selectedConditionId = conditionId;
     dropDownValue3 = conditionId;
-    // print(
-    //     '🎯 Selected condition: ${getConditionNameById(conditionId)} (ID: $conditionId)');
     notifyListeners();
   }
 
@@ -812,8 +862,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onDealOptionChanged(String? dealOptionId) {
     selectedDealOptionId = dealOptionId;
     dropDownValue4 = dealOptionId;
-    // print(
-    //     '🎯 Selected deal option: ${getDealOptionNameById(dealOptionId)} (ID: $dealOptionId)');
     notifyListeners();
   }
 
@@ -821,16 +869,24 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onCountryChanged(String? countryId) {
     selectedCountryId = countryId;
     dropDownValue5 = countryId;
-    // print(
-    //     '🎯 Selected country: ${getCountryNameById(countryId)} (ID: $countryId)');
 
-    // Reset township selection when country changes
+    // IMPORTANT: Reset township selection when country changes
     selectedTownshipId = null;
     dropDownValue6 = null;
-    dropDownValueController6?.reset();
+
+    // Reset the township dropdown controller
+    if (dropDownValueController6 != null) {
+      dropDownValueController6!.reset();
+    }
+
+    // Clear townships list first
+    townships.clear();
 
     // Load townships for the selected country
-    loadTownships(countryId: countryId);
+    if (countryId != null && countryId.isNotEmpty) {
+      loadTownships(countryId: countryId);
+    }
+
     notifyListeners();
   }
 
@@ -838,8 +894,6 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
   void onTownshipChanged(String? townshipId) {
     selectedTownshipId = townshipId;
     dropDownValue6 = townshipId;
-    // print(
-    //     '🎯 Selected township: ${getTownshipNameById(townshipId)} (ID: $townshipId)');
     notifyListeners();
   }
 
@@ -858,7 +912,8 @@ class AddProductModel extends FlutterFlowModel<AddProductWidget> {
       isConditionsLoading ||
       isCountriesLoading ||
       isTownshipsLoading ||
-      isProductTypesLoading;
+      isProductTypesLoading ||
+      isCategoryFieldsLoading;
 
   void notifyListeners() {
     // This would typically call setState in the actual FlutterFlow implementation
